@@ -41,6 +41,23 @@ export default class StringField extends Field {
       )
     }
 
+    if (this.props.property.display === 'radio') {
+      return (
+        <div className={`ct-field ct-radio-field`}>
+          {this.props.property.options.map((option) => {
+            return (
+              <div key={option.value}>
+                <input
+                  name="{this.props.property.id}"
+                  type="radio" value={option.value} />
+                {option.title}
+              </div>
+            )
+          })}
+        </div>
+      )
+    }
+
     return <div>Unsupported display type</div>
   }
 }
