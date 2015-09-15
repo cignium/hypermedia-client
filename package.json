@@ -1,8 +1,10 @@
 {
   "name": "client-sdk",
-  "version": "0.1.0",
   "description": "Hypermedia renderer for Cignium's hypermedia api.",
-  "repository": "https://github.com/cignium/hypermedia-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cignium/hypermedia-client.git"
+  },
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^5.8.24",
@@ -28,11 +30,13 @@
     "redbox-react": "^1.0.3",
     "webpack": "^1.12.1",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.0.1"
+    "webpack-hot-middleware": "^2.0.1",
+    "semantic-release": "^4.3.4"
   },
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
     "lint": "eslint .",
-    "start": "babel-node server.js"
+    "start": "babel-node server.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
 }
