@@ -2,6 +2,8 @@
 
 Hypermedia renderer for Cignium's hypermedia api.
 
+[![Build Status](https://travis-ci.org/cignium/hypermedia-client.svg)](https://travis-ci.org/cignium/hypermedia-client)
+
 ## Install
 
 The library is available on NPM and hosted on CDN.
