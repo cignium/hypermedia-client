@@ -12,7 +12,7 @@ export default {
     ],
   },
   output: {
-    filename: './dist/client.js',
+    filename: './dist/client.min.js',
   },
   plugins: [
     new webpack.DefinePlugin({
