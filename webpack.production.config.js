@@ -20,6 +20,9 @@ export default {
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
+      compress: {
+          warnings: false
+      },
     }),
   ],
 }

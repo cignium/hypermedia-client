@@ -7,7 +7,7 @@ before_script:
 
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 deploy:
   api_key:
