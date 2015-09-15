@@ -8,7 +8,7 @@ Hypermedia renderer for Cignium's hypermedia api.
 
 The library is available on NPM and hosted on CDN.
 
-### NPM
+##### NPM
 
 To install the stable version, run:
 
@@ -16,7 +16,7 @@ To install the stable version, run:
 npm install cignium-hypermedia --save
 ```
 
-### CDN
+##### CDN
 
 Add the following script tag:
 
