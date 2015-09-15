@@ -13,7 +13,7 @@ The library is available on NPM and hosted on CDN.
 To install the stable version, run:
 
 ```
-npm install cignium-hypermedia --save
+npm install cignium-hypermedia-client --save
 ```
 
 ##### CDN
