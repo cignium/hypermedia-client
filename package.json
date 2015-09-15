@@ -1,5 +1,5 @@
 {
-  "name": "client-sdk",
+  "name": "cignium-hypermedia",
   "description": "Hypermedia renderer for Cignium's hypermedia api.",
   "repository": {
     "type": "git",
