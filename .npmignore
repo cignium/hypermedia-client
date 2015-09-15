@@ -1,6 +1,9 @@
 demo
 node_modules
 *.yml
+.babelrc
+.eslintignore
+.eslintrc
 .gitignore
 .npmrc
 server.js

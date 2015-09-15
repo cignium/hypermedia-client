@@ -7,57 +7,58 @@ export default class StringField extends Field {
   }
 
   render() {
-    if (!this.props.property.display) {
-      return super.render()
+    switch (this.props.property.display) {
+      case 'radio': return this.renderRadio()
+      case 'select': return this.renderSelect()
+      case 'textarea': return this.renderTextArea()
+      default: return super.render()
     }
+  }
 
-    if (this.props.property.display === 'textarea') {
-      return (
-        <textarea
-          className={`ct-field ct-text-field ct-multiline-text-field`}
-          id={this.props.property.id}
-          onBlur={(e) => this.onBlur(e)}
-          onChange={(e) => this.onChange(e)}
-          value={this.state.value} />
-      )
-    }
+  renderRadio() {
+    return (
+      <div className={`ct-field ct-radio-field`}>
+        {this.props.property.options.map((option) => {
+          return (
+            <div key={option.value}>
+              <input
+                name="{this.props.property.id}"
+                type="radio" value={option.value} />
+              {option.title}
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 
-    if (this.props.property.display === 'select') {
-      return (
-        <select
-          className={`ct-field ct-select-field`}
-          id={this.props.property.id}
-          onBlur={(e) => this.onBlur(e)}
-          onChange={(e) => this.onChange(e)}
-          value={this.state.value}>
-          {this.props.property.options.map((option) => {
-            return (
-              <option key={option.value} value={option.value}>
-                {option.title}
-              </option>
-            )
-          })}
-        </select>
-      )
-    }
+  renderSelect() {
+    return (
+      <select
+        className={`ct-field ct-select-field`}
+        id={this.props.property.id}
+        onBlur={(e) => this.onBlur(e)}
+        onChange={(e) => this.onChange(e)}
+        value={this.state.value}>
+        {this.props.property.options.map((option) => {
+          return (
+            <option key={option.value} value={option.value}>
+              {option.title}
+            </option>
+          )
+        })}
+      </select>
+    )
+  }
 
-    if (this.props.property.display === 'radio') {
-      return (
-        <div className={`ct-field ct-radio-field`}>
-          {this.props.property.options.map((option) => {
-            return (
-              <div key={option.value}>
-                <input
-                  name="{this.props.property.id}"
-                  type="radio" value={option.value} />
-                {option.title}
-              </div>
-            )
-          })}
-        </div>
-      )
-    }
-
-    return <div>Unsupported display type</div>
+  renderTextArea() {
+    return (
+      <textarea
+        className={`ct-field ct-text-field ct-multiline-text-field`}
+        id={this.props.property.id}
+        onBlur={(e) => this.onBlur(e)}
+        onChange={(e) => this.onChange(e)}
+        value={this.state.value} />
+    )
   }
 }
