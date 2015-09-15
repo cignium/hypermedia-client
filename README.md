@@ -33,3 +33,7 @@ Add the following script tag in your HTML page:
   })
 </script>
 ```
+
+## License
+
+MIT
