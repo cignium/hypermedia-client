@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Client SDK Testing</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet" />
+    <link href="overrides.css" rel="stylesheet" />
+  </head>
+  <body>
+    <form class="endpoint-navigation" onsubmit="return go()">
+      <input autofocus id="endpoint-url" placeholder="enter endpoint url..." />
+      <button>Go!</button>
+    </form>
+    <div id="app"></div>
+    <script src="client.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var endpoint = localStorage.getItem('endpoint')
+        var endpointInput = document.getElementById('endpoint-url')
+
+        if (endpoint) {
+          endpointInput.value = endpoint
+          go()
+        }
+      })
+
+      function go(e) {
+        var element = document.getElementById('app')
+        var endpointInput = document.getElementById('endpoint-url')
+
+        localStorage.setItem('endpoint', endpointInput.value)
+        Cignium.init(element, endpointInput.value)
+
+        return false
+      }
+    </script>
+  </body>
+</html>
