@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Hypermedia renderer for Cignium's hypermedia api.",
   "repository": "https://github.com/cignium/hypermedia-client",
+  "license": "MIT",
   "dependencies": {
     "babel-runtime": "^5.8.24",
     "react": "^0.14.0-rc1",
