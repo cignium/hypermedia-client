@@ -8,6 +8,10 @@ export default class Field extends Component {
     }
   }
 
+  get type() {
+    return 'text'
+  }
+
   constructor(props) {
     super()
 

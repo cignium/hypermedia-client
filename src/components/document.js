@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Actions from './actions'
-import Fields from './fields'
+import Fieldset from './fieldset'
 import JsonDebugger from './json-debugger'
 
 export default class Document extends Component {
@@ -27,7 +27,7 @@ export default class Document extends Component {
             actions={resource.links.actions}
             executeAction={this.props.executeAction} />
         </div>
-        <Fields properties={resource.properties} update={this.props.update} />
+        <Fieldset properties={resource.properties} update={this.props.update} />
         <JsonDebugger resource={resource} />
       </div>
     )

@@ -34,13 +34,32 @@ class ObjectProperty extends Property {
   constructor(data, parent) {
     super(data, parent)
 
-    this.id = this.links.self.href
     this.properties = data.properties.map(property => {
       if (property.type == 'object') {
         return new ObjectProperty(property, this)
       }
+      else if (property.type == 'array') {
+        return new ArrayProperty(property, this)
+      }
 
       return new PrimitiveProperty(property, this)
+    })
+  }
+}
+
+class ArrayProperty extends Property {
+  constructor(data, parent) {
+    super(data, parent)
+
+    this.items = data.items.map(item => {
+      if (item.type == 'object') {
+        return new ObjectProperty(item, this)
+      }
+      else if (item.type == 'array') {
+        return new ArrayProperty(item, this)
+      }
+
+      return new PrimitiveProperty(item, this)
     })
   }
 }
