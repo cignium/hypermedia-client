@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import DateField from './fields/date'
 import Field from './fields/field'
+import LinkField from './fields/link'
 import List from './list'
 import NumberField from './fields/number'
 import RadioField from './fields/radio'
@@ -13,6 +14,9 @@ function getField(property) {
     case 'date': return DateField
     case 'number': return NumberField
     case 'string':
+      if(property.links.navigate){
+        return LinkField
+      }
       switch (property.display) {
         case 'radio': return RadioField
         case 'select': return SelectField
