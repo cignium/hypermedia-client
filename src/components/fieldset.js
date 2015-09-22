@@ -8,12 +8,6 @@ import SelectField from './fields/select'
 import Table from './table'
 import TextareaField from './fields/textarea'
 
-const fieldTypes = {
-  'date': DateField,
-  'number': NumberField,
-  'string': Field,
-}
-
 function getField(property) {
   switch (property.type) {
     case 'date': return DateField
