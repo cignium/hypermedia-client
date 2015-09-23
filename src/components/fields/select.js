@@ -5,7 +5,7 @@ export default class SelectField extends Field {
   render() {
     return (
       <select
-        className={`ct-field ct-select-field`}
+        className={'ct-field ct-select-field'}
         id={this.props.property.id}
         onBlur={(e) => this.onBlur(e)}
         onChange={(e) => this.onChange(e)}
