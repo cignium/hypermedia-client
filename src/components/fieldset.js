@@ -14,9 +14,10 @@ function getField(property) {
     case 'date': return DateField
     case 'number': return NumberField
     case 'string':
-      if(property.links.navigate){
+      if (property.links.navigate) {
         return LinkField
       }
+
       switch (property.display) {
         case 'radio': return RadioField
         case 'select': return SelectField
