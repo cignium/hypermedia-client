@@ -11,6 +11,8 @@
   "parser": "babel-eslint",
   "plugins": ["react"],
   "rules": {
+    "array-bracket-spacing": [2, "never"],
+    "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
     "comma-dangle": [2, "always-multiline"],
     "eol-last": 2,
     "max-len": [2, 80, 4],
@@ -31,6 +33,10 @@
     "react/self-closing-comp": 2,
     "react/wrap-multilines": 2,
     "quotes": [2, "single"],
+    "semi": [2, "never"],
+    "space-after-keywords": [2, "always"],
+    "space-before-blocks": [2, "always"],
+    "space-before-function-paren": [2, "never"],
     "strict": [2, "global"]
   }
 }
