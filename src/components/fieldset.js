@@ -26,7 +26,7 @@ function getField(property) {
       }
   }
 
-  throw Error(`Unsupported property type '${property.type}`)
+  throw Error(`Unsupported property type '${property.type}'`)
 }
 
 export default class Fieldset extends Component {
