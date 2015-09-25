@@ -12,8 +12,8 @@ const compiler = webpack(config)
 app.use(compression())
 
 app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: config.output.publicPath,
+  noInfo: true,
+  publicPath: config.output.publicPath,
 }))
 
 app.use(webpackHotMiddleware(compiler))
