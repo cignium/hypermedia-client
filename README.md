@@ -36,6 +36,10 @@ Add the following script tag in your HTML page:
 </script>
 ```
 
+## Contributing
+
+[Semantic Release](https://github.com/semantic-release/semantic-release) is used for releasing and semantic versioning. Make sure you follow the [default commit message format](https://github.com/semantic-release/semantic-release#default-commit-message-format) in order for releases to be properly created.
+
 ## License
 
 MIT
