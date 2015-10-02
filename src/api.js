@@ -20,9 +20,8 @@ function request(href, method, navigate, data, callback) {
     })
     .then(json => new Resource(json))
     .then(resource => {
-      const state = State.get()
-      resources.set(resource.links.self.href, resource)
-      navigate && state.set('current', resource.links.self.href)
+      State.get().resources.set(resource.links.self.href, resource)
+      navigate && State.get().set({ current: resource.links.self.href })
     })
     .catch(error => State.get().set('error', error))
     .then(() => State.get().requests.remove(href + method))
