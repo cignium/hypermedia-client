@@ -9,8 +9,6 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 const app = express()
 const compiler = webpack(config)
 
-app.use(compression())
-
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,

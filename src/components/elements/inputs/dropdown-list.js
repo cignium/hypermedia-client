@@ -1,11 +1,11 @@
 import React from 'react'
-import Field from './field'
+import Input from './input'
 
-export default class SelectField extends Field {
+export default class DropdownList extends Input {
   render() {
     return (
       <select
-        className={'ct-field ct-select-field'}
+        className={'ct-input ct-dropdown-list'}
         id={this.props.property.id}
         onBlur={(e) => this.onBlur(e)}
         onChange={(e) => this.onChange(e)}

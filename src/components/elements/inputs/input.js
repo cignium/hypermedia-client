@@ -1,15 +1,12 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
+import Element from '../element'
 
-export default class Field extends Component {
+export default class Input extends Element {
   static get propTypes() {
     return {
       property: PropTypes.object.isRequired,
       update: PropTypes.func,
     }
-  }
-
-  get type() {
-    return 'text'
   }
 
   constructor(props) {
@@ -52,17 +49,5 @@ export default class Field extends Component {
 
       this.props.update(updateHref, property.id, value)
     }
-  }
-
-  render() {
-    return (
-      <input
-        className={`ct-field ct-${this.type}-field`}
-        id={this.props.property.id}
-        onBlur={(e) => this.onBlur(e)}
-        onChange={(e) => this.onChange(e)}
-        type={this.type}
-        value={this.state.value} />
-    )
   }
 }

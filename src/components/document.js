@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Actions from './actions'
-import Fieldset from './fieldset'
+import ActionList from './elements/action-list'
+import Section from './elements/section'
 import JsonDebugger from './json-debugger'
 
 export default class Document extends Component {
@@ -13,7 +13,7 @@ export default class Document extends Component {
   }
 
   render() {
-    const resource = this.props.resource
+    const { resource } = this.props
 
     if (!resource) {
       return null
@@ -23,11 +23,11 @@ export default class Document extends Component {
       <div className='ct-document'>
         <div className='ct-document-header'>
           <h1>{resource.title}</h1>
-          <Actions
+          <ActionList
             actions={resource.links.actions}
             executeAction={this.props.executeAction} />
         </div>
-        <Fieldset properties={resource.properties} update={this.props.update} />
+        <Section properties={resource.properties} update={this.props.update} />
         <JsonDebugger resource={resource} />
       </div>
     )

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class Actions extends Component {
+export default class ActionList extends Component {
   static get propTypes() {
     return {
       actions: PropTypes.array.isRequired,
@@ -14,7 +14,7 @@ export default class Actions extends Component {
     }
 
     return (
-      <div className='ct-actions'>
+      <div className='ct-action-list'>
         {this.props.actions.map(action => {
           return (
             <button

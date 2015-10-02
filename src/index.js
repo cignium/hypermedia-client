@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import App from './app'
-import store from './store'
-import { navigate } from './actions'
+import { navigate } from './api'
 
 let initialized = false
 
@@ -14,17 +12,11 @@ export default {
         element = document.getElementById(element)
       }
 
-      ReactDOM.render(
-        <Provider store={store}>
-          <App initialHref={resource} />
-        </Provider>,
-        element
-      )
-
+      ReactDOM.render(<App initialHref={resource} />, element)
       initialized = true
     }
     else {
-      store.dispatch(navigate(resource))
+      navigate(resource)
     }
   },
 }

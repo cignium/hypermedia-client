@@ -1,11 +1,11 @@
 import React from 'react'
-import Field from './field'
+import Input from './input'
 
-export default class TextareaField extends Field {
+export default class MultilineTextInput extends Input {
   render() {
     return (
       <textarea
-        className={'ct-field ct-text-field ct-multiline-text-field'}
+        className={'ct-input ct-multiline-text-input'}
         id={this.props.property.id}
         onBlur={(e) => this.onBlur(e)}
         onChange={(e) => this.onChange(e)}
