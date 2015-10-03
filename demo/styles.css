@@ -15,13 +15,13 @@ html {
   margin: 0;
 }
 
-.endpoint-navigation {
+.navigation {
   background: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
   display: flex;
 }
 
-.endpoint-navigation input {
+.navigation input {
   border: 0;
   border-bottom: solid 1px #ddd;
   color: #555;
@@ -32,7 +32,7 @@ html {
   padding: 15px 20px;
 }
 
-.endpoint-navigation button {
+.navigation button {
   background: #0095FF;
   border: solid 1px #1281D0;
   color: white;
@@ -42,7 +42,7 @@ html {
   padding: 0px 40px;
 }
 
-.endpoint-navigation button:active {
+.navigation button:active {
   background: #1281D0;
 }
 

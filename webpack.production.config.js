@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 
 export default {
-  entry: './src/client.js',
+  entry: './src',
   module: {
     loaders: [
       {
@@ -13,6 +13,8 @@ export default {
   },
   output: {
     filename: './dist/client.min.js',
+    library: 'Cignium',
+    libraryTarget: 'var',
   },
   plugins: [
     new webpack.DefinePlugin({

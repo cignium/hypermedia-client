@@ -1,12 +1,9 @@
 .ct-actions,
 .ct-app,
 .ct-document,
-.ct-input,
-.ct-input-wrap,
-.ct-input-label,
+.ct-element,
+.ct-element-label,
 .ct-link,
-.ct-link-wrap,
-.ct-link-label,
 .ct-section {
   display: flex;
   flex: 1;
@@ -87,23 +84,15 @@
   background: #5DB0EA;
 }
 
-.ct-section-wrap {
+.ct-element > .ct-section {
   background: rgba(0, 0, 0, 0.03);
   border: solid 1px rgba(0, 0, 0, 0.03);
   border-radius: 3px;
-  margin: 30px 0 5px;
-  padding: 20px 15px;
+  margin: 5px 0;
+  padding: 0 15px 10px;
 }
 
-.ct-section-label {
-  color: #777;
-  font-weight: 300;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-.ct-input-label,
-.ct-link-label {
+.ct-element-label {
   color: #444;
   display: block;
   font-size: 14px;

@@ -8,29 +8,27 @@
     <link href="overrides.css" rel="stylesheet" />
   </head>
   <body>
-    <form class="endpoint-navigation" onsubmit="return go()">
-      <input autofocus id="endpoint-url" placeholder="enter endpoint url..." />
+    <form class="navigation" onsubmit="return go()">
+      <input autofocus id="url" placeholder="enter endpoint url..." />
       <button>Go!</button>
     </form>
     <div id="app"></div>
     <script src="client.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
-        var endpoint = localStorage.getItem('endpoint')
-        var endpointInput = document.getElementById('endpoint-url')
+        Cignium.init('app')
 
-        if (endpoint) {
-          endpointInput.value = endpoint
+        if (url = localStorage.getItem('url')) {
+          document.getElementById('url').value = url
           go()
         }
       })
 
       function go(e) {
-        var element = document.getElementById('app')
-        var endpointInput = document.getElementById('endpoint-url')
+        var url = document.getElementById('url').value
 
-        localStorage.setItem('endpoint', endpointInput.value)
-        Cignium.init(element, endpointInput.value)
+        localStorage.setItem('url', url)
+        Cignium.navigate(url)
 
         return false
       }

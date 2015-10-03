@@ -1,21 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
-export default class ActivityIndicator extends Component {
-  static get propTypes() {
-    return {
-      requests: PropTypes.object,
-    }
+export default ({requests}) => {
+  if (!Object.keys(requests).length) {
+    return <div />
   }
 
-  render() {
-    if (!Object.keys(this.props.requests).length) {
-      return null
-    }
-
-    return (
-      <div className='ct-activity-indicator'>
-        loading...
-      </div>
-    )
-  }
+  return (
+    <div className='ct-activity-indicator'>
+      loading...
+    </div>
+  )
 }

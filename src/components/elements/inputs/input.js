@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react'
-import Element from '../element'
+import React, { Component, PropTypes } from 'react'
 
-export default class Input extends Element {
+export default class Input extends Component {
   static get propTypes() {
     return {
       property: PropTypes.object.isRequired,

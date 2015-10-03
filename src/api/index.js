@@ -1,5 +1,5 @@
 import Resource from './resource'
-import State from './state'
+import State from '../state'
 
 function request(href, method, navigate, data, callback) {
   let request = {
@@ -21,7 +21,7 @@ function request(href, method, navigate, data, callback) {
     .then(json => new Resource(json))
     .then(resource => {
       State.get().resources.set(resource.links.self.href, resource)
-      navigate && State.get().set({ current: resource.links.self.href })
+      navigate && State.get().resources.set('current', resource.links.self.href)
     })
     .catch(error => State.get().set('error', error))
     .then(() => State.get().requests.remove(href + method))

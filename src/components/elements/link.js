@@ -1,21 +1,12 @@
-import React, { PropTypes } from 'react'
-import Element from './element'
+import React from 'react'
 
-export default class Link extends Element {
-  static get propTypes() {
-    return {
-      property: PropTypes.object.isRequired,
-    }
-  }
-
-  render() {
-    return (
-      <a
-        className={'ct-link'}
-        id={this.props.property.id}
-        href={this.props.property.links.navigate.href}>
-        {this.props.property.value}
-      </a>
-    )
-  }
+export default ({property}) => {
+  return (
+    <a
+      className={'ct-link'}
+      id={property.id}
+      href={property.links.navigate.href}>
+      {property.value}
+    </a>
+  )
 }
