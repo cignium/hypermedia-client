@@ -14,5 +14,5 @@ export default {
 
   navigate(href) {
     navigate(href)
-  }
+  },
 }
