@@ -4,7 +4,7 @@ import App from './app'
 import { navigate } from './api'
 
 export default {
-  init(element, resource) {
+  init(element) {
     if (typeof element === 'string') {
       element = document.getElementById(element)
     }
@@ -12,7 +12,5 @@ export default {
     ReactDOM.render(<App />, element)
   },
 
-  navigate(href) {
-    navigate(href)
-  },
+  navigate,
 }
