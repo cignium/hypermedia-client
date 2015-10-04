@@ -1,23 +1,32 @@
 import React from 'react'
+import Select from 'react-select'
 import Input from './input'
 
 export default class DropdownList extends Input {
+  onChange(value) {
+    if (value === '') {
+      value = null
+    }
+
+    if (value !== null && this.props.property.multiple) {
+      value = value.split(',')
+    }
+
+    this.update(value)
+  }
+
   render() {
     return (
-      <select
-        className={'ct-input ct-dropdown-list'}
-        id={this.props.property.id}
-        onBlur={(e) => this.onBlur(e)}
-        onChange={(e) => this.onChange(e)}
-        value={this.state.value}>
-        {this.props.property.options.map((option) => {
-          return (
-            <option key={option.value} value={option.value}>
-              {option.title}
-            </option>
-          )
+      <Select
+        multi={this.props.property.multiple}
+        onChange={(value) => this.onChange(value)}
+        options={this.props.property.options.map(({title, value}) => {
+          return {
+            label: title,
+            value,
+          }
         })}
-      </select>
+        value={this.state.value} />
     )
   }
 }

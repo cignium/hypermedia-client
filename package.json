@@ -11,7 +11,8 @@
     "babel-runtime": "^5.8.25",
     "freezer-js": "^0.8.0",
     "react": "^0.14.0-rc1",
-    "react-dom": "^0.14.0-rc1"
+    "react-dom": "^0.14.0-rc1",
+    "react-select": "^0.6.12"
   },
   "devDependencies": {
     "babel": "^5.8.23",

@@ -11,7 +11,7 @@ export default class NumberInput extends Input {
       <input
         className={`ct-input ct-number-input`}
         id={this.props.property.id}
-        onBlur={(e) => this.onBlur(e)}
+        onBlur={() => this.onBlur()}
         onChange={(e) => this.onChange(e)}
         type='number'
         value={this.state.value} />

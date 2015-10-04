@@ -24,8 +24,7 @@ export default class CheckboxList extends Input {
       values = null
     }
 
-    this.setState({ value: values })
-    this.onUpdate(values)
+    this.update(values)
   }
 
   render() {

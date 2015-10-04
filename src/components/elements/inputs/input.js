@@ -31,8 +31,8 @@ export default class Input extends Component {
     return target.value
   }
 
-  onBlur(e) {
-    this.onUpdate(this.state.value)
+  onBlur() {
+    this.update(this.state.value)
   }
 
   onChange(e) {
@@ -41,7 +41,9 @@ export default class Input extends Component {
     })
   }
 
-  onUpdate(value) {
+  update(value) {
+    this.setState({ value: value })
+
     if (this.props.property.value != value) {
       const property = this.props.property
       const updateHref = property.links.update.href

@@ -16,6 +16,10 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler))
 
+app.get('/node_modules/*', (req, res) => {
+  res.sendFile(path.join(__dirname, req.path))
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'demo', req.path))
 })

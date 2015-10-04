@@ -7,7 +7,7 @@ export default class TextInput extends Input {
       <input
         className={`ct-input ct-text-input`}
         id={this.props.property.id}
-        onBlur={(e) => this.onBlur(e)}
+        onBlur={() => this.onBlur()}
         onChange={(e) => this.onChange(e)}
         type='text'
         value={this.state.value} />
