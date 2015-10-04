@@ -24,7 +24,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'demo', req.path))
 })
 
-app.listen(3000, 'localhost', (err) => {
+app.listen(3000, 'localhost', err => {
   if (err) {
     console.log(err)
     return

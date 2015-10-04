@@ -1,8 +1,8 @@
 import React from 'react'
 import Input from './input'
 
-function isChecked(values, option) {
-  for (let value of values || []) {
+const isChecked = (values, option) => {
+  for (const value of values || []) {
     if (option.value === value) {
       return true
     }
@@ -30,12 +30,12 @@ export default class CheckboxList extends Input {
   render() {
     return (
       <div className={'ct-input ct-checkbox-list'}>
-        {this.props.property.options.map((option) => {
+        {this.props.property.options.map(option => {
           return (
             <div key={option.value}>
               <input
                 checked={isChecked(this.state.value, option)}
-                onChange={(e) => this.onChange(e, option.value)}
+                onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
                 type='checkbox'
                 value={option.value} />

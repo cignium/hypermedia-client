@@ -1,11 +1,11 @@
 import React from 'react'
 import factory from './factory'
 
-export default function Section({property, update}) {
+export default ({property, update}) => {
   return (
     <div className='ct-section'>
       {property.properties.map(property => {
-        let Element = factory(property)
+        const Element = factory(property)
 
         return (
           <div className='ct-element' key={property.id}>

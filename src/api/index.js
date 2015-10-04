@@ -2,9 +2,9 @@ import Resource from './resource'
 import State from '../state'
 
 function request(href, method, navigate, data, callback) {
-  let request = {
+  const request = {
     body: data && JSON.stringify(data),
-    method: method,
+    method,
   }
 
   State.get().set('error', null)

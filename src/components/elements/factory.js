@@ -10,11 +10,11 @@ import Section from './section'
 import Table from './table'
 import TextInput from './inputs/text-input'
 
-function isTable(property) {
+const isTable = property => {
   return property.items[0] && property.items[0].properties
 }
 
-export default (property) => {
+export default property => {
   switch (property.type) {
     case 'array': return isTable(property) ? Table : List
     case 'date': return DatePicker

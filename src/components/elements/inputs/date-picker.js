@@ -12,7 +12,7 @@ export default class DatePicker extends Input {
         className={`ct-input ct-date-picker`}
         id={this.props.property.id}
         onBlur={() => this.onBlur()}
-        onChange={(e) => this.onChange(e)}
+        onChange={e => this.onChange(e)}
         type='date'
         value={this.state.value} />
     )

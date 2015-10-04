@@ -19,7 +19,7 @@ export default class DropdownList extends Input {
     return (
       <Select
         multi={this.props.property.multiple}
-        onChange={(value) => this.onChange(value)}
+        onChange={value => this.onChange(value)}
         options={this.props.property.options.map(({title, value}) => {
           return {
             label: title,

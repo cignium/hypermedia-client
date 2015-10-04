@@ -42,7 +42,7 @@ export default class Input extends Component {
   }
 
   update(value) {
-    this.setState({ value: value })
+    this.setState({ value })
 
     if (this.props.property.value != value) {
       const property = this.props.property
