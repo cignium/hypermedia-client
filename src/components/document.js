@@ -1,35 +1,23 @@
-import React, { Component, PropTypes } from 'react'
-import Actions from './actions'
-import Fieldset from './fieldset'
+import React from 'react'
+import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
+import Section from './elements/section'
 
-export default class Document extends Component {
-  static get propTypes() {
-    return {
-      executeAction: PropTypes.func.isRequired,
-      resource: PropTypes.object,
-      update: PropTypes.func,
-    }
+export default ({executeAction, resource, update}) => {
+  if (!resource) {
+    return <div />
   }
 
-  render() {
-    const resource = this.props.resource
-
-    if (!resource) {
-      return null
-    }
-
-    return (
-      <div className='ct-document'>
-        <div className='ct-document-header'>
-          <h1>{resource.title}</h1>
-          <Actions
-            actions={resource.links.actions}
-            executeAction={this.props.executeAction} />
-        </div>
-        <Fieldset properties={resource.properties} update={this.props.update} />
-        <JsonDebugger resource={resource} />
+  return (
+    <div className='ct-document'>
+      <div className='ct-document-header'>
+        <h1>{resource.title}</h1>
+        <ActionList
+          actions={resource.links.actions}
+          executeAction={executeAction} />
       </div>
-    )
-  }
+      <Section property={resource} update={update} />
+      <JsonDebugger resource={resource} />
+    </div>
+  )
 }

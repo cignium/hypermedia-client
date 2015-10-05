@@ -1,56 +1,31 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { executeAction, navigate, update } from './actions'
+import React from 'react'
+import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
+import State from './state'
 
-class App extends Component {
-  static get propTypes() {
-    return {
-      current: PropTypes.object,
-      error: PropTypes.object,
-      executeAction: PropTypes.func.isRequired,
-      initialHref: PropTypes.string.isRequired,
-      navigate: PropTypes.func.isRequired,
-      requests: PropTypes.object,
-      resources: PropTypes.object,
-      update: PropTypes.func,
-    }
-  }
-
+export default class App extends React.Component {
   componentDidMount() {
-    this.props.navigate(this.props.initialHref)
+    State.on('update', () => this.forceUpdate())
   }
 
   render() {
+    const {
+      error,
+      requests,
+      resources,
+    } = State.get()
+
     return (
       <div className='ct-app'>
-        <ErrorMessage error={this.props.error} />
-        <ActivityIndicator requests={this.props.requests} />
+        <ErrorMessage error={error} />
+        <ActivityIndicator requests={requests} />
         <Document
-          executeAction={this.props.executeAction}
-          resource={this.props.current}
-          update={this.props.update} />
+          executeAction={executeAction}
+          resource={resources[resources.current]}
+          update={update} />
       </div>
     )
   }
 }
-
-export default connect(
-  (state) => {
-    return {
-      current: state.resources[state.resources.current],
-      error: state.error,
-      requests: state.requests,
-      resources: state.resources,
-    }
-  },
-  (dispatch) => {
-    return {
-      executeAction: (href) => dispatch(executeAction(href)),
-      navigate: (href) => dispatch(navigate(href)),
-      update: (href, id, value) => dispatch(update(href, id, value)),
-    }
-  }
-)(App)

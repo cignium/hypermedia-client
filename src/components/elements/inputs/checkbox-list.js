@@ -1,0 +1,45 @@
+import React from 'react'
+import Input from './input'
+
+const isChecked = (values, option) => {
+  for (const value of values || []) {
+    if (option.value === value) {
+      return true
+    }
+  }
+}
+
+export default class CheckboxList extends Input {
+  onChange(e, value) {
+    const values = [...this.state.value || []]
+
+    if (e.target.checked) {
+      values.push(value)
+    }
+    else {
+      values.splice(values.indexOf(value), 1)
+    }
+
+    this.update(values.length ? values : null)
+  }
+
+  render() {
+    return (
+      <div className={'ct-input ct-checkbox-list'}>
+        {this.props.property.options.map(option => {
+          return (
+            <div key={option.value}>
+              <input
+                checked={isChecked(this.state.value, option)}
+                onChange={e => this.onChange(e, option.value)}
+                name={this.props.property.id}
+                type='checkbox'
+                value={option.value} />
+              {option.title}
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
+}

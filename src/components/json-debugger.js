@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
 const pre = {
   background: '#eee',
@@ -12,18 +12,10 @@ const pre = {
   width: 1000,
 }
 
-export default class JsonDebugger extends Component {
-  static get propTypes() {
-    return {
-      resource: PropTypes.object.isRequired,
-    }
-  }
-
-  render() {
-    return (
-      <pre className='ct-json-debugger' style={pre}>
-        {JSON.stringify(this.props.resource.getData(), null, 2)}
-      </pre>
-    )
-  }
+export default ({resource}) => {
+  return (
+    <pre className='ct-json-debugger' style={pre}>
+      {JSON.stringify(resource.getData(), null, 2)}
+    </pre>
+  )
 }

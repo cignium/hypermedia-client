@@ -1,15 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class Field extends Component {
+export default class Input extends Component {
   static get propTypes() {
     return {
       property: PropTypes.object.isRequired,
       update: PropTypes.func,
     }
-  }
-
-  get type() {
-    return 'text'
   }
 
   constructor(props) {
@@ -35,8 +31,8 @@ export default class Field extends Component {
     return target.value
   }
 
-  onBlur(e) {
-    this.onUpdate(this.state.value)
+  onBlur() {
+    this.update(this.state.value)
   }
 
   onChange(e) {
@@ -45,24 +41,14 @@ export default class Field extends Component {
     })
   }
 
-  onUpdate(value) {
+  update(value) {
+    this.setState({ value })
+
     if (this.props.property.value != value) {
       const property = this.props.property
       const updateHref = property.links.update.href
 
       this.props.update(updateHref, property.id, value)
     }
-  }
-
-  render() {
-    return (
-      <input
-        className={`ct-field ct-${this.type}-field`}
-        id={this.props.property.id}
-        onBlur={(e) => this.onBlur(e)}
-        onChange={(e) => this.onChange(e)}
-        type={this.type}
-        value={this.state.value} />
-    )
   }
 }

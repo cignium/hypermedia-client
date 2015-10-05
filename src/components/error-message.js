@@ -1,21 +1,13 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 
-export default class ErrorMessage extends Component {
-  static get propTypes() {
-    return {
-      error: PropTypes.object,
-    }
+export default ({error}) => {
+  if (!error) {
+    return <div />
   }
 
-  render() {
-    if (!this.props.error) {
-      return null
-    }
-
-    return (
-      <div className='ct-error-message'>
-        {this.props.error.message}
-      </div>
-    )
-  }
+  return (
+    <div className='ct-error-message'>
+      {error.message}
+    </div>
+  )
 }

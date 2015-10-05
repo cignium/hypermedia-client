@@ -4,7 +4,7 @@ export default {
   devtool: 'eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/client',
+    './src',
   ],
   module: {
     loaders: [{
@@ -15,6 +15,8 @@ export default {
   },
   output: {
     filename: 'client.js',
+    library: 'Cignium',
+    libraryTarget: 'var',
     path: __dirname,
     publicPath: '/',
   },

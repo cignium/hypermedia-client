@@ -1,30 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
 import App from './app'
-import store from './store'
-import { navigate } from './actions'
-
-let initialized = false
+import { navigate } from './api'
 
 export default {
-  init(element, resource) {
-    if (!initialized) {
-      if (typeof element === 'string') {
-        element = document.getElementById(element)
-      }
-
-      ReactDOM.render(
-        <Provider store={store}>
-          <App initialHref={resource} />
-        </Provider>,
-        element
-      )
-
-      initialized = true
+  init(element) {
+    if (typeof element === 'string') {
+      element = document.getElementById(element)
     }
-    else {
-      store.dispatch(navigate(resource))
-    }
+
+    ReactDOM.render(<App />, element)
   },
+
+  navigate,
 }

@@ -9,8 +9,6 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 const app = express()
 const compiler = webpack(config)
 
-app.use(compression())
-
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,
@@ -18,11 +16,15 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler))
 
+app.get('/node_modules/*', (req, res) => {
+  res.sendFile(path.join(__dirname, req.path))
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'demo', req.path))
 })
 
-app.listen(3000, 'localhost', (err) => {
+app.listen(3000, 'localhost', err => {
   if (err) {
     console.log(err)
     return
