@@ -120,7 +120,8 @@
   text-decoration: underline;
 }
 
-.ct-input {
+.ct-input,
+.ct-dropdown-list > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;
   color: #444;
@@ -128,11 +129,18 @@
   font-size: 15px;
   font-style: normal;
   font-weight: 300;
-  padding: 10px 8px;
+  padding: 8px;
 }
 
-.ct-dropdown-list {
-  -webkit-appearance: none;
+.ct-input:hover,
+.ct-dropdown-list > .Select-control:hover {
+  border: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.ct-dropdown-list > .Select-control {
+  padding-left: 10px;
+  padding-right: 52px;
 }
 
 .ct-json-debugger {

@@ -11,7 +11,7 @@ const isChecked = (values, option) => {
 
 export default class CheckboxList extends Input {
   onChange(e, value) {
-    let values = [...this.state.value || []]
+    const values = [...this.state.value || []]
 
     if (e.target.checked) {
       values.push(value)
@@ -20,11 +20,7 @@ export default class CheckboxList extends Input {
       values.splice(values.indexOf(value), 1)
     }
 
-    if (!values.length) {
-      values = null
-    }
-
-    this.update(values)
+    this.update(values.length ? values : null)
   }
 
   render() {

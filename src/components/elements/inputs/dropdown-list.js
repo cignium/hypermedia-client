@@ -18,6 +18,7 @@ export default class DropdownList extends Input {
   render() {
     return (
       <Select
+        className='ct-dropdown-list'
         multi={this.props.property.multiple}
         onChange={value => this.onChange(value)}
         options={this.props.property.options.map(({title, value}) => {
