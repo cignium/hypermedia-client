@@ -9,8 +9,16 @@ const isChecked = (values, option) => {
   }
 }
 
-export default class CheckboxList extends Input {
+export default class BooleanList extends Input {
+  isMultiSelect(){
+    return this.props.property.type === 'string[]'
+  }
+
   onChange(e, value) {
+    if (!this.isMultiSelect()){
+      return this.update(value);
+    }
+
     const values = [...this.state.value || []]
 
     if (e.target.checked) {
@@ -20,12 +28,12 @@ export default class CheckboxList extends Input {
       values.splice(values.indexOf(value), 1)
     }
 
-    this.update(values.length ? values : null)
+    this.update(values)
   }
 
   render() {
     return (
-      <div className={'ct-input ct-checkbox-list'}>
+      <div className={`ct-input ct-${this.props.property.display}-list`}>
         {this.props.property.options.map(option => {
           return (
             <div key={option.value}>
@@ -33,7 +41,7 @@ export default class CheckboxList extends Input {
                 checked={isChecked(this.state.value, option)}
                 onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
-                type='checkbox'
+                type={this.isMultiSelect() ? 'checkbox' : 'radio'}
                 value={option.value} />
               {option.title}
             </div>
