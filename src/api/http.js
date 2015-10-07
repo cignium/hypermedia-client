@@ -17,7 +17,8 @@ export function request(method, href, data, callback) {
   if (data) {
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(JSON.stringify(data))
-  } else {
+  }
+  else {
     req.send()
   }
 }
