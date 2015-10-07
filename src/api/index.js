@@ -1,40 +1,34 @@
+import { request } from './http'
 import Resource from './resource'
 import State from '../state'
 
-function request(href, method, navigate, data, callback) {
-  const request = {
-    body: data && JSON.stringify(data),
-    method,
-  }
-
+function requestResource(href, method, navigate, data, callback) {
   State.get().set('error', null)
   State.get().requests.set(href + method, true)
 
-  return fetch(href, request)
-    .then(response => {
-      if (response.status >= 200 && response.status < 300) {
-        return response.json()
-      }
-
-      throw Error(`${response.status}: ${response.statusText}`)
-    })
-    .then(json => new Resource(json))
-    .then(resource => {
+  try {
+    request(method, href, data, response => {
+      const resource = new Resource(response)
       State.get().resources.set(resource.links.self.href, resource)
       navigate && State.get().resources.set('current', resource.links.self.href)
     })
-    .catch(error => State.get().set('error', error))
-    .then(() => State.get().requests.remove(href + method))
+  }
+  catch (e) {
+    State.get().set('error', e)
+  }
+  finally {
+    State.get().requests.remove(href + method)
+  }
 }
 
 export function executeAction(href) {
-  request(href, 'post', true)
+  requestResource(href, 'post', true)
 }
 
 export function navigate(href) {
-  request(href, 'get', true)
+  requestResource(href, 'get', true)
 }
 
 export function update(href, id, value) {
-  request(href, 'post', false, { [id]: value })
+  requestResource(href, 'post', false, { [id]: value })
 }
