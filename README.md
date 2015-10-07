@@ -31,7 +31,8 @@ Add the following script tag in your HTML page:
 ```html
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    Cignium.init('INSERT_ELEMENT_ID', 'INSERT_URL')
+    Cignium.init('INSERT_ELEMENT_ID')
+    Cignium.navigate('INSERT_URL')
   })
 </script>
 ```
