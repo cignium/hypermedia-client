@@ -3,7 +3,7 @@ import Input from './input'
 
 export default class BooleanList extends Input {
   isChecked(value) {
-    if (!this.props.property.isMulti) {
+    if (!this.props.property.isArray) {
       return this.state.value === value
     }
 
@@ -15,7 +15,7 @@ export default class BooleanList extends Input {
   }
 
   onChange(e, value) {
-    if (!this.props.property.isMulti) {
+    if (!this.props.property.isArray) {
       return this.update(value)
     }
 
@@ -41,7 +41,7 @@ export default class BooleanList extends Input {
                 checked={this.isChecked(option.value)}
                 onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
-                type={this.props.property.isMulti ? 'checkbox' : 'radio'}
+                type={this.props.property.isArray ? 'checkbox' : 'radio'}
                 value={option.value} />
               {option.title}
             </div>

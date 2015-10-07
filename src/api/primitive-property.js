@@ -8,9 +8,6 @@ export default class PrimitiveProperty extends Property {
     this.id = data.id
     this.options = data.options
     this.value = data.value
-  }
-
-  get isMulti() {
-    return this.type === 'string[]'
+    this.isArray = this.type === 'string[]'
   }
 }
