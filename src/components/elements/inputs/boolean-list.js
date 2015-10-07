@@ -1,17 +1,25 @@
 import React from 'react'
 import Input from './input'
 
-const isChecked = (values, option) => {
-  for (const value of values || []) {
-    if (option.value === value) {
-      return true
+export default class BooleanList extends Input {
+  isChecked(value) {
+    if (!this.props.property.isMulti) {
+      return this.state.value === value
+    }
+
+    for (const selection of this.state.value) {
+      if (value === selection) {
+        return true
+      }
     }
   }
-}
 
-export default class CheckboxList extends Input {
   onChange(e, value) {
-    const values = [...this.state.value || []]
+    if (!this.props.property.isMulti) {
+      return this.update(value)
+    }
+
+    const values = [...this.state.value]
 
     if (e.target.checked) {
       values.push(value)
@@ -20,20 +28,20 @@ export default class CheckboxList extends Input {
       values.splice(values.indexOf(value), 1)
     }
 
-    this.update(values.length ? values : null)
+    this.update(values)
   }
 
   render() {
     return (
-      <div className={'ct-input ct-checkbox-list'}>
+      <div className={`ct-input ct-${this.props.property.display}-list`}>
         {this.props.property.options.map(option => {
           return (
             <div key={option.value}>
               <input
-                checked={isChecked(this.state.value, option)}
+                checked={this.isChecked(option.value)}
                 onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
-                type='checkbox'
+                type={this.props.property.isMulti ? 'checkbox' : 'radio'}
                 value={option.value} />
               {option.title}
             </div>

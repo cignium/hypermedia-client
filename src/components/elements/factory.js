@@ -1,11 +1,10 @@
-import CheckboxList from './inputs/checkbox-list'
 import DatePicker from './inputs/date-picker'
 import DropdownList from './inputs/dropdown-list'
 import Link from './link'
 import List from './list'
 import MultilineTextInput from './inputs/multiline-text-input'
 import NumberInput from './inputs/number-input'
-import RadioButtonList from './inputs/radio-button-list'
+import BooleanList from './inputs/boolean-list'
 import Section from './section'
 import Table from './table'
 import TextInput from './inputs/text-input'
@@ -21,13 +20,14 @@ export default property => {
     case 'number': return NumberInput
     case 'object': return Section
     case 'string':
+    case 'string[]':
       if (property.links.navigate) {
         return Link
       }
 
       switch (property.display) {
-        case 'checkbox': return CheckboxList
-        case 'radio': return RadioButtonList
+        case 'checkbox':
+        case 'radio': return BooleanList
         case 'select': return DropdownList
         case 'textarea': return MultilineTextInput
         default: return TextInput
