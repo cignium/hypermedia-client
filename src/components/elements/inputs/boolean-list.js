@@ -10,13 +10,13 @@ const isChecked = (values, option) => {
 }
 
 export default class BooleanList extends Input {
-  isMultiSelect(){
+  isMultiSelect() {
     return this.props.property.type === 'string[]'
   }
 
   onChange(e, value) {
-    if (!this.isMultiSelect()){
-      return this.update(value);
+    if (!this.isMultiSelect()) {
+      return this.update(value)
     }
 
     const values = [...this.state.value || []]

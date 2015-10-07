@@ -27,7 +27,7 @@ export default class Dropdown extends Input {
     )
   }
 
-  isMultiSelect(){
+  isMultiSelect() {
     return this.props.property.type === 'string[]'
   }
 }
