@@ -2,10 +2,10 @@ import React from 'react'
 import Select from 'react-select'
 import Input from './input'
 
-export default class Dropdown extends Input {
+export default class DropdownList extends Input {
   onChange(value) {
-    if (this.isMultiSelect()) {
-      value = value !== '' ? value.split(',') : []
+    if (this.props.property.isMulti) {
+      value = value === '' ? [] : value.split(',')
     }
 
     this.update(value)
@@ -15,7 +15,7 @@ export default class Dropdown extends Input {
     return (
       <Select
         className='ct-dropdown-list'
-        multi={this.isMultiSelect()}
+        multi={this.props.property.isMulti}
         onChange={value => this.onChange(value)}
         options={this.props.property.options.map(({title, value}) => {
           return {
@@ -25,9 +25,5 @@ export default class Dropdown extends Input {
         })}
         value={this.state.value} />
     )
-  }
-
-  isMultiSelect() {
-    return this.props.property.type === 'string[]'
   }
 }

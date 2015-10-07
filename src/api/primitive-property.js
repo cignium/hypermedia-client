@@ -9,4 +9,8 @@ export default class PrimitiveProperty extends Property {
     this.options = data.options
     this.value = data.value
   }
+
+  get isMulti() {
+    return this.type === 'string[]'
+  }
 }

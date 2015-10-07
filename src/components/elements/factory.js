@@ -1,5 +1,5 @@
 import DatePicker from './inputs/date-picker'
-import Dropdown from './inputs/dropdown'
+import DropdownList from './inputs/dropdown-list'
 import Link from './link'
 import List from './list'
 import MultilineTextInput from './inputs/multiline-text-input'
@@ -28,7 +28,7 @@ export default property => {
       switch (property.display) {
         case 'checkbox':
         case 'radio': return BooleanList
-        case 'select': return Dropdown
+        case 'select': return DropdownList
         case 'textarea': return MultilineTextInput
         default: return TextInput
       }
