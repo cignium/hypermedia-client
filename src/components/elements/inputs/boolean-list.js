@@ -1,17 +1,21 @@
 import React from 'react'
 import Input from './input'
 
-const isChecked = (values, option) => {
-  for (const value of values || []) {
-    if (option.value === value) {
-      return true
-    }
-  }
-}
-
 export default class BooleanList extends Input {
   get isMulti() {
     return this.props.property.type === 'string[]'
+  }
+
+  isChecked(option) {
+    if (!this.isMulti) {
+      return this.state.value === option.value
+    }
+
+    for (const value of values) {
+      if (option.value === value) {
+        return true
+      }
+    }
   }
 
   onChange(e, value) {
@@ -19,7 +23,7 @@ export default class BooleanList extends Input {
       return this.update(value)
     }
 
-    const values = [...this.state.value || []]
+    const values = [...this.state.value]
 
     if (e.target.checked) {
       values.push(value)
@@ -38,7 +42,7 @@ export default class BooleanList extends Input {
           return (
             <div key={option.value}>
               <input
-                checked={isChecked(this.state.value, option)}
+                checked={() => isChecked(option)}
                 onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
                 type={this.isMulti ? 'checkbox' : 'radio'}
