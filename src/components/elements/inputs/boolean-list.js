@@ -10,12 +10,12 @@ const isChecked = (values, option) => {
 }
 
 export default class BooleanList extends Input {
-  isMultiSelect() {
+  get isMulti() {
     return this.props.property.type === 'string[]'
   }
 
   onChange(e, value) {
-    if (!this.isMultiSelect()) {
+    if (!this.isMulti) {
       return this.update(value)
     }
 
@@ -41,7 +41,7 @@ export default class BooleanList extends Input {
                 checked={isChecked(this.state.value, option)}
                 onChange={e => this.onChange(e, option.value)}
                 name={this.props.property.id}
-                type={this.isMultiSelect() ? 'checkbox' : 'radio'}
+                type={this.isMulti ? 'checkbox' : 'radio'}
                 value={option.value} />
               {option.title}
             </div>
