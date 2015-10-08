@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
 import State from './state'
 
-export default class App extends React.Component {
+export default class App extends Component {
   componentDidMount() {
     State.on('update', () => this.forceUpdate())
   }

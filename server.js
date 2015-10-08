@@ -1,7 +1,5 @@
 import express from 'express'
-import compression from 'compression'
 import config from './webpack.config'
-import path from 'path'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -15,14 +13,8 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 
 app.use(webpackHotMiddleware(compiler))
-
-app.get('/node_modules/*', (req, res) => {
-  res.sendFile(path.join(__dirname, req.path))
-})
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'demo', req.path))
-})
+app.use(express.static('node_modules'))
+app.use(express.static('demo'))
 
 app.listen(3000, 'localhost', err => {
   if (err) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import App from './app'
 import { navigate } from './api'
 
@@ -9,7 +9,7 @@ export default {
       element = document.getElementById(element)
     }
 
-    ReactDOM.render(<App />, element)
+    render(<App />, element)
   },
 
   navigate,
