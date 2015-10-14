@@ -3,7 +3,11 @@ import Input from './input'
 
 export default class DatePicker extends Input {
   getValue(target) {
-    return target.valueAsDate
+    return target.valueAsDate.toISOString()
+  }
+
+  get dateValue(){
+    return new Date(this.state.value).toLocaleDateString()
   }
 
   render() {
@@ -14,7 +18,7 @@ export default class DatePicker extends Input {
         onBlur={() => this.onBlur()}
         onChange={e => this.onChange(e)}
         type='date'
-        value={this.state.value} />
+        value={this.dateValue} />
     )
   }
 }
