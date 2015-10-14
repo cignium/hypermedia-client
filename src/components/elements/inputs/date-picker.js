@@ -6,7 +6,7 @@ export default class DatePicker extends Input {
     return target.valueAsDate.toISOString()
   }
 
-  get dateValue(){
+  get dateValue() {
     return new Date(this.state.value).toLocaleDateString()
   }
 
