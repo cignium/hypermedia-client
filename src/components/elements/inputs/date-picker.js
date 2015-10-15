@@ -6,11 +6,11 @@ export default class DatePicker extends Input {
     return target.valueAsDate.toISOString()
   }
 
-  get dateValue() {
-    return new Date(this.state.value).toLocaleDateString()
-  }
-
   render() {
+    const value = this.state.value ?
+      new Date(this.state.value).toISOString().substring(0, 10) :
+      this.state.value
+
     return (
       <input
         className={`ct-input ct-date-picker`}
@@ -18,7 +18,7 @@ export default class DatePicker extends Input {
         onBlur={() => this.onBlur()}
         onChange={e => this.onChange(e)}
         type='date'
-        value={this.dateValue} />
+        value={value} />
     )
   }
 }
