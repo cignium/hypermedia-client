@@ -1,25 +1,14 @@
-export function request(method, href, data, callback) {
-  const req = new XMLHttpRequest()
-
-  req.open(method, href)
-  req.onload = () => {
-    if (req.status === 200) {
-        return callback(JSON.parse(req.response))
-    }
-
-    throw Error(`${req.statusText} for ${method} ${href}`)
+export async function request(method, href, data) {
+  const request = {
+    body: data && JSON.stringify(data),
+    method,
   }
 
-  req.onerror = () => {
-    throw Error(`Unknown error for ${method} ${href}`)
+  const response = await fetch(href, request)
+
+  if (response.status == 200) {
+    return await response.json()
   }
 
-  if (data) {
-    req.setRequestHeader('Content-Type', 'application/json')
-    req.send(JSON.stringify(data))
-  }
-  else {
-    req.send()
-  }
+  throw Error(`${response.status}: ${response.statusText}`)
 }
-

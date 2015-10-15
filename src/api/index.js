@@ -2,19 +2,19 @@ import { request } from './http'
 import Resource from './resource'
 import State from '../state'
 
-function requestResource(href, method, navigate, data, callback) {
+async function requestResource(href, method, navigate, data) {
   State.get().set('error', null)
   State.get().requests.set(href + method, true)
 
   try {
-    request(method, href, data, response => {
-      const resource = new Resource(response)
-      State.get().resources.set(resource.links.self.href, resource)
-      navigate && State.get().resources.set('current', resource.links.self.href)
-    })
+    const response = await request(method, href, data)
+    const resource = new Resource(response)
+    State.get().resources.set(resource.links.self.href, resource)
+    navigate && State.get().resources.set('current', resource.links.self.href)
   }
   catch (e) {
     State.get().set('error', e)
+    throw e
   }
   finally {
     State.get().requests.remove(href + method)
