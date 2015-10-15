@@ -10,6 +10,9 @@ const compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,
+  stats: {
+    cached: false,
+  },
 }))
 
 app.use(webpackHotMiddleware(compiler))

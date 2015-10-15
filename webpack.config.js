@@ -11,6 +11,10 @@ export default {
       include: /src/,
       loaders: ['babel'],
       test: /\.js$/,
+    },{
+      include: /src/,
+      loaders: ['eslint'],
+      test: /\.js$/,
     }],
   },
   output: {
