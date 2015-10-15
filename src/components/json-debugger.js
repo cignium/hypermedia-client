@@ -2,6 +2,7 @@ import React from 'react'
 
 const pre = {
   background: '#eee',
+  display: process.env.NODE_ENV == 'production' ? 'none' : 'block',
   position: 'fixed',
   opacity: 0.9,
   overflow: 'auto',
