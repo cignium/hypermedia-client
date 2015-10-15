@@ -2,7 +2,7 @@ import { request } from './http'
 import Resource from './resource'
 import State from '../state'
 
-async function requestResource(href, method, navigate, data) {
+async function requestResource(href, method, data) {
   State.get().set('error', null)
   State.get().requests.set(href + method, true)
 
@@ -10,7 +10,8 @@ async function requestResource(href, method, navigate, data) {
     const response = await request(method, href, data)
     const resource = new Resource(response)
     State.get().resources.set(resource.links.self.href, resource)
-    navigate && State.get().resources.set('current', resource.links.self.href)
+
+    return resource
   }
   catch (e) {
     State.get().set('error', e)
@@ -21,14 +22,18 @@ async function requestResource(href, method, navigate, data) {
   }
 }
 
-export function executeAction(href) {
-  requestResource(href, 'post', true)
+function setCurrent(resource) {
+  State.get().resources.set('current', resource.links.self.href)
 }
 
-export function navigate(href) {
-  requestResource(href, 'get', true)
+export async function executeAction(href) {
+  setCurrent(await requestResource(href, 'post'))
+}
+
+export async function navigate(href) {
+  setCurrent(await requestResource(href, 'get'))
 }
 
 export function update(href, id, value) {
-  requestResource(href, 'post', false, { [id]: value })
+  requestResource(href, 'post', { [id]: value })
 }
