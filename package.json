@@ -12,7 +12,8 @@
     "freezer-js": "^0.8.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-select": "^0.7.0"
+    "react-select": "^0.7.0",
+    "react-tooltip": "^0.7.4"
   },
   "devDependencies": {
     "babel": "^5.8.23",

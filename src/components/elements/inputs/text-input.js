@@ -1,21 +1,14 @@
 import React from 'react'
-import Input from './input'
 
-const types = {
-  email: 'email',
-  telephone: 'tel',
-}
-
-export default class TextInput extends Input {
-  render() {
-    return (
-      <input
-        className={`ct-input ct-text-input`}
-        id={this.props.property.id}
-        onBlur={() => this.onBlur()}
-        onChange={e => this.onChange(e)}
-        type={types[this.props.property.display] || 'text'}
-        value={this.state.value} />
-    )
-  }
+export default ({className, property, save, update, value}) => {
+  return (
+    <input
+      className={`${className} ct-text-input`}
+      data-tip={property.errors}
+      id={property.id}
+      onBlur={() => save()}
+      onChange={e => update(e.target.value)}
+      type={{ email: 'email', telephone: 'tel' }[property.display] || 'text'}
+      value={value} />
+  )
 }

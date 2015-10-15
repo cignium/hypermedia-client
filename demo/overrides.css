@@ -138,6 +138,14 @@
   box-shadow: none;
 }
 
+.ct-input-invalid {
+  border-color: #FF2525;
+}
+
+.ct-input-invalid:hover {
+  border-color: #CC0302;
+}
+
 .ct-dropdown-list > .Select-control {
   padding-left: 10px;
   padding-right: 52px;
