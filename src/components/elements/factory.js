@@ -4,7 +4,7 @@ import List from './list'
 import Section from './section'
 import Table from './table'
 
-const isTable = property => {
+function isTable(property) {
   return property.items[0] && property.items[0].properties
 }
 

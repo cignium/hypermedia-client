@@ -1,24 +1,24 @@
 import React from 'react'
 
-export default ({className, property, save, value}) => {
-  const onChange = (e, newValue) => {
-    if (property.isArray) {
-      const values = [...value]
-
-      if (e.target.checked) {
-        values.push(newValue)
-      }
-      else {
-        values.splice(values.indexOf(newValue), 1)
-      }
-
-      newValue = values
+export default ({className, onCommit, property, value}) => {
+  function getValue(checked, newValue) {
+    if (!property.isArray) {
+      return newValue
     }
 
-    save(newValue)
+    const values = [...value]
+
+    if (checked) {
+      values.push(newValue)
+    }
+    else {
+      values.splice(values.indexOf(newValue), 1)
+    }
+
+    return values
   }
 
-  const isChecked = newValue => {
+  function isChecked(newValue) {
     if (!property.isArray) {
       return value === newValue
     }
@@ -37,7 +37,7 @@ export default ({className, property, save, value}) => {
           <div key={option.value}>
             <input
               checked={isChecked(option.value)}
-              onChange={e => onChange(e, option.value)}
+              onChange={e => onCommit(getValue(e.target.checked, option.value))}
               name={property.id}
               type={property.isArray ? 'checkbox' : 'radio'}
               value={option.value} />

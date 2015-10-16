@@ -33,13 +33,13 @@ export default class Input extends Component {
       <Element
         className={className}
         property={this.props.property}
-        save={value => this.save(value)}
-        update={value => this.setState({ value })}
+        onCommit={value => this.update(value)}
+        onChange={value => this.setState({ value })}
         value={this.state.value} />
     )
   }
 
-  save(value) {
+  update(value) {
     if (value === undefined) {
       value = this.state.value
     }
