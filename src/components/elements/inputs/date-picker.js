@@ -1,24 +1,18 @@
 import React from 'react'
-import Input from './input'
 
-export default class DatePicker extends Input {
-  getValue(target) {
-    return target.valueAsDate.toISOString()
-  }
+function getDate(input) {
+  return input.value ? input.valueAsDate.toISOString() : null
+}
 
-  render() {
-    const value = this.state.value ?
-      new Date(this.state.value).toISOString().substring(0, 10) :
-      this.state.value
-
-    return (
-      <input
-        className={`ct-input ct-date-picker`}
-        id={this.props.property.id}
-        onBlur={() => this.onBlur()}
-        onChange={e => this.onChange(e)}
-        type='date'
-        value={value} />
-    )
-  }
+export default ({className, errors, onChange, onCommit, property, value}) => {
+  return (
+    <input
+      className={`${className} ct-date-picker`}
+      data-tip={errors}
+      id={property.id}
+      onBlur={() => onCommit()}
+      onChange={e => onChange(getDate(e.target))}
+      type='date'
+      value={value ? new Date(value).toISOString().substring(0, 10) : value} />
+  )
 }

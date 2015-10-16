@@ -1,53 +1,50 @@
 import React from 'react'
-import Input from './input'
 
-export default class BooleanList extends Input {
-  isChecked(value) {
-    if (!this.props.property.isArray) {
-      return this.state.value === value
+export default ({className, onCommit, property, value}) => {
+  function getValue(checked, newValue) {
+    if (!property.isArray) {
+      return newValue
     }
 
-    for (const selection of this.state.value) {
-      if (value === selection) {
+    const values = [...value]
+
+    if (checked) {
+      values.push(newValue)
+    }
+    else {
+      values.splice(values.indexOf(newValue), 1)
+    }
+
+    return values
+  }
+
+  function isChecked(newValue) {
+    if (!property.isArray) {
+      return value === newValue
+    }
+
+    for (const selection of value) {
+      if (selection === newValue) {
         return true
       }
     }
   }
 
-  onChange(e, value) {
-    if (!this.props.property.isArray) {
-      return this.update(value)
-    }
-
-    const values = [...this.state.value]
-
-    if (e.target.checked) {
-      values.push(value)
-    }
-    else {
-      values.splice(values.indexOf(value), 1)
-    }
-
-    this.update(values)
-  }
-
-  render() {
-    return (
-      <div className={`ct-input ct-${this.props.property.display}-list`}>
-        {this.props.property.options.map(option => {
-          return (
-            <div key={option.value}>
-              <input
-                checked={this.isChecked(option.value)}
-                onChange={e => this.onChange(e, option.value)}
-                name={this.props.property.id}
-                type={this.props.property.isArray ? 'checkbox' : 'radio'}
-                value={option.value} />
-              {option.title}
-            </div>
-          )
-        })}
-      </div>
-    )
-  }
+  return (
+    <div className={`${className} ct-${property.display}-list`}>
+      {property.options.map(option => {
+        return (
+          <div key={option.value}>
+            <input
+              checked={isChecked(option.value)}
+              onChange={e => onCommit(getValue(e.target.checked, option.value))}
+              name={property.id}
+              type={property.isArray ? 'checkbox' : 'radio'}
+              value={option.value} />
+            {option.title}
+          </div>
+        )
+      })}
+    </div>
+  )
 }

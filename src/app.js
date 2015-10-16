@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Tooltip from 'react-tooltip'
 import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
@@ -19,6 +20,12 @@ export default class App extends Component {
 
     return (
       <div className='ct-app'>
+        <Tooltip
+          class='ct-error-tooltip'
+          effect='solid'
+          multiline
+          place='bottom'
+          type='error' />
         <ErrorMessage error={error} />
         <ActivityIndicator requests={requests} />
         <Document

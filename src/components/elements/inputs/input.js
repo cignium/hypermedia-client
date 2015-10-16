@@ -1,13 +1,7 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import factory from './factory'
 
 export default class Input extends Component {
-  static get propTypes() {
-    return {
-      property: PropTypes.object.isRequired,
-      update: PropTypes.func,
-    }
-  }
-
   constructor(props) {
     super()
 
@@ -27,28 +21,37 @@ export default class Input extends Component {
     }
   }
 
-  getValue(target) {
-    return target.value
-  }
+  render() {
+    const Element = factory(this.props.property)
+    let className = 'ct-input'
 
-  onBlur() {
-    this.update(this.state.value)
-  }
+    if (this.props.property.errors.length) {
+      className += ' ct-input-invalid'
+    }
 
-  onChange(e) {
-    this.setState({
-      value: e.target.value === '' ? null : this.getValue(e.target),
-    })
+    return (
+      <Element
+        className={className}
+        errors={this.props.property.errors.join('<br>')}
+        property={this.props.property}
+        onCommit={value => this.update(value)}
+        onChange={value => this.setState({ value })}
+        value={this.state.value} />
+    )
   }
 
   update(value) {
-    this.setState({ value })
+    if (value === undefined) {
+      value = this.state.value
+    }
+    else {
+      this.setState({ value })
+    }
 
-    if (this.props.property.value != value) {
-      const property = this.props.property
-      const updateHref = property.links.update.href
+    const { property } = this.props
 
-      this.props.update(updateHref, property.id, value)
+    if (property.value !== value) {
+      this.props.update(property.links.update.href, property.id, value)
     }
   }
 }
