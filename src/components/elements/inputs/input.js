@@ -32,6 +32,7 @@ export default class Input extends Component {
     return (
       <Element
         className={className}
+        errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
         onChange={value => this.setState({ value })}

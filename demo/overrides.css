@@ -139,11 +139,19 @@
 }
 
 .ct-input-invalid {
-  border-color: #FF2525;
+  border-color: #ED1631;
 }
 
 .ct-input-invalid:hover {
   border-color: #CC0302;
+}
+
+.ct-error-tooltip {
+  background-color: #CC0302 !important;
+}
+
+.ct-error-tooltip::after {
+  border-bottom-color: #CC0302 !important;
 }
 
 .ct-dropdown-list > .Select-control {

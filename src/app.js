@@ -20,7 +20,12 @@ export default class App extends Component {
 
     return (
       <div className='ct-app'>
-        <Tooltip effect='solid' place='bottom' type='error' />
+        <Tooltip
+          class='ct-error-tooltip'
+          effect='solid'
+          multiline
+          place='bottom'
+          type='error' />
         <ErrorMessage error={error} />
         <ActivityIndicator requests={requests} />
         <Document

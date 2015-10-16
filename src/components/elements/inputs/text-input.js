@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default ({className, onChange, onCommit, property, value}) => {
+export default ({className, errors, onChange, onCommit, property, value}) => {
   return (
     <input
       className={`${className} ct-text-input`}
-      data-tip={property.errors}
+      data-tip={errors}
       id={property.id}
       onBlur={() => onCommit()}
       onChange={e => onChange(e.target.value)}
