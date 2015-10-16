@@ -19,5 +19,5 @@ export default property => {
     default: return Input
   }
 
-  throw Error(`Unsupported input type '${property.type}'`)
+  throw Error(`Unsupported element type '${property.type}'`)
 }
