@@ -5,6 +5,7 @@ export default ({className, errors, onChange, onCommit, property, value}) => {
     <input
       className={`${className} ct-text-input`}
       data-tip={errors}
+      disabled={property.disabled}
       id={property.id}
       onBlur={() => onCommit()}
       onChange={e => onChange(e.target.value)}

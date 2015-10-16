@@ -9,6 +9,7 @@ export default ({className, errors, onChange, onCommit, property, value}) => {
     <input
       className={`${className} ct-date-picker`}
       data-tip={errors}
+      disabled={property.disabled}
       id={property.id}
       onBlur={() => onCommit()}
       onChange={e => onChange(getDate(e.target))}

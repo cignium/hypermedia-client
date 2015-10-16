@@ -9,6 +9,7 @@ export default ({className, onCommit, property, value}) => {
   return (
     <Select
       className='ct-dropdown-list'
+      disabled={property.disabled}
       multi={property.isArray}
       onChange={value => onCommit(getValue(value))}
       options={property.options.map(({title, value}) => {

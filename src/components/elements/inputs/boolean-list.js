@@ -37,6 +37,7 @@ export default ({className, onCommit, property, value}) => {
           <div key={option.value}>
             <input
               checked={isChecked(option.value)}
+              disabled={property.disabled}
               onChange={e => onCommit(getValue(e.target.checked, option.value))}
               name={property.id}
               type={property.isArray ? 'checkbox' : 'radio'}
