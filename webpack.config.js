@@ -9,12 +9,16 @@ export default {
   module: {
     loaders: [{
       include: /src/,
-      loaders: ['babel'],
+      loaders: ['babel', 'eslint'],
       test: /\.js$/,
     },{
       include: /src/,
-      loaders: ['eslint'],
-      test: /\.js$/,
+      loaders: ['style', 'css?modules', 'cssnext'],
+      test: /\.css$/,
+    },{
+      include: /node_modules/,
+      loaders: ['style', 'css'],
+      test: /\.css$/,
     }],
   },
   output: {

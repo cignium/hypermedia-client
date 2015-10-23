@@ -6,10 +6,13 @@ export default {
     loaders: [
       {
         exclude: /node_modules/,
-        loaders: ['babel-loader'],
+        loader: 'babel',
         test: /\.js$/,
-      },
-    ],
+      },{
+      include: /src/,
+      loaders: ['style', 'css?modules', 'cssnext'],
+      test: /\.css$/,
+    }],
   },
   output: {
     filename: './dist/client.min.js',

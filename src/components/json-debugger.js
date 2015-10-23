@@ -1,21 +1,13 @@
 import React from 'react'
+import styles from './json-debugger.css'
 
-const pre = {
-  background: '#eee',
+const style = {
   display: process.env.NODE_ENV == 'production' ? 'none' : 'block',
-  position: 'fixed',
-  opacity: 0.9,
-  overflow: 'auto',
-  padding: 10,
-  right: 0,
-  top: 0,
-  zIndex: 1000000,
-  width: 1000,
 }
 
 export default ({resource}) => {
   return (
-    <pre className='ct-json-debugger' style={pre}>
+    <pre className={`${styles.jsonDebugger} ct-json-debugger`} style={style}>
       {JSON.stringify(resource.getData(), null, 2)}
     </pre>
   )

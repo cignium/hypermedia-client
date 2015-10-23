@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './activity-indicator.css'
 
 export default ({requests}) => {
   if (!Object.keys(requests).length) {
@@ -6,7 +7,7 @@ export default ({requests}) => {
   }
 
   return (
-    <div className='ct-activity-indicator'>
+    <div className={`${styles.activityIndicator} ct-activity-indicator2`}>
       loading...
     </div>
   )

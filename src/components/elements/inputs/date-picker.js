@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './input.css'
 
 function getDate(input) {
   return input.value ? input.valueAsDate.toISOString() : null
@@ -7,7 +8,7 @@ function getDate(input) {
 export default ({className, errors, onChange, onCommit, property, value}) => {
   return (
     <input
-      className={`${className} ct-date-picker`}
+      className={`${className} ${styles.input} ct-date-picker`}
       data-tip={errors}
       disabled={property.disabled}
       id={property.id}

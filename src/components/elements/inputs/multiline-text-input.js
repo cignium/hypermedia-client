@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from './input.css'
 
 export default ({className, errors, onChange, onCommit, property, value}) => {
   return (
     <textarea
-      className={`${className} ct-multiline-text-input`}
+      className={`${className} ${styles.input} ct-multiline-text-input`}
       data-tip={errors}
       disabled={property.disabled}
       id={property.id}
