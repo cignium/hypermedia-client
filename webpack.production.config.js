@@ -3,14 +3,17 @@ import webpack from 'webpack'
 export default {
   entry: './src',
   module: {
-    loaders: [
-      {
-        exclude: /node_modules/,
-        loader: 'babel',
-        test: /\.js$/,
-      },{
+    loaders: [{
+      include: /src/,
+      loader: 'babel',
+      test: /\.js$/,
+    },{
       include: /src/,
       loaders: ['style', 'css?modules', 'cssnext'],
+      test: /\.css$/,
+    },{
+      include: /node_modules/,
+      loaders: ['style', 'css'],
       test: /\.css$/,
     }],
   },
