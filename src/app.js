@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Tooltip from 'react-tooltip'
-import state from './state'
+import State from './state'
 import styles from './app.css'
 import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
@@ -9,7 +9,7 @@ import ErrorMessage from './components/error-message'
 
 export default class App extends Component {
   componentDidMount() {
-    state.on('update', () => this.forceUpdate())
+    State.on('update', () => this.forceUpdate())
   }
 
   render() {
@@ -17,7 +17,7 @@ export default class App extends Component {
       error,
       requests,
       resources,
-    } = state.get()
+    } = State.get()
 
     return (
       <div className={`${styles.app} ct-app`}>
