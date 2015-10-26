@@ -1,9 +1,10 @@
 import React from 'react'
+import styles from './input.css'
 
 export default ({className, errors, onChange, onCommit, property, value}) => {
   return (
     <input
-      className={`${className} ct-text-input`}
+      className={`${className} ${styles.input} ct-text-input`}
       data-tip={errors}
       disabled={property.disabled}
       id={property.id}

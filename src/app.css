@@ -1,0 +1,22 @@
+.app {
+  align-self: center;
+  background: white;
+  border: solid 1px #eee;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 22px;
+  padding: 10px 30px;
+  position: relative;
+  width: 500px;
+}
+
+.errorTooltip {
+  background-color: #CC0302 !important;
+}
+
+.errorTooltip::after {
+  border-bottom-color: #CC0302 !important;
+}

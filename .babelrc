@@ -1,18 +1,20 @@
 {
   "env": {
-    "extra": {
-      "react-transform": {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }, {
-          "transform": "react-transform-catch-errors",
-          "imports": ["react", "redbox-react"]
-        }]
-      }
+    "development": {
+      "extra": {
+        "react-transform": {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react"],
+            "locals": ["module"]
+          }, {
+            "transform": "react-transform-catch-errors",
+            "imports": ["react", "redbox-react"]
+          }]
+        }
+      },
+      "plugins": ["react-transform"]
     },
-    "plugins": ["react-transform"]
   },
   "optional": ["runtime"],
   "stage": 0

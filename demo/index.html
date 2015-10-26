@@ -3,25 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Client SDK Testing</title>
-    <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" />
-    <link href="overrides.css" rel="stylesheet" />
-    <link href="react-select/dist/default.css" rel="stylesheet" />
   </head>
   <body>
     <form class="navigation" onsubmit="return go()">
       <input autofocus id="url" placeholder="enter endpoint url..." />
       <button>Go!</button>
     </form>
-    <div id="app"></div>
-    <script src="client.js"></script>
+    <div data-endpoint></div>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
-        Cignium.init('app')
-
         if (url = localStorage.getItem('url')) {
           document.getElementById('url').value = url
-          go()
+          document.querySelector('[data-endpoint]').dataset.endpoint = url
         }
       })
 
@@ -34,5 +28,6 @@
         return false
       }
     </script>
+    <script src="client.js"></script>
   </body>
 </html>

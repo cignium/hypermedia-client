@@ -2,7 +2,7 @@ body,
 button,
 input,
 select {
-  font-family: 'Roboto';
+  font-family: -apple-system, Helvetica, Arial, sans-serif;
   outline: 0;
 }
 
@@ -46,7 +46,7 @@ html {
   background: #1281D0;
 }
 
-#app {
+body > div {
   align-self: center;
   display: flex;
   margin-top: 100px;

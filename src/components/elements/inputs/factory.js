@@ -1,4 +1,5 @@
 import BooleanList from './boolean-list'
+import Checkbox from './checkbox'
 import DatePicker from './date-picker'
 import DropdownList from './dropdown-list'
 import MultilineTextInput from './multiline-text-input'
@@ -7,6 +8,7 @@ import TextInput from './text-input'
 
 export default function(property) {
   switch (property.type) {
+    case 'boolean': return Checkbox
     case 'date': return DatePicker
     case 'number': return NumberInput
     case 'string':

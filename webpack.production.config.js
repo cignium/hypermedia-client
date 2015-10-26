@@ -3,13 +3,19 @@ import webpack from 'webpack'
 export default {
   entry: './src',
   module: {
-    loaders: [
-      {
-        exclude: /node_modules/,
-        loaders: ['babel-loader'],
-        test: /\.js$/,
-      },
-    ],
+    loaders: [{
+      include: /src/,
+      loader: 'babel',
+      test: /\.js$/,
+    },{
+      include: /src/,
+      loaders: ['style', 'css?modules', 'cssnext'],
+      test: /\.css$/,
+    },{
+      include: /node_modules/,
+      loaders: ['style', 'css'],
+      test: /\.css$/,
+    }],
   },
   output: {
     filename: './dist/client.min.js',

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Tooltip from 'react-tooltip'
+import State from './state'
+import styles from './app.css'
 import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
-import State from './state'
 
 export default class App extends Component {
   componentDidMount() {
@@ -19,9 +20,9 @@ export default class App extends Component {
     } = State.get()
 
     return (
-      <div className='ct-app'>
+      <div className={`${styles.app} ct-app`}>
         <Tooltip
-          class='ct-error-tooltip'
+          class={`${styles.errorTooltip} ct-error-tooltip`}
           effect='solid'
           multiline
           place='bottom'
