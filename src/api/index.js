@@ -1,29 +1,51 @@
-import { request } from './http'
 import Resource from './resource'
-import State from '../state'
+import { request } from './http'
+import { getResponseTransformer } from '../configuration'
+import state from '../state'
+
+function getProfileFromContentType(contentType) {
+  return contentType
+    .split(';')
+    .find(item => item.startsWith('profile'))
+    .split('=')[1]
+}
+
+async function transformResponse(response) {
+  const transformer = getResponseTransformer()
+
+  if (transformer) {
+    return await transformer({
+      data: response.data,
+      profile: getProfileFromContentType(response.contentType),
+    })
+  }
+
+  return response.data
+}
 
 async function requestResource(href, method, data) {
-  State.get().set('error', null)
-  State.get().requests.set(href + method, true)
+  state.get().set('error', null)
+  state.get().requests.set(href + method, true)
 
   try {
     const response = await request(method, href, data)
-    const resource = new Resource(response)
-    State.get().resources.set(resource.links.self.href, resource)
+    const resource = new Resource(await transformResponse(response))
+
+    state.get().resources.set(resource.links.self.href, resource)
 
     return resource
   }
   catch (e) {
-    State.get().set('error', e)
+    state.get().set('error', e)
     throw e
   }
   finally {
-    State.get().requests.remove(href + method)
+    state.get().requests.remove(href + method)
   }
 }
 
 function setCurrent(resource) {
-  State.get().resources.set('current', resource.links.self.href)
+  state.get().resources.set('current', resource.links.self.href)
 }
 
 export async function executeAction(href) {
