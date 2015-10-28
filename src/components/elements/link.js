@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './link.css'
+import StyleSheet from 'stilr'
 
-export default ({property}) => {
+export default ({ property }) => {
   return (
     <a
       className={`${styles.link} ct-link`}
@@ -11,3 +11,20 @@ export default ({property}) => {
     </a>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {
+    color: '#5DB0EA',
+    flex: 1,
+    fontSize: 15,
+    fontStyle: 'normal',
+    fontWeight: 300,
+    padding: '5px 0',
+    textDecoration: 'none',
+
+    ':hover': {
+      color: '#76BFF3',
+      textDecoration: 'underline',
+    },
+  },
+})

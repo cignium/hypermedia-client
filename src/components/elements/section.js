@@ -1,10 +1,10 @@
 import React from 'react'
+import StyleSheet from 'stilr'
 import factory from './factory'
-import styles from './section.css'
 
-export default ({property, update}) => {
+export default ({ navigate, property, update }) => {
   return (
-    <div className={`${styles.section} ct-section`}>
+    <div className={`${styles.root} ct-section`}>
       {property.properties.map(property => {
         const Element = factory(property)
 
@@ -13,10 +13,35 @@ export default ({property, update}) => {
             <label className={`${styles.elementLabel} ct-element-label`}>
               {property.title}
             </label>
-            <Element property={property} update={update} />
+            <Element navigate={navigate} property={property} update={update} />
           </div>
         )
       })}
     </div>
   )
 }
+
+const styles = StyleSheet.create({
+  element: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+  },
+
+  elementLabel: {
+    color: '#444',
+    display: 'block',
+    fontSize: 14,
+    fontWeight: 700,
+    margin: '20px 0 5px',
+    textTransform: 'uppercase',
+  },
+
+  root: {
+    background: 'rgba(0, 0, 0, 0.03)',
+    border: 'solid 1px rgba(0, 0, 0, 0.03)',
+    borderRadius: 3,
+    margin: '5px 0',
+    padding: '0 15px 10px',
+  },
+})

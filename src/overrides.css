@@ -1,4 +1,4 @@
-.dropdownList :global(.Select-control) {
+.Select > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;
   color: #444;
@@ -10,7 +10,7 @@
   padding-right: 52px;
 }
 
-.dropdownList :global(.Select-control:hover) {
+.Select > .Select-control:hover {
   border: 1px solid #ddd;
   box-shadow: none;
 }

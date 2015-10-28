@@ -1,4 +1,4 @@
-import Resource from './resource'
+import resourceFactory from './resource'
 import { request } from './http'
 import { getResponseTransformer } from '../configuration'
 import state from '../state'
@@ -10,13 +10,13 @@ function getProfileFromContentType(contentType) {
     .split('=')[1]
 }
 
-async function transformResponse(response) {
+async function transformResponse(response, profile) {
   const transformer = getResponseTransformer()
 
   if (transformer) {
     return await transformer({
       data: response.data,
-      profile: getProfileFromContentType(response.contentType),
+      profile,
     })
   }
 
@@ -29,7 +29,9 @@ async function requestResource(href, method, data) {
 
   try {
     const response = await request(method, href, data)
-    const resource = new Resource(await transformResponse(response))
+    const profile = getProfileFromContentType(response.contentType)
+    const transformedResponse = await transformResponse(response, profile)
+    const resource = resourceFactory(transformedResponse, profile)
 
     state.get().resources.set(resource.links.self.href, resource)
 

@@ -1,11 +1,11 @@
 import Input from './inputs/input'
 import Link from './link'
-import List from './list'
+import List from './lists/list'
 import Section from './section'
-import Table from './table'
+import Table from './lists/table'
 
 function isTable(property) {
-  return property.items[0] && property.items[0].properties
+  return property.items[0] && property.items[0].properties.length
 }
 
 export default property => {

@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './input.css'
+import styles from './input-styles'
 
 function getDate(input) {
   return input.value ? input.valueAsDate.toISOString() : null
 }
 
-export default ({className, errors, onChange, onCommit, property, value}) => {
+export default ({ className, errors, onChange, onCommit, property, value }) => {
   return (
     <input
       className={`${className} ${styles.input} ct-date-picker`}

@@ -8,11 +8,6 @@ export default {
       loader: 'babel',
       test: /\.js$/,
     },{
-      include: /src/,
-      loaders: ['style', 'css?modules', 'cssnext'],
-      test: /\.css$/,
-    },{
-      include: /node_modules/,
       loaders: ['style', 'css'],
       test: /\.css$/,
     }],

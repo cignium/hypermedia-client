@@ -17,4 +17,10 @@ export default class ObjectProperty extends Property {
       return new PrimitiveProperty(property, this)
     })
   }
+
+  get(id) {
+    const property = this.properties.find(p => p.id == id)
+
+    return property.value || property
+  }
 }

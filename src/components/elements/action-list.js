@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './action-list.css'
+import StyleSheet from 'stilr'
 
 export default ({actions, executeAction}) => {
   if (!actions.length) {
@@ -7,7 +7,7 @@ export default ({actions, executeAction}) => {
   }
 
   return (
-    <div className={`${styles.actionList} ct-action-list`}>
+    <div className={`${styles.root} ct-action-list`}>
       {actions.map(action => {
         return (
           <button
@@ -21,3 +21,28 @@ export default ({actions, executeAction}) => {
     </div>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 'none',
+  },
+
+  action: {
+    background: '#76BFF3',
+    border: 'solid 1px #5DB0EA',
+    borderRadius: 3,
+    color: 'white',
+    cursor: 'pointer',
+    fontSize: 15,
+    fontWeight: 500,
+    padding: '10px 20px',
+
+    ':hover': {
+      background: '#81C8FB',
+    },
+
+    ':active': {
+      background: '#5DB0EA',
+    },
+  },
+})
