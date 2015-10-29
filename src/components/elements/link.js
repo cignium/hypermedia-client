@@ -4,7 +4,7 @@ import StyleSheet from 'stilr'
 export default ({ property }) => {
   return (
     <a
-      className={`${styles.link} ct-link`}
+      className={`${styles.root} ct-link`}
       id={property.id}
       href={property.links.navigate.href}>
       {property.value}
