@@ -16,7 +16,6 @@ app.use(webpackDevMiddleware(compiler, {
 }))
 
 app.use(webpackHotMiddleware(compiler))
-app.use(express.static('node_modules'))
 app.use(express.static('demo'))
 
 app.listen(3000, 'localhost', err => {

@@ -1,28 +1,12 @@
-import ArrayProperty from './array-property'
-import ObjectProperty from './object-property'
+import createArrayProperty from './array-property'
+import createObjectProperty from './object-property'
 
-class ArrayResource extends ArrayProperty {
-  constructor(data, profile) {
-    super(data)
-    this.getData = () => data
-    this.profile = profile
-  }
-}
-
-class ObjectResource extends ObjectProperty {
-  constructor(data, profile) {
-    super(data)
-    this.getData = () => data
-    this.profile = profile
-  }
-}
-
-export default function(data, profile) {
+export default function(data) {
   if (data.type == 'array') {
-    return new ArrayResource(data, profile)
+    return { ...createArrayProperty(data), data }
   }
   else if (data.type == 'object') {
-    return new ObjectResource(data, profile)
+    return { ...createObjectProperty(data), data }
   }
 
   throw Error(`Unsupported resource type: '${data.type}.`)

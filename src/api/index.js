@@ -1,27 +1,6 @@
-import resourceFactory from './resource'
+import createResource from './resource'
 import { request } from './http'
-import { getResponseTransformer } from '../configuration'
 import state from '../state'
-
-function getProfileFromContentType(contentType) {
-  return contentType
-    .split(';')
-    .find(item => item.startsWith('profile'))
-    .split('=')[1]
-}
-
-async function transformResponse(response, profile) {
-  const transformer = getResponseTransformer()
-
-  if (transformer) {
-    return await transformer({
-      data: response.data,
-      profile,
-    })
-  }
-
-  return response.data
-}
 
 async function requestResource(href, method, data) {
   state.get().set('error', null)
@@ -29,9 +8,7 @@ async function requestResource(href, method, data) {
 
   try {
     const response = await request(method, href, data)
-    const profile = getProfileFromContentType(response.contentType)
-    const transformedResponse = await transformResponse(response, profile)
-    const resource = resourceFactory(transformedResponse, profile)
+    const resource = createResource(response.data)
 
     state.get().resources.set(resource.links.self.href, resource)
 

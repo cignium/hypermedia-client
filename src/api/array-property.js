@@ -1,20 +1,19 @@
-import ObjectProperty from './object-property'
-import PrimitiveProperty from './primitive-property'
-import Property from './property'
+import createObjectProperty from './object-property'
+import createPrimitiveProperty from './primitive-property'
+import createProperty from './property'
 
-export default class ArrayProperty extends Property {
-  constructor(data, parent) {
-    super(data, parent)
-
-    this.items = data.items.map(item => {
-      if (item.type == 'object') {
-        return new ObjectProperty(item, this)
+export default function createArrayProperty(data, parent) {
+  return {
+    ...createProperty(data, parent),
+    items: data.items.map(item => {
+      if (item.type == 'array') {
+        return createArrayProperty(item, this)
       }
-      else if (item.type == 'array') {
-        return new ArrayProperty(item, this)
+      else if (item.type == 'object') {
+        return createObjectProperty(item, this)
       }
 
-      return new PrimitiveProperty(item, this)
-    })
+      return createPrimitiveProperty(item, this)
+    }),
   }
 }

@@ -1,13 +1,15 @@
-export default class Links {
-  constructor(links, parentLinks) {
-    this.actions = links.filter(link => link.rel == 'action')
-    this.navigate = links.filter(link => link.rel == 'navigate')[0]
-    this.parent = links.filter(link => link.rel == 'parent')[0]
-    this.self = links.filter(link => link.rel == 'self')[0]
-    this.update = links.filter(link => link.rel == 'update')[0]
+export default function(links, parentLinks) {
+  let update = links.filter(link => link.rel == 'update')[0]
 
-    if (!this.update && parentLinks) {
-      this.update = parentLinks.update
-    }
+  if (!update) {
+    update = parentLinks && parentLinks.update
+  }
+
+  return {
+    actions: links.filter(link => link.rel == 'action'),
+    navigate: links.filter(link => link.rel == 'navigate')[0],
+    parent: links.filter(link => link.rel == 'parent')[0],
+    self: links.filter(link => link.rel == 'self')[0],
+    update,
   }
 }

@@ -1,11 +1,14 @@
-import Links from './links'
+import createLinks from './links'
 
-export default class Property {
-  constructor(data, parent) {
-    this.errors = data.errors
-    this.links = new Links(data.links, parent && parent.links)
-    this.id = data.id || this.links.self.href
-    this.title = data.title
-    this.type = data.type
+export default function(data, parent) {
+  const links = createLinks(data.links, parent && parent.links)
+
+  return {
+    errors: data.errors,
+    links,
+    id: data.id || links.self.href,
+    order: data.order,
+    title: data.title,
+    type: data.type,
   }
 }

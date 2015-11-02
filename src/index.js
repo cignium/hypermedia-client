@@ -2,10 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import App from './app'
 import { navigate } from './api'
-import configuration from './configuration'
-import reactSelectStyles from 'react-select/dist/default.css'
-import overrides from './overrides.css'
-import state from './state'
+import 'react-select/dist/default.css'
+import './overrides.css'
 
 function init(element) {
   if (typeof element === 'string') {
@@ -29,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 export default {
-  configuration,
   init,
   navigate,
-  state,
 }

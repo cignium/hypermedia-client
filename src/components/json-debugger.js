@@ -4,7 +4,7 @@ import StyleSheet from 'stilr'
 export default ({resource}) => {
   return (
     <pre className={`${styles.root} ct-json-debugger`}>
-      {JSON.stringify(resource.getData(), null, 2)}
+      {JSON.stringify(resource.data, null, 2)}
     </pre>
   )
 }

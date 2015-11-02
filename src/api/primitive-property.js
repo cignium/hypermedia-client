@@ -1,14 +1,13 @@
-import Property from './property'
+import createProperty from './property'
 
-export default class PrimitiveProperty extends Property {
-  constructor(data, parent) {
-    super(data, parent)
-
-    this.disabled = data.disabled
-    this.display = data.display
-    this.id = data.id
-    this.options = data.options
-    this.value = data.value
-    this.isArray = this.type === 'string[]'
+export default function(data, parent) {
+  return {
+    ...createProperty(data, parent),
+    disabled: data.disabled,
+    display: data.display,
+    id: data.id,
+    options: data.options,
+    value: data.value,
+    isArray: data.type === 'string[]',
   }
 }
