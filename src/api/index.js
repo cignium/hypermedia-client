@@ -8,7 +8,7 @@ async function requestResource(href, method, data) {
 
   try {
     const response = await request(method, href, data)
-    const resource = createResource(response.data)
+    const resource = createResource(response)
 
     state.get().resources.set(resource.links.self.href, resource)
 

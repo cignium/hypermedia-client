@@ -9,10 +9,7 @@ export async function request(method, href, data) {
   const response = await fetch(href, request)
 
   if (response.status == 200) {
-    return {
-      contentType: response.headers.get('Content-Type'),
-      data: await response.json(),
-    }
+    return await response.json()
   }
 
   throw Error(`${response.status}: ${response.statusText}`)
