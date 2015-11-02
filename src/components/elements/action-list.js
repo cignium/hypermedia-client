@@ -23,10 +23,6 @@ export default ({actions, executeAction}) => {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 'none',
-  },
-
   action: {
     background: '#76BFF3',
     border: 'solid 1px #5DB0EA',

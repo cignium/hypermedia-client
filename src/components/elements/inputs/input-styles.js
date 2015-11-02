@@ -5,11 +5,11 @@ export default StyleSheet.create({
     border: '1px solid #eee',
     borderRadius: 3,
     color: '#444',
-    flex: 1,
     fontSize: 15,
     fontStyle: 'normal',
     fontWeight: 300,
     padding: 8,
+    width: '100%',
 
     ':hover': {
       border: '1px solid #ddd',

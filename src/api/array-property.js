@@ -3,17 +3,16 @@ import createPrimitiveProperty from './primitive-property'
 import createProperty from './property'
 
 export default function createArrayProperty(data, parent) {
-  return {
-    ...createProperty(data, parent),
-    items: data.items.map(item => {
-      if (item.type == 'array') {
-        return createArrayProperty(item, this)
-      }
-      else if (item.type == 'object') {
-        return createObjectProperty(item, this)
-      }
+  const object = { ...createProperty(data, parent) }
 
-      return createPrimitiveProperty(item, this)
-    }),
-  }
+  object.items = data.items.map(item => {
+    if (item.type == 'array') {
+      return createArrayProperty(item, object)
+    }
+    else if (item.type == 'object') {
+      return createObjectProperty(item, object)
+    }
+
+    return createPrimitiveProperty(item, object)
+  })
 }

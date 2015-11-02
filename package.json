@@ -11,9 +11,11 @@
     "babel-runtime": "^5.8.25",
     "freezer-js": "^0.8.1",
     "react": "^0.14.0",
+    "react-datepicker": "^0.15.2",
     "react-dom": "^0.14.0",
     "react-select": "^0.7.0",
-    "react-tooltip": "^0.7.4"
+    "react-tooltip": "^0.7.4",
+    "whatwg-fetch": "^0.10.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -25,7 +27,9 @@
     "eslint": "^1.6.0",
     "eslint-loader": "^1.1.0",
     "eslint-plugin-react": "^3.5.1",
+    "exports-loader": "^0.6.2",
     "express": "^4.13.3",
+    "imports-loader": "^0.6.5",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",

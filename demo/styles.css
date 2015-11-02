@@ -1,20 +1,3 @@
-body,
-button,
-input,
-select {
-  font-family: -apple-system, Helvetica, Arial, sans-serif;
-  outline: 0;
-}
-
-body,
-html {
-  background: #f8f8f8;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 0;
-}
-
 .navigation {
   background: white;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
@@ -44,10 +27,4 @@ html {
 
 .navigation button:active {
   background: #1281D0;
-}
-
-body > div {
-  align-self: center;
-  display: flex;
-  margin-top: 100px;
 }

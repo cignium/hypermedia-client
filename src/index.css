@@ -1,0 +1,46 @@
+body,
+button,
+input,
+select,
+textarea {
+  font-family: -apple-system, Helvetica, Arial, sans-serif;
+  outline: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  background: #f8f8f8;
+  height: 100%;
+  margin: 0;
+}
+
+[data-endpoint] {
+  background: white;
+  border: solid 1px #eee;
+  border-radius: 3px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 10px 30px;
+  width: 500px;
+}
+
+.Select > .Select-control {
+  border: 1px solid #eee;
+  border-radius: 3px;
+  color: #444;
+  flex: 1;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  padding-left: 10px;
+  padding-right: 52px;
+}
+
+.Select > .Select-control:hover {
+  border: 1px solid #ddd;
+  box-shadow: none;
+}

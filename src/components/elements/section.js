@@ -22,19 +22,12 @@ export default ({ navigate, property, update }) => {
 }
 
 const styles = StyleSheet.create({
-  element: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-  },
-
   elementLabel: {
     color: '#444',
     display: 'block',
     fontSize: 14,
     fontWeight: 700,
     margin: '20px 0 5px',
-    textTransform: 'uppercase',
   },
 
   root: {

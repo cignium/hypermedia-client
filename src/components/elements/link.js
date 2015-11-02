@@ -15,7 +15,6 @@ export default ({ property }) => {
 const styles = StyleSheet.create({
   root: {
     color: '#5DB0EA',
-    flex: 1,
     fontSize: 15,
     fontStyle: 'normal',
     fontWeight: 300,

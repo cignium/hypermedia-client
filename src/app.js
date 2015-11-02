@@ -22,7 +22,7 @@ export default class App extends Component {
     } = state.get()
 
     return (
-      <div className={`${styles.root} ct-app`}>
+      <div className='ct-app'>
         <Tooltip
           class={`${styles.errorTooltip} ct-error-tooltip`}
           effect='solid'
@@ -47,20 +47,5 @@ const styles = StyleSheet.create({
     ':after': {
       borderBottomColor: '#CC0302 !important',
     },
-  },
-
-  root: {
-    alignSelf: 'center',
-    background: 'white',
-    border: 'solid 1px #eee',
-    borderRadius: 5,
-    boxShadow: '1px 1px 1px rgba(0, 0, 0, 0.05)',
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    minHeight: 22,
-    padding: '10px 30px',
-    position: 'relative',
-    width: 500,
   },
 })
