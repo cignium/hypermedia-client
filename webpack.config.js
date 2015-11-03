@@ -27,7 +27,7 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
   ],
 }
