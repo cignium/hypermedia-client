@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
+import StyleSheet from 'stilr'
 import Tooltip from 'react-tooltip'
-import State from './state'
-import styles from './app.css'
-import { executeAction, update } from './api'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
+import { executeAction, update } from './api'
+import state from './state'
 
 export default class App extends Component {
   componentDidMount() {
-    State.on('update', () => this.forceUpdate())
+    state.on('update', () => this.forceUpdate())
   }
 
   render() {
+    document.getElementById('ct-styles').textContent = StyleSheet.render()
+
     const {
       error,
       requests,
       resources,
-    } = State.get()
+    } = state.get()
 
     return (
-      <div className={`${styles.app} ct-app`}>
+      <div className='ct-app'>
         <Tooltip
           class={`${styles.errorTooltip} ct-error-tooltip`}
           effect='solid'
@@ -37,3 +39,13 @@ export default class App extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  errorTooltip: {
+    backgroundColor: '#CC0302 !important',
+
+    ':after': {
+      borderBottomColor: '#CC0302 !important',
+    },
+  },
+})

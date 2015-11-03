@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 
 export default {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './src',
@@ -12,11 +12,6 @@ export default {
       loaders: ['babel', 'eslint'],
       test: /\.js$/,
     },{
-      include: /src/,
-      loaders: ['style', 'css?modules', 'cssnext'],
-      test: /\.css$/,
-    },{
-      include: /node_modules/,
       loaders: ['style', 'css'],
       test: /\.css$/,
     }],
@@ -31,5 +26,8 @@ export default {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
   ],
 }

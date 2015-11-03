@@ -1,29 +1,35 @@
+import createResource from './resource'
 import { request } from './http'
-import Resource from './resource'
-import State from '../state'
+import state from '../state'
 
 async function requestResource(href, method, data) {
-  State.get().set('error', null)
-  State.get().requests.set(href + method, true)
+  state.get().set('error', null)
+  state.get().requests.set(href + method, true)
 
   try {
     const response = await request(method, href, data)
-    const resource = new Resource(response)
-    State.get().resources.set(resource.links.self.href, resource)
+
+    if (!response) {
+      return
+    }
+
+    const resource = createResource(response)
+
+    state.get().resources.set(resource.links.self.href, resource)
 
     return resource
   }
   catch (e) {
-    State.get().set('error', e)
+    state.get().set('error', e)
     throw e
   }
   finally {
-    State.get().requests.remove(href + method)
+    state.get().requests.remove(href + method)
   }
 }
 
 function setCurrent(resource) {
-  State.get().resources.set('current', resource.links.self.href)
+  state.get().resources.set('current', resource.links.self.href)
 }
 
 export async function executeAction(href) {

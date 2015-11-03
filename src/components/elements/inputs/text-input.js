@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './input.css'
+import styles from './input-styles'
 
-export default ({className, errors, onChange, onCommit, property, value}) => {
+export default ({ className, errors, onChange, onCommit, property, value }) => {
   return (
     <input
       className={`${className} ${styles.input} ct-text-input`}

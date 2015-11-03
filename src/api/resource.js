@@ -1,8 +1,13 @@
-import ObjectProperty from './object-property'
+import createArrayProperty from './array-property'
+import createObjectProperty from './object-property'
 
-export default class Resource extends ObjectProperty {
-  constructor(data, parent) {
-    super(data, parent)
-    this.getData = () => data
+export default function(data) {
+  if (data.type == 'array') {
+    return { ...createArrayProperty(data), data }
   }
+  else if (data.type == 'object') {
+    return { ...createObjectProperty(data), data }
+  }
+
+  throw Error(`Unsupported resource type: '${data.type}.`)
 }

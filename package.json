@@ -10,10 +10,13 @@
   "dependencies": {
     "babel-runtime": "^5.8.25",
     "freezer-js": "^0.8.1",
+    "moment": "^2.10.6",
     "react": "^0.14.0",
+    "react-datepicker": "^0.15.2",
     "react-dom": "^0.14.0",
     "react-select": "^0.7.0",
-    "react-tooltip": "^0.7.4"
+    "react-tooltip": "^0.7.4",
+    "whatwg-fetch": "^0.10.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -22,15 +25,17 @@
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "0.15.1",
-    "cssnext-loader": "^1.0.1",
     "eslint": "^1.6.0",
     "eslint-loader": "^1.1.0",
     "eslint-plugin-react": "^3.5.1",
+    "exports-loader": "^0.6.2",
     "express": "^4.13.3",
+    "imports-loader": "^0.6.5",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
     "semantic-release": "^4.3.5",
+    "stilr": "^1.2.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.2.0",

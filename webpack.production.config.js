@@ -8,11 +8,6 @@ export default {
       loader: 'babel',
       test: /\.js$/,
     },{
-      include: /src/,
-      loaders: ['style', 'css?modules', 'cssnext'],
-      test: /\.css$/,
-    },{
-      include: /node_modules/,
       loaders: ['style', 'css'],
       test: /\.css$/,
     }],
@@ -25,6 +20,9 @@ export default {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new webpack.ProvidePlugin({
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
