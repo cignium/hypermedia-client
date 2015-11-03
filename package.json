@@ -10,6 +10,7 @@
   "dependencies": {
     "babel-runtime": "^5.8.25",
     "freezer-js": "^0.8.1",
+    "moment": "^2.10.6",
     "react": "^0.14.0",
     "react-datepicker": "^0.15.2",
     "react-dom": "^0.14.0",
