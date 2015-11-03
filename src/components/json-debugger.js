@@ -1,7 +1,7 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({resource}) => {
+export default ({ resource }) => {
   return (
     <pre className={`${styles.root} ct-json-debugger`}>
       {JSON.stringify(resource.data, null, 2)}

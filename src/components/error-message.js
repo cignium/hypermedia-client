@@ -1,7 +1,7 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({error}) => {
+export default ({ error }) => {
   if (!error) {
     return <div />
   }

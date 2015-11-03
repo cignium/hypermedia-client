@@ -1,13 +1,13 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({actions, executeAction}) => {
+export default ({ actions, executeAction }) => {
   if (!actions.length) {
     return <div />
   }
 
   return (
-    <div className={`${styles.root} ct-action-list`}>
+    <div className='ct-action-list'>
       {actions.map(action => {
         return (
           <button

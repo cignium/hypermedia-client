@@ -1,7 +1,7 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({requests}) => {
+export default ({ requests }) => {
   if (!Object.keys(requests).length) {
     return <div />
   }

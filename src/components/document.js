@@ -4,7 +4,7 @@ import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
 
-export default ({executeAction, resource, update}) => {
+export default ({ executeAction, navigate, resource, update }) => {
   if (!resource) {
     return <div />
   }
@@ -21,7 +21,11 @@ export default ({executeAction, resource, update}) => {
           actions={resource.links.actions}
           executeAction={executeAction} />
       </div>
-      <Element property={resource} update={update} />
+      <Element
+        navigate={navigate}
+        property={resource}
+        topLevel
+        update={update} />
       <JsonDebugger resource={resource} />
     </div>
   )
