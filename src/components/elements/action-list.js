@@ -1,26 +1,20 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({ actions, executeAction }) => {
-  if (!actions.length) {
-    return <div />
-  }
-
-  return (
-    <div className='ct-action-list'>
-      {actions.map(action => {
-        return (
-          <button
-            className={`${styles.action} ct-action`}
-            key={action.href}
-            onClick={() => executeAction(action.href)}>
-            {action.title}
-          </button>
-        )
-      })}
-    </div>
-  )
-}
+export default ({ actions, executeAction }) => (
+  <div className='ct-action-list'>
+    {actions.map(action => {
+      return (
+        <button
+          className={`${styles.action} ct-action`}
+          key={action.href}
+          onClick={() => executeAction(action.href)}>
+          {action.title}
+        </button>
+      )
+    })}
+  </div>
+)
 
 const styles = StyleSheet.create({
   action: {

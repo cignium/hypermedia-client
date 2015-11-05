@@ -1,16 +1,14 @@
 import React from 'react'
 import StyleSheet from 'stilr'
 
-export default ({ property }) => {
-  return (
-    <a
-      className={`${styles.root} ct-link`}
-      id={property.id}
-      href={property.links.navigate.href}>
-      {property.value}
-    </a>
-  )
-}
+export default ({ property }) => (
+  <a
+    className={`${styles.root} ct-link`}
+    id={property.id}
+    href={property.links.navigate.href}>
+    {property.value}
+  </a>
+)
 
 const styles = StyleSheet.create({
   root: {
