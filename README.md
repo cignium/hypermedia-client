@@ -21,7 +21,7 @@ npm install cignium-hypermedia-client --save
 Add the following script tag:
 
 ```html
-<script src="https://cdn.jsdelivr.net/cignium-hypermedia/latest/client.min.js"></script>
+<script src="//npmcdn.com/cignium-hypermedia-client/dist/client.min.js"></script>
 ```
 
 ## Get Started
