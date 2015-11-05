@@ -16,6 +16,7 @@
       "plugins": ["react-transform"]
     },
   },
-  "optional": ["runtime"],
+  "loose": ["es6.classes"],
+  "optional": ["runtime", "spec.protoToAssign"],
   "stage": 0
 }

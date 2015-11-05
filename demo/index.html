@@ -15,7 +15,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         if (url = localStorage.getItem('url')) {
           document.getElementById('url').value = url
-          document.querySelector('[data-endpoint]').dataset.endpoint = url
+          document.querySelector('[data-endpoint]').setAttribute('data-endpoint', url)
         }
       })
 

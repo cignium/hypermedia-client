@@ -32,15 +32,22 @@ html {
   border: 1px solid #eee;
   border-radius: 3px;
   color: #444;
-  flex: 1;
   font-size: 15px;
   font-style: normal;
   font-weight: 300;
-  padding-left: 10px;
-  padding-right: 52px;
 }
 
 .Select > .Select-control:hover {
   border: 1px solid #ddd;
   box-shadow: none;
+}
+
+.Select > .Select-control > .Select-item {
+  margin-left: 6px;
+  margin-top: 6px;
+}
+
+.Select > .Select-control > .Select-arrow-zone,
+.Select > .Select-control > .Select-clear-zone {
+  vertical-align: inherit;
 }

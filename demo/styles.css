@@ -1,28 +1,31 @@
 .navigation {
-  background: white;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
-  display: flex;
+  margin: 25px auto;
+  width: 700px;
 }
 
 .navigation input {
-  border: 0;
-  border-bottom: solid 1px #ddd;
+  border: solid 1px #ddd;
+  border-right: 0;
+  border-radius: 5px 0 0 5px;
   color: #555;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 100;
-  flex: 1;
   outline: 0;
-  padding: 15px 20px;
+  padding: 15px 15px;
+  width: 600px;
 }
 
 .navigation button {
   background: #0095FF;
   border: solid 1px #1281D0;
+  border-radius: 0 5px 5px 0;
   color: white;
-  font-size: 20px;
+  float: right;
+  font-size: 15px;
   font-weight: 400;
   outline: 0;
-  padding: 0px 40px;
+  padding: 15px 0;
+  width: 100px;
 }
 
 .navigation button:active {
