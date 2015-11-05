@@ -1,5 +1,5 @@
-import createResource from './resource'
 import { request } from './http'
+import factory from './factory'
 import state from '../state'
 
 async function requestResource(href, method, data) {
@@ -13,7 +13,7 @@ async function requestResource(href, method, data) {
       return
     }
 
-    const resource = createResource(response)
+    const resource = factory(response)
 
     state.get().resources.set(resource.links.self.href, resource)
 

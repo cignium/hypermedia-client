@@ -1,20 +1,10 @@
-import createArrayProperty from './array-property'
-import createPrimitiveProperty from './primitive-property'
 import createProperty from './property'
+import factory from './factory'
 
-export default function createObjectProperty(data, parent) {
+export default function(data, parent) {
   const object = { ...createProperty(data, parent) }
 
-  object.properties = data.properties.map(property => {
-    if (property.type == 'array') {
-      return createArrayProperty(property, object)
-    }
-    else if (property.type == 'object') {
-      return createObjectProperty(property, object)
-    }
-
-    return createPrimitiveProperty(property, object)
-  })
+  object.properties = data.properties.map(property => factory(property, object))
 
   for (const property of object.properties) {
     object[property.id] = property.value || property.items || property

@@ -1,4 +1,5 @@
 import Input from './inputs/input'
+import HtmlContent from './html-content'
 import Link from './link'
 import Section from './section'
 
@@ -8,6 +9,7 @@ export default property => {
   }
 
   switch (property.type) {
+    case 'html': return HtmlContent
     case 'object': return Section
     default: return Input
   }
