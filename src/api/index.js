@@ -2,44 +2,68 @@ import { request } from './http'
 import factory from './factory'
 import state from '../state'
 
-async function requestResource(href, method, data) {
-  state.get().set('error', null)
-  state.get().requests.set(href + method, true)
-
-  try {
-    const response = await request(method, href, data)
-
-    if (!response) {
+state.on('update', ({ requests }) => {
+  if (requests.current) {
+    if (requests[requests.current]) {
       return
     }
+    else {
+      state.get().requests.remove('current')
+    }
+  }
 
+  processRequestQueue()
+})
+
+async function processRequest({ data, href, id, method, navigate }) {
+  try {
+    const response = await request(method, href, data)
     const resource = factory(response)
 
     state.get().resources.set(resource.links.self.href, resource)
 
-    return resource
+    if (navigate) {
+      state.get().resources.set('current', resource.links.self.href)
+    }
   }
   catch (e) {
     state.get().set('error', e)
     throw e
   }
   finally {
-    state.get().requests.remove(href + method)
+    state.get().requests.remove(id)
   }
 }
 
-function setCurrent(resource) {
-  state.get().resources.set('current', resource.links.self.href)
+function getNextRequestFromQueue() {
+  const { requests } = state.get()
+
+  return Object.keys(requests).sort()
+    .map(key => { return { ...requests[key], id: key }})[0]
 }
 
-export async function executeAction(href) {
-  setCurrent(await requestResource(href, 'post'))
+function processRequestQueue() {
+  const request = getNextRequestFromQueue()
+
+  if (request) {
+    state.get().requests.set('current', request.id)
+    processRequest(request)
+  }
 }
 
-export async function navigate(href) {
-  setCurrent(await requestResource(href, 'get'))
+function requestResource(request) {
+  state.get().set('error', null)
+  state.get().requests.set(new Date().getTime(), request)
+}
+
+export function executeAction(href) {
+  requestResource({ href, method: 'post', navigate: true })
+}
+
+export function navigate(href) {
+  requestResource({ href, method: 'get', navigate: true })
 }
 
 export function update(href, id, value) {
-  requestResource(href, 'post', { [id]: value })
+  requestResource({ data: { [id]: value }, href, method: 'post' })
 }
