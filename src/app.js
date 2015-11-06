@@ -8,18 +8,17 @@ import { executeAction, update } from './api'
 import state from './state'
 
 export default class App extends Component {
+  constructor() {
+    super()
+    this.state = state.get()
+  }
+
   componentDidMount() {
-    state.on('update', () => this.forceUpdate())
+    state.on('update', state => this.setState(state))
   }
 
   render() {
     document.getElementById('ct-styles').textContent = StyleSheet.render()
-
-    const {
-      error,
-      requests,
-      resources,
-    } = state.get()
 
     return (
       <div className='ct-app'>
@@ -29,11 +28,11 @@ export default class App extends Component {
           multiline
           place='bottom'
           type='error' />
-        <ErrorMessage error={error} />
-        <ActivityIndicator requests={requests} />
+        <ErrorMessage error={this.state.error} />
+        <ActivityIndicator requests={this.state.requests} />
         <Document
           executeAction={executeAction}
-          resource={resources[resources.current]}
+          resource={this.state.resources[this.state.resources.current]}
           update={update} />
       </div>
     )
