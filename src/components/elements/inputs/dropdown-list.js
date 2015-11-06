@@ -10,6 +10,7 @@ export default ({ className, onCommit, property, value }) => {
     <Select
       className={`${className} ct-dropdown-list`}
       disabled={property.disabled}
+      id={property.id}
       multi={property.isArray}
       onChange={value => onCommit(getValue(value))}
       options={property.options.map(({title, value}) => {
