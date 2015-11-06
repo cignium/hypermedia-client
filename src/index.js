@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (element) {
     Cignium.init(element)
-    Cignium.navigate(element.getAttribute('data-endpoint'))
+
+    const url = element.getAttribute('data-endpoint')
+
+    if (url) {
+      Cignium.navigate(url)
+    }
   }
 })
 
