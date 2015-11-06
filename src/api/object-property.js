@@ -2,7 +2,7 @@ import createProperty from './property'
 import factory from './factory'
 
 export default function(data, parent) {
-  const object = { ...createProperty(data, parent) }
+  const object = { ...createProperty(data, parent), data }
 
   object.properties = data.properties.map(property => factory(property, object))
 
