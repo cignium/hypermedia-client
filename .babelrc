@@ -17,6 +17,6 @@
     },
   },
   "loose": ["es6.classes"],
-  "optional": ["runtime", "spec.protoToAssign"],
+  "optional": ["runtime"],
   "stage": 0
 }
