@@ -12,7 +12,7 @@ export default ({ className, onCommit, property, value }) => {
       disabled={property.disabled}
       id={property.id}
       multi={property.isArray}
-      onChange={value => onCommit(getValue(value))}
+      onChange={option => onCommit(getValue(option.value))}
       options={property.options.map(({title, value}) => {
         return { label: title, value }
       })}
