@@ -9,5 +9,6 @@ export default ({ className, errors, onCommit, property, value }) => (
     disabled={property.disabled}
     id={property.id}
     onChange={e => onCommit(e.target.checked)}
+    title={property.title}
     type='checkbox' />
 )

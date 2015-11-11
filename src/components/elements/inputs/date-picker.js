@@ -17,6 +17,7 @@ export default ({ className, errors, onCommit, property, value }) => (
       disabled={property.disabled}
       id={property.id}
       onChange={date => onCommit(getDate(date))}
-      selected={value ? moment(value) : value} />
+      selected={value ? moment(value) : value}
+      title={property.title} />
   </div>
 )

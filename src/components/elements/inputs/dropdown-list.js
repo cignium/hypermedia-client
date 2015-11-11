@@ -16,6 +16,7 @@ export default ({ className, onCommit, property, value }) => {
       options={property.options.map(({title, value}) => {
         return { label: title, value }
       })}
+      title={property.title}
       value={value} />
   )
 }
