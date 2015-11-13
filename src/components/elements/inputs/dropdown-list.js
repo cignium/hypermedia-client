@@ -2,8 +2,9 @@ import React from 'react'
 import Select from 'react-select'
 
 export default ({ className, onCommit, property, value }) => {
-  function getValue(value) {
-    return property.isArray ? value === '' ? [] : value.split(',') : value
+  function getValue(option) {
+    return option ? property.isArray ? option.map(option => option.value) :
+      option.value : null
   }
 
   return (
@@ -12,8 +13,8 @@ export default ({ className, onCommit, property, value }) => {
       disabled={property.disabled}
       id={property.id}
       multi={property.isArray}
-      onChange={option => onCommit(getValue(option.value))}
-      options={property.options.map(({title, value}) => {
+      onChange={option => onCommit(getValue(option))}
+      options={property.options.map(({ title, value }) => {
         return { label: title, value }
       })}
       title={property.title}
