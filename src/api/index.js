@@ -18,6 +18,11 @@ state.on('update', ({ requests }) => {
 async function processRequest({ data, href, id, method, navigate }) {
   try {
     const response = await request(method, href, data)
+
+    if (response == null) {
+      return
+    }
+
     const resource = factory(response)
 
     state.get().resources.set(resource.links.self.href, resource)
