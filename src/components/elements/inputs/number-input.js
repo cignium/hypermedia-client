@@ -8,7 +8,7 @@ export default ({ className, errors, onChange, onCommit, property, value }) => (
     disabled={property.disabled}
     id={property.id}
     onBlur={() => onCommit()}
-    onChange={e => onChange(e.target.valueAsNumber)}
+    onChange={e => onChange(e.target.value)}
     title={property.title}
     type='number'
     value={value} />
