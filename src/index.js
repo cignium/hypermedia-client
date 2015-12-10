@@ -4,7 +4,7 @@ import App from './app'
 import { navigate } from './api'
 import 'babel-polyfill'
 import 'react-datepicker/dist/react-datepicker.css'
-import 'react-select/dist/default.css'
+import 'react-select/dist/react-select.css'
 import './index.css'
 
 function init(element) {
