@@ -36,6 +36,14 @@ html {
   font-weight: 300;
 }
 
+.Select.ct-input-invalid > .Select-control {
+  border-color: #ED1631;
+}
+
+.Select.ct-input-invalid > .Select-control:hover {
+  border-color: #CC0302;
+}
+
 .Select > .Select-control:hover {
   border: 1px solid #ddd;
   box-shadow: none;
