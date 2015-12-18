@@ -4,10 +4,7 @@ import moment from 'moment'
 import styles from './input-styles'
 
 function getDate(date) {
-  const offset = date.toDate().getTimezoneOffset() * 60000
-  const isoDate = (new Date(date - offset)).toISOString().slice(0,-1)
-
-  return isoDate
+  return date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
 }
 
 export default ({ className, errors, onCommit, property, value }) => (
