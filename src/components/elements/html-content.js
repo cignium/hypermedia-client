@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default ({ property }) => (
   <div
     className='ct-content'

@@ -6,7 +6,7 @@ cache:
 notifications:
   email: false
 node_js:
-  - 4.0.0
+  - 5.0.0
 before_script:
 - npm prune
 script:

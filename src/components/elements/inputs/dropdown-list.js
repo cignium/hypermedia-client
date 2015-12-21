@@ -1,4 +1,3 @@
-import React from 'react'
 import Select from 'react-select'
 
 export default ({ className, errors, onCommit, property, value }) => {

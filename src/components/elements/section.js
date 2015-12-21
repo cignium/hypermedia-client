@@ -1,4 +1,3 @@
-import React from 'react'
 import StyleSheet from 'stilr'
 import factory from './factory'
 

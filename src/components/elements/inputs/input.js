@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import factory from './factory'
 import styles from './input-styles'
 
@@ -36,7 +36,7 @@ export default class Input extends Component {
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
-        onChange={value => this.setState({ value })}
+        onUpdate={value => this.setState({ value })}
         value={this.state.value} />
     )
   }

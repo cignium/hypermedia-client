@@ -1,11 +1,11 @@
 demo
 node_modules
-*.yml
 .babelrc
 .eslintignore
 .eslintrc
 .gitignore
-.npmrc
+.travis.yml
 server.js
 webpack.config.js
 webpack.production.config.js
+webpack.shared.config.js

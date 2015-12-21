@@ -1,28 +1,18 @@
+import shared from './webpack.shared.config'
 import webpack from 'webpack'
 
 export default {
+  ...shared,
   entry: './src',
-  module: {
-    loaders: [{
-      include: /src/,
-      loader: 'babel',
-      test: /\.js$/,
-    },{
-      loaders: ['style', 'css'],
-      test: /\.css$/,
-    }],
-  },
   output: {
     filename: './dist/client.min.js',
     library: 'Cignium',
     libraryTarget: 'var',
   },
   plugins: [
+    ...shared.plugins,
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
-    new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
