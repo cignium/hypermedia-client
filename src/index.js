@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-export default {
+export {
   init,
   navigate,
 }
