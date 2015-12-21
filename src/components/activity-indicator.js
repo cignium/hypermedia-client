@@ -1,4 +1,4 @@
-import StyleSheet from 'stilr'
+import styles from './activity-indicator.css'
 
 export default ({ requests }) => {
   if (!Object.keys(requests).length) {
@@ -11,16 +11,3 @@ export default ({ requests }) => {
     </div>
   )
 }
-
-const styles = StyleSheet.create({
-  root: {
-    color: '#aaa',
-    fontSize: 12,
-    height: 10,
-    marginBottom: 25,
-    marginRight: -30,
-    marginTop: -35,
-    textTransform: 'uppercase',
-    textAlign: 'right',
-  },
-})

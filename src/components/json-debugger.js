@@ -1,4 +1,4 @@
-import StyleSheet from 'stilr'
+import styles from './json-debugger.css'
 
 export default ({ resource }) => {
   return (
@@ -7,20 +7,3 @@ export default ({ resource }) => {
     </pre>
   )
 }
-
-const styles = StyleSheet.create({
-  root: {
-    background: '#eee',
-    bottom: 0,
-    display: process.env.NODE_ENV == 'production' ? 'none' : 'block',
-    margin: 0,
-    opacity: 0.9,
-    overflow: 'auto',
-    padding: 10,
-    position: 'fixed',
-    right: 0,
-    top: 0,
-    width: 500,
-    zIndex: 1000000,
-  },
-})

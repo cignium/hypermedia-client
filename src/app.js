@@ -1,11 +1,11 @@
 import { Component } from 'react'
-import StyleSheet from 'stilr'
 import Tooltip from 'react-tooltip'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
 import { executeAction, update } from './api'
 import state from './state'
+import styles from './app.css'
 
 export default class App extends Component {
   constructor() {
@@ -18,8 +18,6 @@ export default class App extends Component {
   }
 
   render() {
-    document.getElementById('ct-styles').textContent = StyleSheet.render()
-
     return (
       <div className='ct-app'>
         <Tooltip
@@ -38,13 +36,3 @@ export default class App extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  errorTooltip: {
-    backgroundColor: '#CC0302 !important',
-
-    ':after': {
-      borderBottomColor: '#CC0302 !important',
-    },
-  },
-})

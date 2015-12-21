@@ -1,4 +1,4 @@
-import styles from './input-styles'
+import styles from './input-styles.css'
 
 export default ({ className, errors, onCommit, onUpdate, property, value }) => (
   <textarea

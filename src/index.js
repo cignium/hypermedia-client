@@ -10,10 +10,6 @@ function init(element) {
     element = document.getElementById(element)
   }
 
-  const style = document.createElement('style')
-  style.id = 'ct-styles'
-  document.head.appendChild(style)
-
   render(<App />, element)
 }
 

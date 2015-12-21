@@ -7,6 +7,11 @@ export default {
       loaders: ['babel', 'eslint'],
       test: /\.js$/,
     },{
+      include: /src/,
+      loaders: ['style', 'css?modules'],
+      test: /\.css$/,
+    },{
+      exclude: /src/,
       loaders: ['style', 'css'],
       test: /\.css$/,
     }],
