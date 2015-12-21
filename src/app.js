@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import StyleSheet from 'stilr'
 import Tooltip from 'react-tooltip'
 import ActivityIndicator from './components/activity-indicator'

@@ -1,8 +1,6 @@
-import React from 'react'
 import { render } from 'react-dom'
-import App from './app'
 import { navigate } from './api'
-import 'babel-polyfill'
+import App from './app'
 import 'react-datepicker/dist/react-datepicker.css'
 import 'react-select/dist/react-select.css'
 import './index.css'
@@ -23,12 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('[data-endpoint]')
 
   if (element) {
-    Cignium.init(element)
+    init(element)
 
     const url = element.getAttribute('data-endpoint')
 
     if (url) {
-      Cignium.navigate(url)
+      navigate(url)
     }
   }
 })

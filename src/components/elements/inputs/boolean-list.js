@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default ({ className, onCommit, property, value }) => {
   function getValue(checked, newValue) {
     if (!property.isArray) {

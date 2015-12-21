@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './input-styles'
 
 export default ({ className, errors, onCommit, property, value }) => (

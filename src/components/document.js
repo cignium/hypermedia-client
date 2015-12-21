@@ -1,4 +1,3 @@
-import React from 'react'
 import StyleSheet from 'stilr'
 import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
