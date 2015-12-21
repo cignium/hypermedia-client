@@ -1,0 +1,7 @@
+.errorTooltip {
+  background-color: #CC0302 !important;
+}
+
+.errorTooltip:after {
+  border-bottom-color: #CC0302 !important;
+}

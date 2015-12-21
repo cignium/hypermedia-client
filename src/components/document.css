@@ -1,0 +1,18 @@
+.root {
+  padding-bottom: 30px
+}
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  margin-bottom: 30px;
+  padding: 10px 0 20px;
+}
+
+.headerText {
+  flex: 1px;
+  font-size: 30px;
+  font-weight: 100px;
+  margin: 5px 0;
+}
