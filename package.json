@@ -39,7 +39,6 @@
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
     "semantic-release": "^4.3.5",
-    "stilr": "^1.2.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
