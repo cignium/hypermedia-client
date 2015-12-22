@@ -1,7 +1,7 @@
-import StyleSheet from 'stilr'
 import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
+import styles from './document.css'
 
 export default ({ executeAction, navigate, resource, update }) => {
   if (!resource) {
@@ -29,24 +29,3 @@ export default ({ executeAction, navigate, resource, update }) => {
     </div>
   )
 }
-
-const styles = StyleSheet.create({
-  root: {
-    paddingBottom: 30,
-  },
-
-  header: {
-    alignItems: 'center',
-    borderBottom: '1px solid #eee',
-    display: 'flex',
-    marginBottom: 30,
-    padding: '10px 0 20px',
-  },
-
-  headerText: {
-    flex: 1,
-    fontSize: 30,
-    fontWeight: 100,
-    margin: '5px 0',
-  },
-})

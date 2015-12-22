@@ -1,4 +1,4 @@
-import StyleSheet from 'stilr'
+import styles from './section.css'
 import factory from './factory'
 
 export default ({ navigate, property, topLevel, update }) => (
@@ -20,24 +20,3 @@ export default ({ navigate, property, topLevel, update }) => (
     })}
   </div>
 )
-
-const styles = StyleSheet.create({
-  root: {
-    margin: '5px 0',
-  },
-
-  nested: {
-    background: 'rgba(0, 0, 0, 0.03)',
-    border: 'solid 1px rgba(0, 0, 0, 0.03)',
-    borderRadius: 3,
-    padding: '0 15px 10px',
-  },
-
-  label: {
-    color: '#444',
-    display: 'block',
-    fontSize: 14,
-    fontWeight: 700,
-    margin: '20px 0 5px',
-  },
-})

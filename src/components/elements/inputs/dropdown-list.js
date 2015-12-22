@@ -1,4 +1,5 @@
 import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 export default ({ className, errors, onCommit, property, value }) => {
   function getValue(option) {

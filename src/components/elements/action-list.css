@@ -1,0 +1,18 @@
+.action {
+  background: #76BFF3;
+  border: solid 1px #5DB0EA;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.action:hover {
+  background: #81C8FB;
+}
+
+.action:active {
+  background: #5DB0EA;
+}

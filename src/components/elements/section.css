@@ -1,0 +1,18 @@
+.root {
+  margin: 5px 0;
+}
+
+.nested {
+  background: rgba(0, 0, 0, 0.03);
+  border: solid 1px rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+  padding: 0 15px 10px;
+}
+
+.label {
+  color: #444;
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 20px 0 5px;
+}

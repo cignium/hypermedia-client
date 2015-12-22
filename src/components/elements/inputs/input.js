@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import factory from './factory'
-import styles from './input-styles'
+import styles from './input.css'
 
 export default class Input extends Component {
   constructor(props) {

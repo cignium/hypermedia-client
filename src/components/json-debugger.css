@@ -1,0 +1,19 @@
+.root {
+  background: #eee;
+  bottom: 0;
+  display: block;
+  margin: 0;
+  opacity: 0.9;
+  overflow: auto;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 500px;
+  z-index: 1000000;
+}
+
+.root.hide {
+  display: none;
+}
+ 

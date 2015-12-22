@@ -1,4 +1,4 @@
-import StyleSheet from 'stilr'
+import styles from './link.css'
 
 export default ({ property }) => (
   <a
@@ -8,19 +8,3 @@ export default ({ property }) => (
     {property.value}
   </a>
 )
-
-const styles = StyleSheet.create({
-  root: {
-    color: '#5DB0EA',
-    fontSize: 15,
-    fontStyle: 'normal',
-    fontWeight: 300,
-    padding: '5px 0',
-    textDecoration: 'none',
-
-    ':hover': {
-      color: '#76BFF3',
-      textDecoration: 'underline',
-    },
-  },
-})
