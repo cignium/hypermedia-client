@@ -1,6 +1,7 @@
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import styles from './input-styles.css'
+import 'react-datepicker/dist/react-datepicker.css'
 
 function getDate(date) {
   return date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
