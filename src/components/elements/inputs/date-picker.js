@@ -1,6 +1,6 @@
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
-import styles from './input-styles.css'
+import styles from './input.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function getDate(date) {

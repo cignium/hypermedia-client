@@ -1,4 +1,4 @@
-import styles from './input-styles.css'
+import styles from './input.css'
 
 export default ({ className, errors, onCommit, onUpdate, property, value }) => (
   <input
