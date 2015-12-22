@@ -8,7 +8,7 @@ export default ({ resource }) => {
   }
 
   return (
-    <pre className={`${className}`}>
+    <pre className={className}>
       {JSON.stringify(resource.data, null, 2)}
     </pre>
   )

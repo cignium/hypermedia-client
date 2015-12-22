@@ -8,14 +8,9 @@ import state from './state'
 import styles from './app.css'
 
 export default class App extends Component {
-  constructor({ defaultStyling }) {
+  constructor() {
     super()
     this.state = state.get()
-    this.className = `ct-app`
-
-    if (defaultStyling) {
-      this.className += ` ${styles.app}`
-    }
   }
 
   componentDidMount() {
@@ -23,8 +18,14 @@ export default class App extends Component {
   }
 
   render() {
+    let className = 'ct-app'
+
+    if (this.props.defaultStyling) {
+      className += ` ${styles.app}`
+    }
+
     return (
-      <div className={`${this.className}`}>
+      <div className={className}>
         <Tooltip
           class={`${styles.errorTooltip} ct-error-tooltip`}
           effect='solid'
