@@ -25,6 +25,7 @@
 :global .Select > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;
+  box-shadow: none !important;
   color: #444;
   font-size: 15px;
   font-style: normal;
@@ -37,6 +38,14 @@
 
 :global .Select.ct-input-invalid > .Select-control:hover {
   border-color: #CC0302;
+}
+
+:global .Select:not(.is-disabled):not(.ct-input-invalid) > .Select-control:hover {
+  border-color: #ddd;
+}
+
+:global .Select.is-focused:not(.is-disabled):not(.ct-input-invalid)  > .Select-control {
+  border-color: #ddd;
 }
 
 :global .Select > .Select-control:hover {
