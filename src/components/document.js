@@ -3,7 +3,7 @@ import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
 import styles from './document.css'
 
-export default ({ executeAction, navigate, resource, update }) => {
+export default ({ executeAction, navigate, resource, update, submit }) => {
   if (!resource) {
     return <div />
   }
@@ -17,8 +17,9 @@ export default ({ executeAction, navigate, resource, update }) => {
           {resource.title}
         </div>
         <ActionList
-          actions={resource.links.actions}
-          executeAction={executeAction} />
+          links={resource.links}
+          executeAction={executeAction} 
+          submit={submit} />
       </div>
       <Element
         navigate={navigate}

@@ -24,7 +24,7 @@ export default class Input extends Component {
 
   render() {
     const Element = factory(this.props.property)
-    let className = `ct-input`
+    let className = 'ct-input'
 
     if (this.props.property.errors.length) {
       className += ` ${styles.invalid} ct-input-invalid`
@@ -52,7 +52,7 @@ export default class Input extends Component {
     const { property } = this.props
 
     if (property.value !== value) {
-      this.props.update(property.links.update.href, property.id, value)
+      this.props.update(property.links, property.id, value)
     }
   }
 }

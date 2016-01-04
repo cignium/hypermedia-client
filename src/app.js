@@ -3,7 +3,7 @@ import Tooltip from 'react-tooltip'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
-import { executeAction, update } from './api'
+import { executeAction, update, submit } from './api'
 import state from './state'
 import styles from './app.css'
 
@@ -37,7 +37,8 @@ export default class App extends Component {
         <Document
           executeAction={executeAction}
           resource={this.state.resources[this.state.resources.current]}
-          update={update} />
+          update={update}
+          submit={submit} />
       </div>
     )
   }
