@@ -1,3 +1,5 @@
+import styles from './input.css'
+
 export default ({ className, onCommit, property, value }) => {
   function getValue(checked, newValue) {
     if (!property.isArray) {
@@ -29,7 +31,7 @@ export default ({ className, onCommit, property, value }) => {
   }
 
   return (
-    <div className={`${className} ct-${property.display}-list`}>
+    <div className={`${className} ${styles.input} ct-${property.display}-list`}>
       {property.options.map(option => {
         return (
           <div key={option.value}>
