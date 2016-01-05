@@ -80,7 +80,7 @@ export function update(links, id, value) {
     if (current) {
       current.set({ [id]: value })
     }
-    else { 
+    else {
       drafts.set(links.submit.href, { [id]: value })
     }
   }
@@ -92,4 +92,5 @@ export function update(links, id, value) {
 export function submit(href) {
   const data = state.get().drafts[href]
   requestResource({ data, href, method: 'post', navigate: true })
+  state.get().drafts.remove(href)
 }
