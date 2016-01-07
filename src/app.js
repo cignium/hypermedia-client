@@ -20,7 +20,7 @@ export default class App extends Component {
   render() {
     let className = 'ct-app'
 
-    if (this.props.defaultStyling) {
+    if (!this.props.disableDefaultStyling) {
       className += ` ${styles.app}`
     }
 
