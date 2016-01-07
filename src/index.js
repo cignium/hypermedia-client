@@ -1,7 +1,7 @@
 import { render } from 'react-dom'
 import { navigate } from './api'
 import App from './app'
-import OptionsParser from './api/options'
+import OptionsParser from './api/options-parser'
 
 function init(element, options) {
   if (typeof element === 'string') {
