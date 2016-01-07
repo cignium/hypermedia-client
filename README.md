@@ -67,7 +67,7 @@ Further configuration can be done by adding attributes to the element. See [Conf
 available options.
 
 
-### <a name="configuration"></a> Configuration
+### <a name="configuration"></a>Configuration
 
 There are two ways to configure the renderer, 
 depending on which way the client is initialized, programmatically or declaratively.
@@ -88,7 +88,7 @@ The renderer is exposing a number of CSS classes for you to override when you wa
 the appearance of the rendered output.
 
 The following classes are available (this documentation is a work in progress, 
-information about the different CSS-classes and how to use them will be updated):
+information about the different CSS-classes and how to use them will be updated. For now, you can use the Developer Tools in your browser to see which CSS-classes are connected to the element you wish to style):
  * ct-app
  * ct-error-tooltip
  * ct-json-debugger
