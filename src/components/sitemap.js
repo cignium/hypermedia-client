@@ -8,7 +8,7 @@ export default ({ executeAction, navigate, resource, update }) => {
   const Element = factory(resource)
 
   return (
-    <div className={'ct-sitemap'}>
+    <div className='ct-sitemap'>
       <Element
         navigate={navigate}
         property={resource}
