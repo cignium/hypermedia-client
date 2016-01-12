@@ -8,10 +8,7 @@
 
 .app {
   background: white;
-  border: solid 1px #eee;
-  border-radius: 3px;
   margin: 100px auto;
-  padding: 10px 30px;
   width: 500px;
 }
 

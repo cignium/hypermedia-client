@@ -6,6 +6,7 @@ import ErrorMessage from './components/error-message'
 import { executeAction, update } from './api'
 import state from './state'
 import styles from './app.css'
+import Sitemap from './components/sitemap'
 
 export default class App extends Component {
   constructor() {
@@ -34,6 +35,8 @@ export default class App extends Component {
           type='error' />
         <ErrorMessage error={this.state.error} />
         <ActivityIndicator requests={this.state.requests} />
+        <Sitemap 
+          resource={this.state.resources[this.state.resources.sitemap]} />
         <Document
           executeAction={executeAction}
           resource={this.state.resources[this.state.resources.current]}

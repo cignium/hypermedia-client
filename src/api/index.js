@@ -15,7 +15,22 @@ state.on('update', ({ requests }) => {
   processRequestQueue()
 })
 
-async function processRequest({ data, href, id, method, navigate }) {
+async function loadSitemap(resource) {
+  if (!resource.links.sitemap) {
+    return
+  }
+
+  const { href } = resource.links.sitemap
+
+  if (state.get().resources[href]) {
+    requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+    return
+  }
+
+  await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+}
+
+async function processRequest({ data, href, id, method, resourceKey }) {
   try {
     const response = await request(method, href, data)
 
@@ -24,11 +39,12 @@ async function processRequest({ data, href, id, method, navigate }) {
     }
 
     const resource = factory(response)
+    await loadSitemap(resource)
 
     state.get().resources.set(resource.links.self.href, resource)
 
-    if (navigate) {
-      state.get().resources.set('current', resource.links.self.href)
+    if (resourceKey) {
+      state.get().resources.set(resourceKey, resource.links.self.href)
     }
   }
   catch (e) {
@@ -62,11 +78,11 @@ function requestResource(request) {
 }
 
 export function executeAction(href) {
-  requestResource({ href, method: 'post', navigate: true })
+  requestResource({ href, method: 'post', resourceKey: 'current' })
 }
 
 export function navigate(href) {
-  requestResource({ href, method: 'get', navigate: true })
+  requestResource({ href, method: 'get', resourceKey: 'current' })
 }
 
 export function update(href, id, value) {
