@@ -114,6 +114,9 @@ information about the different CSS-classes and how to use them will be updated.
  * ct-text-input
  * ct-checkbox-list
  * ct-radio-list
+ * ct-list
+ * ct-list-item
+ * ct-sitemap
 
 ## Contributing
 
