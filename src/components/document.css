@@ -1,5 +1,8 @@
 .root {
-  padding-bottom: 30px
+  padding-bottom: 30px;
+  border: solid 1px #eee;
+  border-radius: 3px;
+  padding: 10px 30px;
 }
 
 .header {

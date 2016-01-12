@@ -1,8 +1,8 @@
 import styles from './link.css'
 
-export default ({ property }) => (
+export default ({ className, property }) => (
   <a
-    className={`${styles.root} ct-link`}
+    className={`${className} ${styles.root} ct-link`}
     id={property.id}
     href={property.links.navigate.href}>
     {property.value}
