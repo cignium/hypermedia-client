@@ -7,10 +7,10 @@ export default function(data, parent) {
   if (data.type == 'object') {
     return createObjectProperty(data, parent)
   }
-  else if (data.type == 'html') {
+  if (data.type == 'html') {
     return createHtmlContentProperty(data, parent)
   }
-  else if (data.type == 'array') {
+  if (data.type == 'array') {
     return createArrayProperty(data, parent)
   }
 
