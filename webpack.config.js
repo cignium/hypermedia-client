@@ -7,7 +7,17 @@ export default {
   entry: [
     'webpack-hot-middleware/client',
     './src',
+    './themes/default/index.css',
   ],
+  module:{
+    loaders:[
+      ...shared.module.loaders,
+      {
+        exclude: /src/,
+        loaders: ['style', 'css'],
+        test: /\.css$/,
+      }],    
+  },
   output: {
     filename: 'client.js',
     library: 'Cignium',
