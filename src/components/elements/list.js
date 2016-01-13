@@ -1,4 +1,3 @@
-import styles from './list.css'
 import factory from './factory'
 
 export default ({ property, executeAction }) => (
@@ -7,7 +6,7 @@ export default ({ property, executeAction }) => (
       const Element = factory(item)
       return (
         <Element
-          className={`${styles.listItem} ct-list-item`}
+          className='ct-list-item'
           key={item.id}
           property={item} />
       )

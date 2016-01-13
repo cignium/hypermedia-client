@@ -1,11 +1,11 @@
-.root {
+.ct-document {
   padding-bottom: 30px;
   border: solid 1px #eee;
   border-radius: 3px;
   padding: 10px 30px;
 }
 
-.header {
+.ct-document-header {
   align-items: center;
   border-bottom: 1px solid #eee;
   display: flex;
@@ -13,7 +13,7 @@
   padding: 10px 0 20px;
 }
 
-.headerText {
+.ct-document-header-text {
   flex: 1;
   font-size: 30px;
   font-weight: 100px;

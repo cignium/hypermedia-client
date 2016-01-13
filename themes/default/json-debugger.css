@@ -1,4 +1,4 @@
-.root {
+.ct-json-debugger {
   background: #eee;
   bottom: 0;
   display: block;
@@ -13,7 +13,7 @@
   z-index: 1000000;
 }
 
-.root.hide {
+.ct-json-debugger.hide {
   display: none;
 }
  

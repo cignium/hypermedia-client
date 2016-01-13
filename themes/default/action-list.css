@@ -1,4 +1,4 @@
-.action {
+.ct-action {
   background: #76BFF3;
   border: solid 1px #5DB0EA;
   border-radius: 3px;
@@ -9,10 +9,10 @@
   padding: 10px 20px;
 }
 
-.action:hover {
+.ct-action:hover {
   background: #81C8FB;
 }
 
-.action:active {
+.ct-action:active {
   background: #5DB0EA;
 }

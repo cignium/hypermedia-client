@@ -5,7 +5,6 @@ import Document from './components/document'
 import ErrorMessage from './components/error-message'
 import { executeAction, update } from './api'
 import state from './state'
-import styles from './app.css'
 import Sitemap from './components/sitemap'
 
 export default class App extends Component {
@@ -19,16 +18,10 @@ export default class App extends Component {
   }
 
   render() {
-    let className = 'ct-app'
-
-    if (!this.props.disableDefaultStyling) {
-      className += ` ${styles.app}`
-    }
-
     return (
-      <div className={className}>
+      <div className='ct-app'>
         <Tooltip
-          class={`${styles.errorTooltip} ct-error-tooltip`}
+          class='ct-error-tooltip'
           effect='solid'
           multiline
           place='bottom'

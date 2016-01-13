@@ -1,26 +1,26 @@
-.errorTooltip {
+.ct-error-tooltip {
   background-color: #CC0302 !important;
 }
 
-.errorTooltip:after {
+.ct-error-tooltip:after {
   border-bottom-color: #CC0302 !important;
 }
 
-.app {
+.ct-app {
   background: white;
   margin: 100px auto;
   width: 500px;
 }
 
-.app * {
+.ct-app * {
   box-sizing: border-box;
 }
 
-.app,
-.app button,
-.app input,
-.app select,
-.app textarea {
+.ct-app,
+.ct-app button,
+.ct-app input,
+.ct-app select,
+.ct-app textarea {
   font-family: -apple-system, Helvetica, Arial, sans-serif;
   outline: 0;
 }

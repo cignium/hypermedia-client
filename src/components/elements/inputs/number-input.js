@@ -1,8 +1,6 @@
-import styles from './input.css'
-
 export default ({ className, errors, onCommit, onUpdate, property, value }) => (
   <input
-    className={`${className} ${styles.input} ct-number-input`}
+    className={`${className} ct-input ct-number-input`}
     data-tip={errors}
     disabled={property.disabled}
     id={property.id}

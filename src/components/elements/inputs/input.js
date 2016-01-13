@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import factory from './factory'
-import styles from './input.css'
 
 export default class Input extends Component {
   constructor(props) {
@@ -24,15 +23,10 @@ export default class Input extends Component {
 
   render() {
     const Element = factory(this.props.property)
-    let className = `ct-input`
-
-    if (this.props.property.errors.length) {
-      className += ` ${styles.invalid} ct-input-invalid`
-    }
 
     return (
       <Element
-        className={className}
+        className={this.props.property.errors.length && 'ct-input-invalid'}
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}

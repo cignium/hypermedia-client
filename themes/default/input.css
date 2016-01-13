@@ -1,4 +1,4 @@
-.input {
+.ct-input {
   border: 1px solid #eee;
   border-radius: 3px;
   color: #444;
@@ -9,20 +9,20 @@
   width: 100%;
 }
 
-.input:hover {
+.ct-input:hover {
   border: 1px solid #ddd;
   box-shadow: none;
 }
 
-.input.invalid {
+.ct-input.ct-input-invalid {
   border-color: #ED1631;
 }
 
-.input.invalid:hover {
+.ct-input.ct-input-invalid:hover {
   border-color: #CC0302;
 }
 
-:global .Select > .Select-control {
+.Select > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;
   box-shadow: none !important;
@@ -32,33 +32,33 @@
   font-weight: 300;
 }
 
-:global .Select.ct-input-invalid > .Select-control {
+.Select.ct-input-invalid > .Select-control {
   border-color: #ED1631;
 }
 
-:global .Select.ct-input-invalid > .Select-control:hover {
+.Select.ct-input-invalid > .Select-control:hover {
   border-color: #CC0302;
 }
 
-:global .Select:not(.is-disabled):not(.ct-input-invalid) > .Select-control:hover {
+.Select:not(.is-disabled):not(.ct-input-invalid) > .Select-control:hover {
   border-color: #ddd;
 }
 
-:global .Select.is-focused:not(.is-disabled):not(.ct-input-invalid)  > .Select-control {
+.Select.is-focused:not(.is-disabled):not(.ct-input-invalid)  > .Select-control {
   border-color: #ddd;
 }
 
-:global .Select > .Select-control:hover {
+.Select > .Select-control:hover {
   border: 1px solid #ddd;
   box-shadow: none;
 }
 
-:global .Select > .Select-control > .Select-item {
+.Select > .Select-control > .Select-item {
   margin-left: 6px;
   margin-top: 6px;
 }
 
-:global .Select > .Select-control > .Select-arrow-zone,
-:global .Select > .Select-control > .Select-clear-zone {
+.Select > .Select-control > .Select-arrow-zone,
+.Select > .Select-control > .Select-clear-zone {
   vertical-align: inherit;
 }
