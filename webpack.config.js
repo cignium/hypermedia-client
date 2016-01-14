@@ -7,16 +7,19 @@ export default {
   entry: [
     'webpack-hot-middleware/client',
     './src',
-    './themes/default/index.css',
   ],
   module:{
     loaders:[
-      ...shared.module.loaders,
       {
-        exclude: /src/,
+        include: /src/,
+        loaders: ['babel', 'eslint'],
+        test: /\.js$/,
+      },
+      {
+        include: [/themes/, /node_modules/],
         loaders: ['style', 'css'],
         test: /\.css$/,
-      }],    
+      }],
   },
   output: {
     filename: 'client.js',

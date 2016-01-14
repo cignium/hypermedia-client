@@ -6,7 +6,6 @@ export default {
   ...shared,
   entry: [
     './src',
-    './themes/default/index.css',
   ],
   output: {
     filename: 'client.min.js',
@@ -16,16 +15,25 @@ export default {
   },
   module: {
     loaders:[
-      ...shared.module.loaders,
       {
-        exclude: /src/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),      
+        include: /src/,
+        loaders: ['babel', 'eslint'],
+        test: /\.js$/,
+      },
+      {
+        include: /node_modules/,
+        loaders: ['style', 'css'],
+        test: /\.css$/,
+      },
+      {
+        include: /themes/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
         test: /\.css$/,
       }],
   },
   plugins: [
     ...shared.plugins,
-    new ExtractTextPlugin('app.css', {
+    new ExtractTextPlugin('default.css', {
       allChunks: true,
     }),
     new webpack.DefinePlugin({
