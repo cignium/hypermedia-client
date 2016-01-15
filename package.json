@@ -8,6 +8,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.3",
     "freezer-js": "^0.9.4",
     "moment": "^2.10.6",
     "react": "^0.14.3",

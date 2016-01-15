@@ -1,12 +1,10 @@
+import cx from 'classnames'
+
 export default ({ resource }) => {
-  let className = 'ct-json-debugger'
-
-  if (process.env.NODE_ENV == 'production') {
-    className += ' hide'
-  }
-
   return (
-    <pre className={className}>
+    <pre className={cx(
+      'ct-json-debugger', 
+      {'hide': process.env.NODE_ENV == 'production'})}>
       {JSON.stringify(resource.data, null, 2)}
     </pre>
   )

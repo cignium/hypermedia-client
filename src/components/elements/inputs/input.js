@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import cx from 'classnames'
 import factory from './factory'
 
 export default class Input extends Component {
@@ -26,7 +27,9 @@ export default class Input extends Component {
 
     return (
       <Element
-        className={this.props.property.errors.length && 'ct-input-invalid'}
+        className={cx({
+          'ct-input-invalid': this.props.property.errors.length,
+        })} 
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}

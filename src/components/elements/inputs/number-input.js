@@ -1,6 +1,8 @@
+import cx from 'classnames'
+
 export default ({ className, errors, onCommit, onUpdate, property, value }) => (
   <input
-    className={`${className} ct-input ct-number-input`}
+    className={cx(className, 'ct-input', 'ct-number-input')}
     data-tip={errors}
     disabled={property.disabled}
     id={property.id}

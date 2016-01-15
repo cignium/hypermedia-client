@@ -1,6 +1,8 @@
+import cx from 'classnames'
+
 export default ({ className, errors, onCommit, onUpdate, property, value }) => (
   <textarea
-    className={`${className} ct-input ct-multiline-text-input`}
+    className={cx(className, 'ct-input', 'ct-multiline-text-input')}
     data-tip={errors}
     disabled={property.disabled}
     id={property.id}
