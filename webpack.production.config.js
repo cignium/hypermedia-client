@@ -1,4 +1,3 @@
-import CompressionPlugin from 'compression-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import shared from './webpack.shared.config'
 import webpack from 'webpack'
@@ -45,10 +44,6 @@ export default {
       compress: {
         warnings: false,
       },
-    }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-      asset: '{file}',
     }),
   ],
 }
