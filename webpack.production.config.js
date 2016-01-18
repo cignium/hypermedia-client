@@ -1,16 +1,42 @@
+import CompressionPlugin from 'compression-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import shared from './webpack.shared.config'
 import webpack from 'webpack'
 
 export default {
   ...shared,
-  entry: './src',
+  entry: [
+    './src',
+  ],
   output: {
-    filename: './dist/client.min.js',
+    filename: 'client.min.js',
     library: 'Cignium',
     libraryTarget: 'var',
+    path: './dist/',
+  },
+  module: {
+    loaders:[
+      {
+        include: /src/,
+        loaders: ['babel', 'eslint'],
+        test: /\.js$/,
+      },
+      {
+        include: /node_modules/,
+        loaders: ['style', 'css'],
+        test: /\.css$/,
+      },
+      {
+        include: /themes/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+        test: /\.css$/,
+      }],
   },
   plugins: [
     ...shared.plugins,
+    new ExtractTextPlugin('default.css', {
+      allChunks: true,
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
@@ -19,6 +45,10 @@ export default {
       compress: {
         warnings: false,
       },
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      asset: '{file}',
     }),
   ],
 }

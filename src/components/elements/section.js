@@ -1,14 +1,14 @@
-import styles from './section.css'
+import cx from 'classnames'
 import factory from './factory'
 
 export default ({ navigate, property, topLevel, update }) => (
-  <div className={`${styles.root} ${!topLevel && styles.nested} ct-section`}>
+  <div className={cx({'nested': !topLevel}, 'ct-section')}>
     {property.properties.map(property => {
       const Element = factory(property)
 
       return (
         <div className='ct-element' key={property.id}>
-          <label className={`${styles.label} ct-element-label`}>
+          <label className='ct-element-label'>
             {property.title}
           </label>
           <Element

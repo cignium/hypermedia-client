@@ -1,4 +1,4 @@
-import styles from './input.css'
+import cx from 'classnames'
 
 export default ({ className, onCommit, property, value }) => {
   function getValue(checked, newValue) {
@@ -31,7 +31,7 @@ export default ({ className, onCommit, property, value }) => {
   }
 
   return (
-    <div className={`${className} ${styles.input} ct-${property.display}-list`}>
+    <div className={cx(className, 'ct-input', `ct-${property.display}-list`)}>
       {property.options.map(option => {
         return (
           <div key={option.value}>

@@ -24,6 +24,12 @@ Add the following script tag:
 <script src="//npmcdn.com/cignium-hypermedia-client/dist/client.min.js"></script>
 ```
 
+For default styling, include this tag:
+
+```html
+<link rel="stylesheet" type="text/css" src="//npmcdn.com/cignium-hypermedia-client/dist/default.css"></script>
+```
+
 ## Get Started
 
 Initializing the client can be done in two ways, **programmatically** by calling `Cignium.init()` 
@@ -80,15 +86,17 @@ Properties should be provided in camel-casing **without** the data-prefix, e.g. 
 | Attribute  | Configuration property | Value type | Description |
 | ---------- | ---------------------- | ---------- | ----------- | 
 | `data-endpoint`  | `endpoint`  | string | Specifies the starting point of the API that should be rendered. |
-| `data-disable-default-styling` | `disableDefaultStyling` | none/bool | When the attribute is present or the setting is set to true, the default styling is disabled to allow for more control over the styling customization. |
 
-### Overridable CSS classes
+### Styling
+
+We provide a default styling via the `default.css` file. Include this file in your page to get the default styling or write your own styling from scratch.
 
 The renderer is exposing a number of CSS classes for you to override when you want to customize 
 the appearance of the rendered output.
 
 The following classes are available (this documentation is a work in progress, 
-information about the different CSS-classes and how to use them will be updated. For now, you can use the Developer Tools in your browser to see which CSS-classes are connected to the element you wish to style):
+information about the different CSS-classes and how to use them will be updated. 
+For now, you can use the Developer Tools in your browser to see which CSS-classes are connected to the element you wish to style):
  * ct-app
  * ct-error-tooltip
  * ct-json-debugger

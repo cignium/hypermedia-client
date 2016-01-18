@@ -1,9 +1,9 @@
-import styles from './input.css'
+import cx from 'classnames'
 
 export default ({ className, errors, onCommit, property, value }) => (
   <input
     checked={value}
-    className={`${className} ${styles.input} ct-checkbox`}
+    className={cx(className, 'ct-input', 'ct-checkbox')}
     data-tip={errors}
     disabled={property.disabled}
     id={property.id}
