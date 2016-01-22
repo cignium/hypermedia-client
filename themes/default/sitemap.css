@@ -1,0 +1,13 @@
+.ct-sitemap {
+  white-space: nowrap;
+}
+
+.ct-sitemap .ct-list-item {
+  vertical-align: top;
+  font-size: 17px;
+}
+
+.ct-sitemap > .ct-list > .ct-list-item, 
+.ct-sitemap > .ct-list > .ct-list {
+  display: inline-block;
+}
