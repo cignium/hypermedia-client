@@ -1,4 +1,6 @@
-export default ({ actions, executeAction }) => (
+import { executeAction } from '../../api'
+
+export default ({ actions }) => (
   <div className='ct-action-list'>
     {actions.map(action => {
       return (
