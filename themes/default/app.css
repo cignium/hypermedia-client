@@ -7,6 +7,7 @@
 @import './link.css';
 @import './list.css';
 @import './section.css';
+@import './sitemap.css';
 
 .ct-error-tooltip {
   background-color: #CC0302 !important;
