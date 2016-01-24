@@ -10,19 +10,16 @@ function init(element, options) {
   }
 
   render(<App {...options} />, element)
+
+  if (options.endpoint) {
+    navigate(options.endpoint)
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('[data-endpoint]')
-
   if (element) {
     init(element, OptionsParser(element))
-
-    const url = element.getAttribute('data-endpoint')
-
-    if (url) {
-      navigate(url)
-    }
   }
 })
 

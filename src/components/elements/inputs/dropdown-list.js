@@ -13,7 +13,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       <Select
         className={cx(className, 'ct-dropdown-list')}
         disabled={property.disabled}
-        id={property.id}
+        id={property.name}
         multi={property.isArray}
         onChange={option => onCommit(getValue(option))}
         options={property.options.map(({ title, value }) => {

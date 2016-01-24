@@ -85,7 +85,8 @@ Properties should be provided in camel-casing **without** the data-prefix, e.g. 
 
 | Attribute  | Configuration property | Value type | Description |
 | ---------- | ---------------------- | ---------- | ----------- | 
-| `data-endpoint`  | `endpoint`  | string | Specifies the starting point of the API that should be rendered. |
+| `data-endpoint` | `endpoint` | string | Specifies the starting point of the API that should be rendered. |
+| | `onChange` | function | Executes after a value has been updated. Receives 2 parameters: `id` and `value`. |
 
 ### Styling
 

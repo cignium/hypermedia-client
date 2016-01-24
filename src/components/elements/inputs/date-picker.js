@@ -12,7 +12,7 @@ export default ({ className, errors, onCommit, property, value }) => (
     <DatePicker
       className={cx(className, 'ct-input', 'ct-date-picker')}
       disabled={property.disabled}
-      id={property.id}
+      id={property.name}
       onChange={date => onCommit(getDate(date))}
       selected={value ? moment(value) : value}
       title={property.title} />
