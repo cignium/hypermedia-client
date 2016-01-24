@@ -1,9 +1,10 @@
 import factory from './factory'
 
-export default ({ property, executeAction }) => (
+export default ({ property }) => (
   <div className='ct-list'>
     {property.items.map(item => {
       const Element = factory(item)
+
       return (
         <Element
           className='ct-list-item'

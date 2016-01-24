@@ -2,7 +2,7 @@ import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
 
-export default ({ executeAction, navigate, resource, update }) => {
+export default ({ resource }) => {
   if (!resource) {
     return <div />
   }
@@ -15,15 +15,9 @@ export default ({ executeAction, navigate, resource, update }) => {
         <div className='ct-document-header-text'>
           {resource.title}
         </div>
-        <ActionList
-          actions={resource.links.actions}
-          executeAction={executeAction} />
+        <ActionList actions={resource.links.actions} />
       </div>
-      <Element
-        navigate={navigate}
-        property={resource}
-        topLevel
-        update={update} />
+      <Element property={resource} topLevel />
       <JsonDebugger resource={resource} />
     </div>
   )

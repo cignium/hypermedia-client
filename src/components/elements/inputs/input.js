@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { update } from '../../../api'
 import cx from 'classnames'
 import factory from './factory'
 
@@ -29,7 +30,7 @@ export default class Input extends Component {
       <Element
         className={cx({
           'ct-input-invalid': this.props.property.errors.length,
-        })} 
+        })}
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
@@ -49,7 +50,7 @@ export default class Input extends Component {
     const { property } = this.props
 
     if (property.value !== value) {
-      this.props.update(property.links.update.href, property.id, value)
+      update(property.links.update.href, property.id, value)
     }
   }
 }

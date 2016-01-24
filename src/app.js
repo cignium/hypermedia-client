@@ -3,9 +3,8 @@ import Tooltip from 'react-tooltip'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
-import { executeAction, update } from './api'
-import state from './state'
 import Sitemap from './components/sitemap'
+import state from './state'
 
 export default class App extends Component {
   constructor() {
@@ -18,6 +17,9 @@ export default class App extends Component {
   }
 
   render() {
+    const sitemap = this.state.resources[this.state.resources.sitemap]
+    const document = this.state.resources[this.state.resources.current]
+
     return (
       <div className='ct-app'>
         <Tooltip
@@ -28,12 +30,8 @@ export default class App extends Component {
           type='error' />
         <ErrorMessage error={this.state.error} />
         <ActivityIndicator requests={this.state.requests} />
-        <Sitemap 
-          resource={this.state.resources[this.state.resources.sitemap]} />
-        <Document
-          executeAction={executeAction}
-          resource={this.state.resources[this.state.resources.current]}
-          update={update} />
+        <Sitemap resource={sitemap} />
+        <Document resource={document} />
       </div>
     )
   }

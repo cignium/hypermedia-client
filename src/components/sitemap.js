@@ -1,6 +1,6 @@
 import factory from './elements/factory'
 
-export default ({ executeAction, navigate, resource, update }) => {
+export default ({ resource }) => {
   if (!resource) {
     return <div />
   }
@@ -9,10 +9,7 @@ export default ({ executeAction, navigate, resource, update }) => {
 
   return (
     <div className='ct-sitemap'>
-      <Element
-        navigate={navigate}
-        property={resource}
-        update={update} />
+      <Element property={resource} />
     </div>
   )
 }
