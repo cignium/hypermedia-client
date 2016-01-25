@@ -9,11 +9,10 @@ export default ({ className, errors, onCommit, property, value }) => {
   }
 
   return (
-    <div data-tip={errors}>
+    <div id={property.name} data-tip={errors}>
       <Select
         className={cx(className, 'ct-dropdown-list')}
         disabled={property.disabled}
-        id={property.name}
         multi={property.isArray}
         onChange={option => onCommit(getValue(option))}
         options={property.options.map(({ title, value }) => {
