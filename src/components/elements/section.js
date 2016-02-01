@@ -2,7 +2,7 @@ import cx from 'classnames'
 import factory from './factory'
 
 export default ({ property, topLevel }) => (
-  <div className={cx({'nested': !topLevel}, 'ct-section')}>
+  <div className={cx({'ct-nested': !topLevel}, 'ct-section')}>
     {property.properties.map(property => {
       const Element = factory(property)
 

@@ -2,7 +2,7 @@
   margin: 5px 0;
 }
 
-.ct-section.nested {
+.ct-section.ct-nested {
   background: rgba(0, 0, 0, 0.03);
   border: solid 1px rgba(0, 0, 0, 0.03);
   border-radius: 3px;
