@@ -1,4 +1,4 @@
-.root {
+.ct-link {
   color: #5DB0EA;
   font-size: 15px;
   font-style: normal;
@@ -7,7 +7,7 @@
   text-decoration: none;
 }
 
-.root:hover {
+.ct-link:hover {
   color: #76BFF3;
   text-decoration: underline;
 }

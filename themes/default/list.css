@@ -1,0 +1,9 @@
+.ct-list-item {
+  display: list-item;
+  list-style-type: none;
+  color: #444;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 10px;
+}

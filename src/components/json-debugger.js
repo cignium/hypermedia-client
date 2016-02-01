@@ -1,14 +1,10 @@
-import styles from './json-debugger.css'
+import cx from 'classnames'
 
 export default ({ resource }) => {
-  let className = `${styles.root} ct-json-debugger`
-
-  if (process.env.NODE_ENV == 'production') {
-    className += ` ${styles.hide}`
-  }
-
   return (
-    <pre className={className}>
+    <pre className={cx(
+      'ct-json-debugger', 
+      {'hide': process.env.NODE_ENV == 'production'})}>
       {JSON.stringify(resource.data, null, 2)}
     </pre>
   )

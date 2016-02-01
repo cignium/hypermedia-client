@@ -1,0 +1,37 @@
+@import './document.css';
+@import './action-list.css';
+@import './activity-indicator.css';
+@import './error-message.css';
+@import './input.css';
+@import './json-debugger.css';
+@import './link.css';
+@import './list.css';
+@import './section.css';
+@import './sitemap.css';
+
+.ct-error-tooltip {
+  background-color: #CC0302 !important;
+}
+
+.ct-error-tooltip:after {
+  border-bottom-color: #CC0302 !important;
+}
+
+.ct-app {
+  background: white;
+  margin: 100px auto;
+  width: 500px;
+}
+
+.ct-app * {
+  box-sizing: border-box;
+}
+
+.ct-app,
+.ct-app button,
+.ct-app input,
+.ct-app select,
+.ct-app textarea {
+  font-family: -apple-system, Helvetica, Arial, sans-serif;
+  outline: 0;
+}

@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
@@ -10,7 +11,7 @@ export default ({ className, errors, onCommit, property, value }) => {
   return (
     <div data-tip={errors}>
       <Select
-        className={`${className} ct-dropdown-list`}
+        className={cx(className, 'ct-dropdown-list')}
         disabled={property.disabled}
         id={property.id}
         multi={property.isArray}

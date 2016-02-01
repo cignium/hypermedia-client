@@ -1,9 +1,8 @@
 import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
-import styles from './document.css'
 
-export default ({ executeAction, navigate, resource, update, submit }) => {
+export default ({ resource }) => {
   if (!resource) {
     return <div />
   }
@@ -11,21 +10,14 @@ export default ({ executeAction, navigate, resource, update, submit }) => {
   const Element = factory(resource)
 
   return (
-    <div className={`${styles.root} ct-document`}>
-      <div className={`${styles.header} ct-document-header`}>
-        <div className={`${styles.headerText} ct-document-header-text`}>
+    <div className='ct-document'>
+      <div className='ct-document-header'>
+        <div className='ct-document-header-text'>
           {resource.title}
         </div>
-        <ActionList
-          links={resource.links}
-          executeAction={executeAction} 
-          submit={submit} />
+        <ActionList links={resource.links} />
       </div>
-      <Element
-        navigate={navigate}
-        property={resource}
-        topLevel
-        update={update} />
+      <Element property={resource} topLevel />
       <JsonDebugger resource={resource} />
     </div>
   )

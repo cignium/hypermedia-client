@@ -1,6 +1,6 @@
+import cx from 'classnames'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
-import styles from './input.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function getDate(date) {
@@ -10,7 +10,7 @@ function getDate(date) {
 export default ({ className, errors, onCommit, property, value }) => (
   <div data-tip={errors}>
     <DatePicker
-      className={`${className} ${styles.input} ct-date-picker`}
+      className={cx(className, 'ct-input', 'ct-date-picker')}
       disabled={property.disabled}
       id={property.id}
       onChange={date => onCommit(getDate(date))}

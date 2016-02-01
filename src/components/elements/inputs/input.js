@@ -1,6 +1,7 @@
 import { Component } from 'react'
+import { update } from '../../../api'
+import cx from 'classnames'
 import factory from './factory'
-import styles from './input.css'
 
 export default class Input extends Component {
   constructor(props) {
@@ -24,15 +25,12 @@ export default class Input extends Component {
 
   render() {
     const Element = factory(this.props.property)
-    let className = 'ct-input'
-
-    if (this.props.property.errors.length) {
-      className += ` ${styles.invalid} ct-input-invalid`
-    }
 
     return (
       <Element
-        className={className}
+        className={cx({
+          'ct-input-invalid': this.props.property.errors.length,
+        })}
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
@@ -52,7 +50,7 @@ export default class Input extends Component {
     const { property } = this.props
 
     if (property.value !== value) {
-      this.props.update(property.links, property.id, value)
+      update(property.links, property.id, value)
     }
   }
 }

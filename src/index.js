@@ -1,23 +1,22 @@
 import { render } from 'react-dom'
 import { navigate } from './api'
 import App from './app'
+import OptionsParser from './api/options-parser'
+import '../themes/default/app.css'
 
-function init(element) {
+function init(element, options) {
   if (typeof element === 'string') {
     element = document.getElementById(element)
   }
 
-  const useDefaultStyling = element
-    .getAttribute('data-disable-default-styling') == null
-
-  render(<App defaultStyling={useDefaultStyling} />, element)
+  render(<App {...options} />, element)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('[data-endpoint]')
 
   if (element) {
-    init(element)
+    init(element, OptionsParser(element))
 
     const url = element.getAttribute('data-endpoint')
 

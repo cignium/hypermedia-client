@@ -1,11 +1,11 @@
-import styles from './action-list.css'
+import { executeAction, submit } from '../../api'
 
-export default ({ links, executeAction, submit }) => (
+export default ({ links }) => (
   <div className='ct-action-list'>
     {links.actions.map(action => {
       return (
         <button
-          className={`${styles.action} ct-action`}
+          className='ct-action'
           key={action.href}
           onClick={() => executeAction(action.href)}>
           {action.title}
@@ -14,7 +14,7 @@ export default ({ links, executeAction, submit }) => (
     })}
     {links.submit ? (
       <button
-        className={`${styles.action} ct-action`}
+        className='ct-action'
         key={links.submit.href}
         onClick={() => submit(links.submit.href)}>
         {links.submit.title}

@@ -8,6 +8,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.3",
     "freezer-js": "^0.9.4",
     "moment": "^2.10.6",
     "react": "^0.14.3",
@@ -34,6 +35,7 @@
     "eslint-plugin-react": "^3.12.0",
     "exports-loader": "^0.6.2",
     "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^1.0.1",
     "imports-loader": "^0.6.5",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
@@ -46,6 +48,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
+    "dev": "babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
     "lint": "eslint .",
     "start": "babel-node server.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
