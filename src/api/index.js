@@ -30,15 +30,11 @@ async function loadSitemap(resource) {
   await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey,
-  name, config }) {
+async function processRequest({ data, href, id, method, resourceKey, onDone }) {
   try {
     const response = await request(method, href, data)
 
-    if (config && config.onChange && typeof config.onChange === 'function') {
-      const value = data && data[Object.keys(data)[0]]
-      config.onChange(name, value)
-    }
+    onDone && onDone()
 
     if (response == null) {
       return
@@ -96,7 +92,6 @@ export function update(href, id, value, name, config) {
     data: { [id]: value },
     href,
     method: 'post',
-    name,
-    config,
+    onDone: config.onValueChange.bind(null, name, value),
   })
 }

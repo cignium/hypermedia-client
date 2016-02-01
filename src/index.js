@@ -9,6 +9,16 @@ function init(element, options) {
     element = document.getElementById(element)
   }
 
+  if (!options) {
+    options = {}
+  }
+  if (typeof options.onValueChange !== 'function') {
+    options.onValueChange = () => {}
+  }
+  if (typeof options.onUrlChange !== 'function') {
+    options.onUrlChange = () => {}
+  }
+
   render(<App {...options} />, element)
 
   if (options.endpoint) {
