@@ -13,7 +13,7 @@ export default function(links, parentLinks) {
 
   return {
     actions: links.filter(link => link.rel == 'action'),
-    navigate: links.filter(link => link.rel == 'navigate')[0],
+    navigate: links.find(link => link.rel == 'navigate'),
     parent: links.filter(link => link.rel == 'parent')[0],
     self: links.filter(link => link.rel == 'self')[0],
     sitemap: links.find(link => link.rel == 'sitemap'),
