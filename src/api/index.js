@@ -87,11 +87,33 @@ export function navigate(href) {
   requestResource({ href, method: 'get', resourceKey: 'current' })
 }
 
-export function update(href, id, value, name, config) {
-  requestResource({
-    data: { [id]: value },
-    href,
-    method: 'post',
-    onDone: config.onValueChange.bind(null, name, value),
-  })
+export function update(links, id, value, name, config) {
+  if (links.update) {
+    const href = links.update.href
+    return requestResource({
+      data: { [id]: value },
+      href,
+      method: 'post',
+      onDone: config.onValueChange.bind(null, name, value)})
+  }
+  else if (links.submit) {
+    const drafts = state.get().drafts
+    const current = drafts[links.submit.href]
+    if (current) {
+      current.set({ [id]: value })
+    }
+    else {
+      drafts.set(links.submit.href, { [id]: value })
+    }
+
+    return
+  }
+
+  throw Error('Invalid operation, no update or submit link present')  
+}
+
+export function submit(href) {
+  const data = state.get().drafts[href]
+  requestResource({ data, href, method: 'post', navigate: true })
+  state.get().drafts.remove(href)
 }

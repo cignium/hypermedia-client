@@ -30,7 +30,7 @@ export default class Document extends Component {
           <div className='ct-document-header-text'>
             {resource.title}
           </div>
-          <ActionList actions={resource.links.actions} />
+          <ActionList links={resource.links} />
         </div>
         <Element property={resource} config={config} topLevel />
         <JsonDebugger resource={resource} />

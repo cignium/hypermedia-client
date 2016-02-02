@@ -3,7 +3,10 @@ import cx from 'classnames'
 
 export default ({ className, property }) => (
   <a
-    className={cx(className, 'ct-link')}
+    className={cx(className, 'ct-link', {
+      'ct-visited' : property.links.navigate.visited, 
+      'ct-current' : property.links.navigate.current})}
+    data-tip={property.errors}
     id={property.id}
     href={property.links.navigate.href}
     onClick={e => {
@@ -12,6 +15,6 @@ export default ({ className, property }) => (
         e.preventDefault()
       }
     }}>
-    {property.value}
+    {property.content || property.value}
   </a>
 )

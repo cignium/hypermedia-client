@@ -1,10 +1,27 @@
 .ct-sitemap {
   white-space: nowrap;
+  padding-bottom: 5px;
 }
 
 .ct-sitemap .ct-list-item {
   vertical-align: top;
   font-size: 17px;
+}
+
+.ct-sitemap .ct-link:not(.ct-visited),
+.ct-sitemap .ct-plain {
+  color: #B1B1B2;
+  cursor: default;
+}
+
+.ct-sitemap .ct-link:not(.ct-visited):hover {
+  text-decoration: none;
+}
+
+.ct-sitemap .ct-link.ct-current {
+  background: #B1B1B2;
+  color: white;
+  border-radius: 3px;
 }
 
 .ct-sitemap > .ct-list > .ct-list-item, 
