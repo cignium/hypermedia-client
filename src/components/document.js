@@ -15,7 +15,7 @@ export default ({ resource }) => {
         <div className='ct-document-header-text'>
           {resource.title}
         </div>
-        <ActionList actions={resource.links.actions} />
+        <ActionList links={resource.links} />
       </div>
       <Element property={resource} topLevel />
       <JsonDebugger resource={resource} />
