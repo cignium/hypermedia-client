@@ -27,7 +27,7 @@ Add the following script tag:
 For default styling, include this tag:
 
 ```html
-<link rel="stylesheet" type="text/css" src="//npmcdn.com/cignium-hypermedia-client/dist/default.css"></script>
+<link rel="stylesheet" type="text/css" href="//npmcdn.com/cignium-hypermedia-client/dist/default.css">
 ```
 
 ## Get Started
