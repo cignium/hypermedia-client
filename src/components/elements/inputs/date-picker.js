@@ -4,7 +4,7 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function getDate(date) {
-  return date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
+  return date && date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
 }
 
 export default ({ className, errors, onCommit, property, value }) => (
