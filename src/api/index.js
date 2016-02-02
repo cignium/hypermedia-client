@@ -30,9 +30,11 @@ async function loadSitemap(resource) {
   await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey }) {
+async function processRequest({ data, href, id, method, resourceKey, onDone }) {
   try {
     const response = await request(method, href, data)
+
+    onDone && onDone()
 
     if (response == null) {
       return
@@ -85,10 +87,14 @@ export function navigate(href) {
   requestResource({ href, method: 'get', resourceKey: 'current' })
 }
 
-export function update(links, id, value) {
+export function update(links, id, value, name, config) {
   if (links.update) {
     const href = links.update.href
-    requestResource({ data: { [id]: value }, href, method: 'post' })
+    return requestResource({
+      data: { [id]: value },
+      href,
+      method: 'post',
+      onDone: config.onValueChange.bind(null, name, value)})
   }
   else if (links.submit) {
     const drafts = state.get().drafts
@@ -99,10 +105,11 @@ export function update(links, id, value) {
     else {
       drafts.set(links.submit.href, { [id]: value })
     }
+
+    return
   }
-  else {
-    throw Error('Invalid operation, no update or submit link present')
-  }
+
+  throw Error('Invalid operation, no update or submit link present')  
 }
 
 export function submit(href) {

@@ -5,7 +5,16 @@
     <title>Hypermedia Client Testing</title>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('[data-endpoint]').setAttribute('data-endpoint', location.hash.substring(1))
+        var element = document.getElementById("demo-app")
+        Cignium.init(element, {
+          endpoint: location.hash.substring(1),
+          onValueChange: (id, value) => {
+            console.info(`id: '${id}' value: '${value}'`)
+          },
+          onUrlChange: (url) => {
+            console.info(`url: '${url}'`)
+          }
+        })
       })
 
       window.addEventListener('hashchange', function () {
@@ -15,6 +24,6 @@
     <script src="client.js"></script>
   </head>
   <body>
-    <div data-endpoint></div>
+    <div id="demo-app"></div>
   </body>
 </html>

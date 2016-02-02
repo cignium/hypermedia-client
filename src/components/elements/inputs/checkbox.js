@@ -6,7 +6,7 @@ export default ({ className, errors, onCommit, property, value }) => (
     className={cx(className, 'ct-input', 'ct-checkbox')}
     data-tip={errors}
     disabled={property.disabled}
-    id={property.id}
+    id={property.name}
     onChange={e => onCommit(e.target.checked)}
     title={property.title}
     type='checkbox' />

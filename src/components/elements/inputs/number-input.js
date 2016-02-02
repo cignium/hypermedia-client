@@ -5,7 +5,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => (
     className={cx(className, 'ct-input', 'ct-number-input')}
     data-tip={errors}
     disabled={property.disabled}
-    id={property.id}
+    id={property.name}
     onBlur={() => onCommit()}
     onChange={e => onUpdate(e.target.value)}
     title={property.title}

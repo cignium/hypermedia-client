@@ -31,7 +31,8 @@ export default ({ className, onCommit, property, value }) => {
   }
 
   return (
-    <div className={cx(className, 'ct-input', `ct-${property.display}-list`)}>
+    <div id={property.name}
+      className={cx(className, 'ct-input', `ct-${property.display}-list`)}>
       {property.options.map(option => {
         return (
           <div key={option.value}>
@@ -39,7 +40,7 @@ export default ({ className, onCommit, property, value }) => {
               checked={isChecked(option.value)}
               disabled={property.disabled}
               onChange={e => onCommit(getValue(e.target.checked, option.value))}
-              name={property.id}
+              name={property.name}
               title={property.title}
               type={property.isArray ? 'checkbox' : 'radio'}
               value={option.value} />

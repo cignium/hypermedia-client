@@ -7,6 +7,7 @@ export default function(data, parent) {
     errors: data.errors,
     links,
     id: data.id || links.self.href,
+    name: data.name,
     order: data.order,
     title: data.title,
     type: data.type,

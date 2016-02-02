@@ -4,7 +4,7 @@ import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 
 function getDate(date) {
-  return date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
+  return date && date.add(date.utcOffset(), 'm').toISOString().split('T')[0]
 }
 
 export default ({ className, errors, onCommit, property, value }) => (
@@ -12,7 +12,7 @@ export default ({ className, errors, onCommit, property, value }) => (
     <DatePicker
       className={cx(className, 'ct-input', 'ct-date-picker')}
       disabled={property.disabled}
-      id={property.id}
+      id={property.name}
       onChange={date => onCommit(getDate(date))}
       selected={value ? moment(value) : value}
       title={property.title} />
