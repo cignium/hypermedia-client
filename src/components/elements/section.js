@@ -7,7 +7,9 @@ export default ({ property, topLevel }) => (
       const Element = factory(property)
 
       return (
-        <div className='ct-element' key={property.id}>
+        <div
+          className={cx('ct-element', `ct-${property.type}-element`)}
+          key={property.id}>
           <label className='ct-element-label'>
             {property.title}
           </label>

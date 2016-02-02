@@ -50,7 +50,7 @@ export default class Input extends Component {
     const { property } = this.props
 
     if (property.value !== value) {
-      update(property.links.update.href, property.id, value)
+      update(property.links, property.id, value)
     }
   }
 }
