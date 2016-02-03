@@ -109,11 +109,11 @@ export function update(links, id, value, name, config) {
     return
   }
 
-  throw Error('Invalid operation, no update or submit link present')  
+  throw Error('Invalid operation, no update or submit link present')
 }
 
 export function submit(href) {
   const data = state.get().drafts[href]
-  requestResource({ data, href, method: 'post', navigate: true })
+  requestResource({ data, href, method: 'post', resourceKey: 'current' })
   state.get().drafts.remove(href)
 }
