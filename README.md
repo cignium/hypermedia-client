@@ -48,7 +48,7 @@ Add the following script tag in your HTML page:
 </script>
 ```
 
-There are two methods available on the global `Cignium` object: `init` and `navigate`.
+There are four methods available on the global `Cignium` object: `init`, `navigate`, `get` and `set`.
 
 **Init** accepts two parameters, `element` and `configuration`
  * **Element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
@@ -56,6 +56,15 @@ There are two methods available on the global `Cignium` object: `init` and `navi
  * **Configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
  
 **Navigate** accepts a single parameter: the URL to the API endpoint that should be rendered.
+
+**Get** (without parameters) returns an object representation of all the fields in the current form.
+
+**Get** (with `path` parameter) returns the value of a property
+ * **Path**: string array that describes the path to a property 
+
+**Set** sets the value of a property
+ * **Path**: string array that describes the path to a property
+ + **Value**: new value of the property
 
 ### Declaratively
 
@@ -86,8 +95,10 @@ Properties should be provided in camel-casing **without** the data-prefix, e.g. 
 | Attribute  | Configuration property | Value type | Description |
 | ---------- | ---------------------- | ---------- | ----------- | 
 | `data-endpoint` | `endpoint` | string | Specifies the starting point of the API that should be rendered. |
+| `data-action-list-position` | `actionListPosition` | string | Specifies the position of the action buttons. Accepted values are: `top` (default), `bottom` and `both`. |
 | | `onValueChange` | function | Callback function executed after a value has been updated. The callback receives 2 parameters: `id` (of the updated element) and `value` (after the change). |
 | | `onUrlChange` | function | Callback function executed after the url has changed. Receives 1 parameter: `url` (after the navigation). |
+| | `onProcessComplete` | function | Callback function executed when the process has ended. Receives 2 parameters: `url` (where the client would normally redirect) and `content` (of that url). If the function exists, the process will NOT automatically redirect. Optional return value: `{ title, content }`. |
 
 ### Styling
 
@@ -106,6 +117,7 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-document
  * ct-document-header
  * ct-document-header-text
+ * ct-document-footer
  * ct-activity-indicator
  * ct-section
  * ct-element
