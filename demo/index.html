@@ -8,11 +8,23 @@
         var element = document.getElementById("demo-app")
         Cignium.init(element, {
           endpoint: location.hash.substring(1),
+          actionListPosition: 'bottom',
           onValueChange: (id, value) => {
             console.info(`id: '${id}' value: '${value}'`)
           },
           onUrlChange: (url) => {
             console.info(`url: '${url}'`)
+          },
+          onProcessComplete: (url, content) => {
+            console.info('process complete - before url change')
+            setTimeout(() => {
+                console.info('process complete - after url change')
+            });
+            if (content)
+                return {
+                    title: 'Process Complete',
+                    content: (content.match(/<body>((.|\r|\n)*)<\/body>/) || [])[1] || content
+                };
           }
         })
       })
