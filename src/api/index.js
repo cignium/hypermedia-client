@@ -114,6 +114,11 @@ export function update(links, id, value, name, config) {
 
 export function submit(href) {
   const data = state.get().drafts[href]
-  requestResource({ data, href, method: 'post', resourceKey: 'current' })
-  state.get().drafts.remove(href)
+  requestResource({
+    data,
+    href,
+    method: 'post',
+    resourceKey: 'current',
+    onDone: () => state.get().drafts.remove(href),
+  })
 }
