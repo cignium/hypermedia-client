@@ -8,8 +8,6 @@
 .ct-document-header, .ct-document-footer {
   align-items: center;
   display: flex;
-  margin-bottom: 30px;
-  padding: 10px 0 20px;
 }
 
 .ct-document-header {
