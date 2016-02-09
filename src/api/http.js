@@ -16,9 +16,9 @@ export async function request(method, href, data, config) {
       return await response.json()
     }
 
-    if (config && config.onProcessComplete) {
+    if (config && config.onRedirect) {
       let content = await response.text()
-      content = config.onProcessComplete(response.url, content)
+      content = config.onRedirect(response.url, content)
       if (content) {
         content.type = 'html'
         content.links = [{ rel: 'self', href: response.url }]

@@ -8,12 +8,12 @@ function getHref(resource) {
 }
 
 export default class Document extends Component {
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(previousProps, previousState) {
     if (this.props.config.onUrlChange) {
-      const prev = getHref(prevProps.resource)
-      const curr = getHref(this.props.resource)
-      if (prev !== curr) {
-        this.props.config.onUrlChange(curr)
+      const previous = getHref(previousProps.resource)
+      const current = getHref(this.props.resource)
+      if (previous !== current) {
+        this.props.config.onUrlChange(current)
       }
     }
   }

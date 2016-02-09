@@ -30,8 +30,7 @@ async function loadSitemap(resource) {
   await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey,
-  name, config }) {
+async function processRequest({ data, href, id, method, resourceKey, name, config }) {
   try {
     const response = await request(method, href, data, config)
 

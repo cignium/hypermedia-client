@@ -20,8 +20,8 @@ function init(element, options) {
     if (typeof options.onUrlChange !== 'function') {
       delete options.onUrlChange
     }
-    if (typeof options.onProcessComplete !== 'function') {
-      delete options.onProcessComplete
+    if (typeof options.onRedirect !== 'function') {
+      delete options.onRedirect
     }
   }
   if (['top', 'bottom', 'both'].indexOf(options.actionListPosition) < 0) {

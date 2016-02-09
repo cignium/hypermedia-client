@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     actionListPosition: 'bottom',
     endpoint: location.hash.substring(1),
 
-    onProcessComplete: (url, content) => {
-      console.info('process complete - before url change')
+    onRedirect: (url, content) => {
+      console.info('onRedirect - before url change')
 
       setTimeout(() => {
-        console.info('process complete - after url change')
+        console.info('onRedirect - after url change')
       })
 
       if (content) {
