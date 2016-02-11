@@ -5,12 +5,21 @@
   padding: 10px 30px;
 }
 
-.ct-document-header {
+.ct-document-header, .ct-document-footer {
   align-items: center;
-  border-bottom: 1px solid #eee;
   display: flex;
+}
+
+.ct-document-header {
+  border-bottom: 1px solid #eee;
   margin-bottom: 30px;
   padding: 10px 0 20px;
+}
+
+.ct-document-footer {
+  border-top: 1px solid #eee;
+  margin-top: 30px;
+  padding: 20px 0 10px;
 }
 
 .ct-document-header-text {

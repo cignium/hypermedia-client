@@ -8,11 +8,13 @@ function getHref(resource) {
 }
 
 export default class Document extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    const prev = getHref(prevProps.resource)
-    const curr = getHref(this.props.resource)
-    if (prev !== curr) {
-      this.props.config.onUrlChange(curr)
+  componentDidUpdate(previousProps, previousState) {
+    if (this.props.config.onUrlChange) {
+      const previous = getHref(previousProps.resource)
+      const current = getHref(this.props.resource)
+      if (previous !== current) {
+        this.props.config.onUrlChange(current)
+      }
     }
   }
 
@@ -23,6 +25,12 @@ export default class Document extends Component {
     }
 
     const Element = factory(resource)
+    const actions = <ActionList links={resource.links} config={config} />
+    const footer = config.actionListPosition !== 'top' && (
+      <div className='ct-document-footer'>
+        {actions}
+      </div>
+    )
 
     return (
       <div className='ct-document'>
@@ -30,9 +38,10 @@ export default class Document extends Component {
           <div className='ct-document-header-text'>
             {resource.title}
           </div>
-          <ActionList links={resource.links} />
+          {config.actionListPosition !== 'bottom' && actions}
         </div>
         <Element property={resource} config={config} topLevel />
+        {footer}
         <JsonDebugger resource={resource} />
       </div>
     )

@@ -3,24 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Hypermedia Client Testing</title>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() {
-        var element = document.getElementById("demo-app")
-        Cignium.init(element, {
-          endpoint: location.hash.substring(1),
-          onValueChange: (id, value) => {
-            console.info(`id: '${id}' value: '${value}'`)
-          },
-          onUrlChange: (url) => {
-            console.info(`url: '${url}'`)
-          }
-        })
-      })
-
-      window.addEventListener('hashchange', function () {
-        Cignium.navigate(location.hash.substring(1))
-      })
-    </script>
+    <script src="index.js"></script>
     <script src="client.js"></script>
   </head>
   <body>

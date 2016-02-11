@@ -19,7 +19,7 @@
     "eol-last": 2,
     "indent": [2, 2, {"SwitchCase": 1}],
     "jsx-quotes": [2, "prefer-single"],
-    "max-len": [2, 80, 4],
+    "max-len": [2, 120, 4],
     "no-underscore-dangle": [0],
     "no-var": 2,
     "object-shorthand": 2,

@@ -1,13 +1,13 @@
 import { executeAction, submit } from '../../api'
 
-export default ({ links }) => (
+export default ({ links, config }) => (
   <div className='ct-action-list'>
     {links.actions.map(action => {
       return (
         <button
           className='ct-action'
           key={action.href}
-          onClick={() => executeAction(action.href)}>
+          onClick={() => executeAction(action.href, config)}>
           {action.title}
         </button>
       )

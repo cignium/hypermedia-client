@@ -30,11 +30,13 @@ async function loadSitemap(resource) {
   await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey, onDone }) {
+async function processRequest({ data, href, id, method, resourceKey, name, config }) {
   try {
-    const response = await request(method, href, data)
+    const response = await request(method, href, data, config)
 
-    onDone && onDone()
+    if (config && config.onValueChange && data) {
+      config.onValueChange(name, data[Object.keys(data)[0]])
+    }
 
     if (response == null) {
       return
@@ -79,12 +81,12 @@ function requestResource(request) {
   state.get().requests.set(new Date().getTime(), request)
 }
 
-export function executeAction(href) {
-  requestResource({ href, method: 'post', resourceKey: 'current' })
+export function executeAction(href, config) {
+  requestResource({ href, method: 'post', resourceKey: 'current', config })
 }
 
-export function navigate(href) {
-  requestResource({ href, method: 'get', resourceKey: 'current' })
+export function navigate(href, config) {
+  requestResource({ href, method: 'get', resourceKey: 'current', config })
 }
 
 export function update(links, id, value, name, config) {
@@ -94,7 +96,9 @@ export function update(links, id, value, name, config) {
       data: { [id]: value },
       href,
       method: 'post',
-      onDone: config.onValueChange.bind(null, name, value)})
+      name,
+      config,
+    })
   }
   else if (links.submit) {
     const drafts = state.get().drafts
