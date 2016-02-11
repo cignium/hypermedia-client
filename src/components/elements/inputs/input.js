@@ -27,6 +27,11 @@ export default class Input extends Component {
     const Element = factory(this.props.property)
 
     return (
+      <div
+        className={cx('ct-element', `ct-${this.props.property.type}-element`)}>
+        <label className='ct-element-label'>
+          {this.props.property.title}
+        </label>
       <Element
         className={cx({
           'ct-input-invalid': this.props.property.errors.length,
@@ -36,6 +41,7 @@ export default class Input extends Component {
         onCommit={value => this.update(value)}
         onUpdate={value => this.setState({ value })}
         value={this.state.value} />
+      </div>
     )
   }
 

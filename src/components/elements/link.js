@@ -18,6 +18,6 @@ export default ({ className, property }) => (
         e.preventDefault()
       }
     }}>
-    {property.content || property.value}
+    {property.content || property.value || property.title}
   </a>
 )
