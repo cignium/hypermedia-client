@@ -6,7 +6,7 @@ import List from './list'
 import Plain from './plain'
 
 export default property => {
-  if (property.links.navigate) {
+  if (property.links.navigate && property.type !== 'array') {
     return Link
   }
 

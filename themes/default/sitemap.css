@@ -3,7 +3,7 @@
   padding-bottom: 5px;
 }
 
-.ct-sitemap .ct-list-item {
+.ct-sitemap .ct-list-item, .ct-sitemap .ct-list-header {
   vertical-align: top;
   font-size: 17px;
 }
@@ -19,12 +19,19 @@
 }
 
 .ct-sitemap .ct-link.ct-current {
-  background: #B1B1B2;
-  color: white;
-  border-radius: 3px;
+    font-weight: bold;
+    color: #5DB0EA;
 }
 
-.ct-sitemap > .ct-list > .ct-list-item, 
-.ct-sitemap > .ct-list > .ct-list {
+.ct-sitemap > .ct-list > .ct-list-body > .ct-list, 
+.ct-sitemap > .ct-list > .ct-list-body > .ct-list-item {
   display: inline-block;
+}
+
+.ct-sitemap .ct-list-body .ct-list-item, .ct-sitemap .ct-list-body .ct-list  {
+  display: inline-block;
+}
+
+.ct-sitemap .ct-list-body {
+  width: 0;
 }
