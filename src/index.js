@@ -30,7 +30,7 @@ function init(element, options) {
 
   render(<App {...options} />, element)
 
-  if (options.endpoint.type === 'string') {
+  if (typeof options.endpoint === 'string') {
     navigate(options.endpoint, options)
   }
 }
