@@ -1,26 +1,43 @@
 import state from '../state'
 
+function find(href) {
+  return state.get().drafts[href]
+}
+
+function create(href, initial) {
+  state.get().drafts.set(href, initial)
+}
+
+function remove(href) {
+  state.get().drafts.remove(href)
+}
+
 function update(href, id, value) {
-  const drafts = state.get().drafts
-  const current = drafts[href]
+  const draft = find(href)
   const property = { [id]: value }
-  if (current) {
-    current.set(property)
+  if (draft) {
+    draft.set(property)
   }
   else {
-    drafts.set(href, property)
+    create(href, property)
   }
 }
 
 function reload(href, resource) {
-  const current = state.get().drafts[href]
-  if (!current) {
+  const draft = find(href)
+  if (!draft) {
     return
   }
 
-  Object.keys(current).forEach(key => {
+  const navigatedAway = !resource.links.submit || resource.links.submit.href != href
+  if (navigatedAway) {
+    remove(href)
+    return
+  }
+
+  Object.keys(draft).forEach(key => {
     if (resource[key]) {
-      resource[key].value = current[key]
+      resource[key].value = draft[key]
     }
   })
 }
