@@ -1,6 +1,7 @@
 import { request } from './http'
 import factory from './factory'
 import state from '../state'
+import draft from './draft'
 
 state.on('update', ({ requests }) => {
   if (requests.current) {
@@ -43,6 +44,7 @@ async function processRequest({ data, href, id, method, resourceKey, name, confi
     }
 
     const resource = factory(response)
+    draft.reload(href, resource)
     await loadSitemap(resource)
 
     state.get().resources.set(resource.links.self.href, resource)
@@ -101,15 +103,7 @@ export function update(links, id, value, name, config) {
     })
   }
   else if (links.submit) {
-    const drafts = state.get().drafts
-    const current = drafts[links.submit.href]
-    if (current) {
-      current.set({ [id]: value })
-    }
-    else {
-      drafts.set(links.submit.href, { [id]: value })
-    }
-
+    draft.update(links.submit.href, id, value)
     return
   }
 
@@ -123,6 +117,5 @@ export function submit(href) {
     href,
     method: 'post',
     resourceKey: 'current',
-    onDone: () => state.get().drafts.remove(href),
   })
 }
