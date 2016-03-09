@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { render } from 'react-dom'
 import { navigate, update } from './api'
 import App from './app'
