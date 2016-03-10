@@ -88,6 +88,11 @@ export function executeAction(href, config) {
 }
 
 export function navigate(href, config) {
+  if (href === null) {
+    state.get().resources.set('current', null)
+    return
+  }
+
   requestResource({ href, method: 'get', resourceKey: 'current', config })
 }
 
