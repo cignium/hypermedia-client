@@ -29,7 +29,7 @@ export default class Input extends Component {
     return (
       <div
         className={cx('ct-element', `ct-${this.props.property.type}-element`)}>
-        <label className='ct-element-label'>
+        <label className='ct-element-label' htmlFor={this.props.property.name}>
           {this.props.property.title}
         </label>
       <Element

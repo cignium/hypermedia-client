@@ -128,6 +128,7 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-action-list
  * ct-action
  * ct-checkbox
+ * ct-radio
  * ct-date-picker
  * ct-dropdown-list
  * ct-input
@@ -137,6 +138,10 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-text-input
  * ct-checkbox-list
  * ct-radio-list
+ * ct-checkbox-option
+ * ct-radio-option
+ * ct-checkbox-label
+ * ct-radio-label
  * ct-list
  * ct-list-item
  * ct-sitemap
