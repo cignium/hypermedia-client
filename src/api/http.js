@@ -11,25 +11,32 @@ export async function request(method, href, data, config) {
   const response = await fetch(href, request)
   const contentType = response.headers.get('Content-Type')
 
-  if (response.status == 200) {
-    if (contentType.startsWith(mediaType)) {
-      return await response.json()
-    }
-
-    if (config && config.onRedirect) {
-      let content = await response.text()
-      content = config.onRedirect(response.url, content)
-      if (content) {
-        content.type = 'html'
-        content.links = [{ rel: 'self', href: response.url }]
-      }
-      return content
-    }
-
-    location.href = response.url
-
-    return null
+  if (response.status == 401 && contentType && contentType.startsWith('text/html')) {
+    location.href = method.toLowerCase() == 'get' ? response.url : location.href
+    return
   }
 
-  throw Error(`${response.status}: ${response.statusText}`)
+  if (response.status >= 400 && response.status < 600) {
+    throw Error(`${response.status}: ${response.statusText}`)
+  }
+
+  if (contentType.startsWith(mediaType)) {
+    return await response.json()
+  }
+
+  if (config && config.onRedirect) {
+    let content = await response.text()
+    content = config.onRedirect(response.url, content)
+
+    if (content) {
+      content.type = 'html'
+      content.links = [{ rel: 'self', href: response.url }]
+    }
+
+    return content
+  }
+
+  location.href = response.url
+
+  return null
 }
