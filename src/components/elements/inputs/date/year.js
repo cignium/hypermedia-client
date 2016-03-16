@@ -10,6 +10,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       options={getYears().map(year => {
         return { label: year, value: year }
       })}
+      placeholder='Select year'
       value={getYear(value)} />
   )
 }

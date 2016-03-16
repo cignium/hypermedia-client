@@ -36,6 +36,15 @@ describe('Month', () => {
         expect(newDate.toISOString().split('T')[0]).toEqual('2012-02-29')
       })
     })
+
+    describe('And changing month to January', () => {
+      it('returns the last day in January', () => {
+        month.props.onChange({ value: 0 })
+        const newDate = commitSpy.calls.mostRecent().args[0]
+
+        expect(newDate.toISOString().split('T')[0]).toEqual('2012-01-31')
+      })
+    })
   })
 
   describe('with date 2013-01-31', () => {

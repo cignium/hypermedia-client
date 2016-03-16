@@ -9,6 +9,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       disabled={!value}
       onChange={ selected => onCommit(selectDay(selected && selected.value, value))}
       options={getOptions(value)}
+      placeholder='Select day'
       value={getDay(value)} />
   )
 }

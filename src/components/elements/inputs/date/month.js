@@ -9,6 +9,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       disabled={!value}
       onChange={selected => onCommit(selectMonth(selected && selected.value, value))}
       options={getMonths().map(month => ({ label: month.label, value: month.value }))}
+      placeholder='Select month'
       value={getMonth(value)} />
   )
 }
@@ -39,7 +40,7 @@ function getMonths() {
 }
 
 function selectMonth(month, date) {
-  if (!month) {
+  if (month == null || month == undefined )   {
     return null
   }
 
