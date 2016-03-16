@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Cignium.init(element, {
     actionListPosition: 'bottom',
+    debug: true,
     endpoint: location.hash.substring(1),
 
     onRedirect: (url, content) => {
