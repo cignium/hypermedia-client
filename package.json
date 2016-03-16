@@ -51,11 +51,11 @@
   },
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
-    "dev": "babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
+    "test": "jest --config .jestrc",
     "lint": "eslint .",
-    "start": "npm-run-all --parallel start-server test",
+    "start": "npm-run-all --parallel start-server start-test",
     "start-server": "babel-node server.js",
-    "test": "jest --config .jestrc --watch",
+    "start-test": "jest --config .jestrc --watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
 }
