@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hypermedia Client with multiple instances</title>
+    <script src="client.js"></script>
+  </head>
+  <body>
+    <table style="width: 100%">
+      <tr style="text-align: center;">
+        <td>
+          <input type="text" id="href1" placeholder="url" />
+          <button type="button" onclick="p1.navigate(href1.value)">Navigate</button>
+        </td>
+        <td>
+          <input type="text" id="href2" placeholder="other url" />
+          <button type="button" onclick="p2.navigate(href2.value)">Navigate</button>
+        </td>
+      </tr>
+      <tr style="vertical-align: top;">
+        <td id="instance1"></td>
+        <td id="instance2"></td>
+      </tr>
+    </table>
+    <script type="text/javascript">
+      var config = { onRedirect: function (url, content) { return { title: 'Process Complete' }; } };
+      var p1 = Cignium.init('instance1', config);
+      var p2 = Cignium.init('instance2', config);
+    </script>
+  </body>
+</html>

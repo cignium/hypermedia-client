@@ -7,20 +7,19 @@ export default ({ links, config }) => (
         <button
           className='ct-action'
           key={action.href}
-          onClick={() => executeAction(action.href, config)}>
+          onClick={() => executeAction({ config, href: action.href })}>
           {action.title}
         </button>
       )
     })}
-    {links.submit ? (
+    {links.submit && (
       <button
         className='ct-action'
         key={links.submit.href}
-        onClick={() => submit(links.submit.href)}>
+        onClick={() => submit({ config, href: links.submit.href })}>
         {links.submit.title}
       </button>
       )
-      : undefined
     }
   </div>
 )

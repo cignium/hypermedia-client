@@ -1,37 +1,35 @@
-import state from '../state'
-
-function find(href) {
+function find(state, href) {
   return state.get().drafts[href]
 }
 
-function create(href, initial) {
+function create(state, href, initial) {
   state.get().drafts.set(href, initial)
 }
 
-function remove(href) {
+function remove(state, href) {
   state.get().drafts.remove(href)
 }
 
-function update(href, id, value) {
-  const draft = find(href)
+function update(state, href, id, value) {
+  const draft = find(state, href)
   const property = { [id]: value }
   if (draft) {
     draft.set(property)
   }
   else {
-    create(href, property)
+    create(state, href, property)
   }
 }
 
-function reload(href, resource) {
-  const draft = find(href)
+function reload(state, href, resource) {
+  const draft = find(state, href)
   if (!draft) {
     return
   }
 
   const navigatedAway = !resource.links.submit || resource.links.submit.href != href
   if (navigatedAway) {
-    remove(href)
+    remove(state, href)
     return
   }
 

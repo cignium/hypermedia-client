@@ -42,7 +42,7 @@ export default class Document extends Component {
         </div>
         <Element property={resource} config={config} topLevel />
         {footer}
-        {config.debug ? <JsonDebugger resource={resource} /> : null}
+        {config.debug && <JsonDebugger resource={resource} />}
       </div>
     )
   }

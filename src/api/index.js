@@ -1,37 +1,25 @@
 import { request } from './http'
 import factory from './factory'
-import state from '../state'
 import draft from './draft'
 
-state.on('update', ({ requests }) => {
-  if (requests.current) {
-    if (requests[requests.current]) {
-      return
-    }
-    else {
-      state.get().requests.remove('current')
-    }
-  }
-
-  processRequestQueue()
-})
-
-async function loadSitemap(resource) {
+async function loadSitemap({ config, resource }) {
   if (!resource.links.sitemap) {
     return
   }
 
+  const state = config.state
   const { href } = resource.links.sitemap
 
   if (state.get().resources[href]) {
-    requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+    requestResource({ config, href, method: 'get', resourceKey: 'sitemap' })
     return
   }
 
-  await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+  await requestResource({ config, href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey, name, config }) {
+async function processRequest({ config, data, href, id, method, resourceKey, name }) {
+  const state = config.state
   try {
     const response = await request(method, href, data, config)
 
@@ -44,8 +32,9 @@ async function processRequest({ data, href, id, method, resourceKey, name, confi
     }
 
     const resource = factory(response)
-    draft.reload(href, resource)
-    await loadSitemap(resource)
+
+    draft.reload(state, href, resource)
+    await loadSitemap({ config, resource })
 
     state.get().resources.set(resource.links.self.href, resource)
 
@@ -62,62 +51,66 @@ async function processRequest({ data, href, id, method, resourceKey, name, confi
   }
 }
 
-function getNextRequestFromQueue() {
-  const { requests } = state.get()
+function getNextRequestFromQueue(config) {
+  const { requests } = config.state.get()
 
   return Object.keys(requests).sort()
     .map(key => { return { ...requests[key], id: key }})[0]
 }
 
-function processRequestQueue() {
-  const request = getNextRequestFromQueue()
+export function processRequestQueue(config) {
+  const request = getNextRequestFromQueue(config)
 
   if (request) {
-    state.get().requests.set('current', request.id)
+    config.state.get().requests.set('current', request.id)
+    request.config = config
     processRequest(request)
   }
 }
 
 function requestResource(request) {
-  state.get().set('error', null)
-  state.get().requests.set(new Date().getTime(), request)
+  request.config.state.get().set('error', null)
+  request.config.state.get().requests.set(new Date().getTime(), request)
 }
 
-export function executeAction(href, config) {
-  requestResource({ href, method: 'post', resourceKey: 'current', config })
+export function executeAction({ config, href }) {
+  requestResource({ config, href, method: 'post', resourceKey: 'current' })
 }
 
-export function navigate(href, config) {
+export function navigate({ config, href }) {
   if (href === null) {
-    state.get().resources.set('current', null)
+    config.state.get().resources.set('current', null)
     return
   }
 
-  requestResource({ href, method: 'get', resourceKey: 'current', config })
+  requestResource({ config, href, method: 'get', resourceKey: 'current' })
 }
 
 export function update(links, id, value, name, config) {
+  const state = config.state
+
   if (links.update) {
     const href = links.update.href
     return requestResource({
+      config,
       data: { [id]: value },
       href,
       method: 'post',
       name,
-      config,
     })
   }
   else if (links.submit) {
-    draft.update(links.submit.href, id, value)
+    draft.update(state, links.submit.href, id, value)
     return
   }
 
   throw Error('Invalid operation, no update or submit link present')
 }
 
-export function submit(href) {
-  const data = state.get().drafts[href]
+export function submit({ config, href }) {
+  const data = config.state.get().drafts[href]
   requestResource({
+    config,
     data,
     href,
     method: 'post',
