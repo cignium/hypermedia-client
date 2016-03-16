@@ -1,6 +1,6 @@
 import BooleanList from './boolean-list'
 import Checkbox from './checkbox'
-import DatePicker from './date-picker'
+import DatePicker from './date/date-picker'
 import DropdownList from './dropdown-list'
 import MultilineTextInput from './multiline-text-input'
 import NumberInput from './number-input'

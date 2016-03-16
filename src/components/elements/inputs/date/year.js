@@ -2,40 +2,48 @@ import cx from 'classnames'
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 
-function setYear(year, date) {
-  if (!date) {
-    return new Date(Date.UTC(year, 0, 1))
-  }
+export default ({ className, errors, onCommit, property, value }) => {
+  return (
+    <Select
+      className={cx(className, 'ct-year')}
+      onChange={selected => onCommit(selectYear(selected && selected.value, value))}
+      options={getYears().map(year => {
+        return { label: year, value: year }
+      })}
+      value={getYear(value)} />
+  )
+}
 
-  date.setYear(year)
-  return date
+function calculateDay(year, date) {
+  const day = date.getDate()
+  const daysInMonth = new Date(year, date.getMonth() + 1, 0).getDate()
+
+  return day > daysInMonth ? daysInMonth : day
 }
 
 function getYear(value) {
   return value && value.getFullYear()
 }
 
-export default ({ className, errors, onCommit, property, value }) => {
-  const date = new Date(value)
-
-  return (
-    <Select
-      className='ct-input'
-      onChange={({ value }) => onCommit(setYear(value, date))}
-      options={getYears().map(year => {
-        return { label: year, value: year }
-      })}
-      value={getYear(date)} />
-  )
-}
-
 function getYears() {
-  const year = new Date().getFullYear()
-  let current = 1970
   const years = []
-  while (current <= year) {
-    years.push(current ++)
+  let current = new Date().getFullYear() - 100
+  for (let i = 0; i <= 200; i++) {
+    years.push(current++)
   }
 
   return years
+}
+
+function selectYear(year, date) {
+  if (!year) {
+    return null
+  }
+
+  if (!date) {
+    return new Date(Date.UTC(year, 0, 1))
+  }
+
+  date.setFullYear(year, date.getMonth(), calculateDay(year, date))
+  return date
 }

@@ -22,6 +22,11 @@
   border-color: #CC0302;
 }
 
+.ct-year, .ct-month, .ct-day {
+  display: inline-block;
+  width: 33.3%;
+}
+
 .Select > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;

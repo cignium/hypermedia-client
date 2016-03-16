@@ -13,21 +13,21 @@ function handleChange(onChange, date) {
 }
 
 export default ({ className, errors, onCommit, property, value }) => {
-  const date = new Date(value)
+  const date = value ? new Date(value) : null
   const onChange = handleChange.bind(undefined, onCommit)
 
   return (
-    <div data-tip={errors}>
+    <div data-tip={errors} className={cx(className, 'ct-date-picker')}>
       <Year
-        className='ct-input'
+        className={className}
         onCommit={onChange}
         value={date} />
       <Month
-        className='ct-input'
+        className={className}
         onCommit={onChange}
         value={date} />
       <Day
-        className='ct-input'
+        className={className}
         onCommit={onChange}
         value={date} />
     </div>
