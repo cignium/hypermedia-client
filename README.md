@@ -48,23 +48,25 @@ Add the following script tag in your HTML page:
 </script>
 ```
 
-There are four methods available on the global `Cignium` object: `init`, `navigate`, `get` and `set`.
+The global `Cignium` object has a `init` method, which accepts two parameters, `element` and `configuration`
+* **element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
+Can be either the id of the element as a string or the actual element object.
+* **configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
+* returns an instance of hypermedia client 
 
-**Init** accepts two parameters, `element` and `configuration`
- * **Element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
- Can be either the id of the element as a string or the actual element object.
- * **Configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
+There are three methods available on the instance: `navigate`, `get` and `set`.
+These methods also exist in the global `Cignium` object, but are deprecated. When calling them, the last instance created will be used.
 
-**Navigate** accepts a single parameter: the URL to the API endpoint that should be rendered.
+* **navigate** accepts a single parameter: the URL to the API endpoint that should be rendered.
 
-**Get** (without parameters) returns an object representation of all the fields in the current form.
+* **get** (without parameters) returns an object representation of all the fields in the current form.
 
-**Get** (with `path` parameter) returns the value of a property
- * **Path**: string array that describes the path to a property
+* **get** (with `path` parameter) returns the value of a property
+  * **path**: string array that describes the path to a property
 
-**Set** sets the value of a property
- * **Path**: string array that describes the path to a property
- + **Value**: new value of the property
+* **set** sets the value of a property
+  * **path**: string array that describes the path to a property
+  * **value**: new value of the property
 
 ### Declaratively
 

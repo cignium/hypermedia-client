@@ -23,9 +23,12 @@
       </tr>
     </table>
     <script type="text/javascript">
-      var config = { onRedirect: function (url, content) { return { title: 'Process Complete' }; } };
-      var p1 = Cignium.init('instance1', config);
-      var p2 = Cignium.init('instance2', config);
+      var p1 = Cignium.init('instance1', {
+        onRedirect: function (url, content) { return { title: 'Process Complete' }; }
+      });
+      var p2 = Cignium.init('instance2', {
+        onRedirect: function (url, content) { return { title: 'Process Complete' }; }
+      });
     </script>
   </body>
 </html>

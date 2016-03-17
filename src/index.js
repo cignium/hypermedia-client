@@ -7,8 +7,6 @@ import State from './state'
 import { get, set } from './accessors'
 import '../themes/default/app.css'
 
-let backwardsCompatibilityLastConfig
-
 function init(element, config) {
   if (typeof element === 'string') {
     element = document.getElementById(element)
@@ -40,17 +38,11 @@ function init(element, config) {
     navigate({ config, href: config.endpoint })
   }
 
-  backwardsCompatibilityLastConfig = config
-
-  return {
+  return lastInstance = {
     navigate: href => navigate({href, config}),
     get: path => get(config, path),
     set: (path, value) => set(config, path, value),
   }
-}
-
-function backwardsCompatibilityNavigate(href) {
-  navigate({ href, config: backwardsCompatibilityLastConfig })
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -60,7 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-export {
-  init,
-  backwardsCompatibilityNavigate as navigate,
+let lastInstance
+
+function bindToLastInstance(methodName) {
+  return function() {
+    console.warn(`Cignium.${methodName}() is obsolete. Use the instance method instead.`)
+    return lastInstance[methodName].apply(lastInstance, arguments)
+  }
 }
+
+exports.init = init
+exports.navigate = bindToLastInstance('navigate')
+exports.get = bindToLastInstance('get')
+exports.set = bindToLastInstance('set')
