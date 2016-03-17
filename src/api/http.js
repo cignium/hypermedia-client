@@ -1,6 +1,6 @@
 const mediaType = 'application/vnd.cignium.resource+json'
 
-export async function request(method, href, data, config) {
+export async function request(method, href, data, instance) {
   const request = {
     body: data && JSON.stringify(data),
     credentials: 'include',
@@ -24,9 +24,9 @@ export async function request(method, href, data, config) {
     return await response.json()
   }
 
-  if (config && config.onRedirect) {
+  if (instance.options.onRedirect) {
     let content = await response.text()
-    content = config.onRedirect(response.url, content)
+    content = instance.options.onRedirect(response.url, content)
 
     if (content) {
       content.type = 'html'

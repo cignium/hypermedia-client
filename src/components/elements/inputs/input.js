@@ -53,15 +53,15 @@ export default class Input extends Component {
       this.setState({ value })
     }
 
-    const { property, config } = this.props
+    const { property, instance } = this.props
 
     if (property.value !== value) {
-      update(
-      	property.links,
-      	property.id,
-      	value,
-      	property.name,
-        config)
+      update({
+        instance,
+        links: property.links,
+        id: property.id,
+        value,
+      })
     }
   }
 }

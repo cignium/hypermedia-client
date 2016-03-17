@@ -2,29 +2,33 @@ import { request } from './http'
 import factory from './factory'
 import draft from './draft'
 
-async function loadSitemap({ config, resource }) {
+async function loadSitemap({ instance, resource }) {
   if (!resource.links.sitemap) {
     return
   }
 
-  const state = config.state
+  const state = instance.state
   const { href } = resource.links.sitemap
 
   if (state.get().resources[href]) {
-    requestResource({ config, href, method: 'get', resourceKey: 'sitemap' })
+    requestResource({ instance, href, method: 'get', resourceKey: 'sitemap' })
     return
   }
 
-  await requestResource({ config, href, method: 'get', resourceKey: 'sitemap' })
+  await requestResource({ instance, href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ config, data, href, id, method, resourceKey, name }) {
-  const state = config.state
+async function processRequest({ instance, data, href, id, method, resourceKey }) {
+  const state = instance.state
   try {
-    const response = await request(method, href, data, config)
+    const response = await request(method, href, data, instance)
 
-    if (config && config.onValueChange && data) {
-      config.onValueChange(name, data[Object.keys(data)[0]])
+    if (instance.options.onValueChange && data) {
+      const propertyId = Object.keys(data)[0]
+      const propertyName = instance.allProperties.find(p => p.id === propertyId).name
+      const resources = state.get().resources
+      const formName = resources[resources.current].name
+      instance.options.onValueChange(formName, propertyName, data[propertyId])
     }
 
     if (response == null) {
@@ -34,7 +38,7 @@ async function processRequest({ config, data, href, id, method, resourceKey, nam
     const resource = factory(response)
 
     draft.reload(state, href, resource)
-    await loadSitemap({ config, resource })
+    await loadSitemap({ instance, resource })
 
     state.get().resources.set(resource.links.self.href, resource)
 
@@ -51,52 +55,50 @@ async function processRequest({ config, data, href, id, method, resourceKey, nam
   }
 }
 
-function getNextRequestFromQueue(config) {
-  const { requests } = config.state.get()
+function getNextRequestFromQueue(instance) {
+  const { requests } = instance.state.get()
 
   return Object.keys(requests).sort()
-    .map(key => { return { ...requests[key], id: key }})[0]
+    .map(key => { return { ...requests[key], id: key, instance }})[0]
 }
 
-export function processRequestQueue(config) {
-  const request = getNextRequestFromQueue(config)
+export function processRequestQueue(instance) {
+  const request = getNextRequestFromQueue(instance)
 
   if (request) {
-    config.state.get().requests.set('current', request.id)
-    request.config = config
+    instance.state.get().requests.set('current', request.id)
     processRequest(request)
   }
 }
 
 function requestResource(request) {
-  request.config.state.get().set('error', null)
-  request.config.state.get().requests.set(new Date().getTime(), request)
+  request.instance.state.get().set('error', null)
+  request.instance.state.get().requests.set(new Date().getTime(), request)
 }
 
-export function executeAction({ config, href }) {
-  requestResource({ config, href, method: 'post', resourceKey: 'current' })
+export function executeAction({ instance, href }) {
+  requestResource({ instance, href, method: 'post', resourceKey: 'current' })
 }
 
-export function navigate({ config, href }) {
+export function navigate({ instance, href }) {
   if (href === null) {
-    config.state.get().resources.set('current', null)
+    instance.state.get().resources.set('current', null)
     return
   }
 
-  requestResource({ config, href, method: 'get', resourceKey: 'current' })
+  requestResource({ instance, href, method: 'get', resourceKey: 'current' })
 }
 
-export function update(links, id, value, name, config) {
-  const state = config.state
+export function update({ instance, links, id, value }) {
+  const state = instance.state
 
   if (links.update) {
     const href = links.update.href
     return requestResource({
-      config,
+      instance,
       data: { [id]: value },
       href,
       method: 'post',
-      name,
     })
   }
   else if (links.submit) {
@@ -107,10 +109,10 @@ export function update(links, id, value, name, config) {
   throw Error('Invalid operation, no update or submit link present')
 }
 
-export function submit({ config, href }) {
-  const data = config.state.get().drafts[href]
+export function submit({ instance, href }) {
+  const data = instance.state.get().drafts[href]
   requestResource({
-    config,
+    instance,
     data,
     href,
     method: 'post',

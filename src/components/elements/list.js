@@ -2,7 +2,7 @@ import factory from './factory'
 import Link from './link'
 import cx from 'classnames'
 
-export default ({ config, property }) => {
+export default ({ instance, property }) => {
   return (
     <div className='ct-list'>
       {property.links.navigate ?
@@ -12,7 +12,7 @@ export default ({ config, property }) => {
           errors={property.errors}
           key={property.id}
           property={property}
-          config={config} />
+          instance={instance} />
       : property.title ?
         <label className='ct-list-header ct-element-label'>
           {property.title}
@@ -29,7 +29,7 @@ export default ({ config, property }) => {
           errors={item.errors}
           key={item.id}
           property={item}
-          config={config} />
+          instance={instance} />
       )
     })}
     </div>

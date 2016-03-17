@@ -7,41 +7,42 @@ import State from './state'
 import { get, set } from './accessors'
 import '../themes/default/app.css'
 
-function init(element, config) {
+function init(element, options) {
   if (typeof element === 'string') {
     element = document.getElementById(element)
   }
 
-  if (!config) {
-    config = {}
+  if (!options) {
+    options = {}
   }
   else {
-    if (typeof config.onValueChange !== 'function') {
-      delete config.onValueChange
+    if (typeof options.onValueChange !== 'function') {
+      delete options.onValueChange
     }
-    if (typeof config.onUrlChange !== 'function') {
-      delete config.onUrlChange
+    if (typeof options.onUrlChange !== 'function') {
+      delete options.onUrlChange
     }
-    if (typeof config.onRedirect !== 'function') {
-      delete config.onRedirect
+    if (typeof options.onRedirect !== 'function') {
+      delete options.onRedirect
     }
   }
-  if (['top', 'bottom', 'both'].indexOf(config.actionListPosition) < 0) {
-    config.actionListPosition = 'top'
+  if (['top', 'bottom', 'both'].indexOf(options.actionListPosition) < 0) {
+    options.actionListPosition = 'top'
   }
 
-  config.state = State(config)
+  const instance = { options }
+  instance.state = State(instance)
 
-  render(<App {...config} />, element)
+  render(<App {...instance} />, element)
 
-  if (typeof config.endpoint === 'string') {
-    navigate({ config, href: config.endpoint })
+  if (typeof options.endpoint === 'string') {
+    navigate({ instance, href: options.endpoint })
   }
 
   return lastInstance = {
-    navigate: href => navigate({href, config}),
-    get: path => get(config, path),
-    set: (path, value) => set(config, path, value),
+    navigate: href => navigate({href, instance}),
+    get: path => get(instance, path),
+    set: (path, value) => set(instance, path, value),
   }
 }
 
@@ -54,14 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let lastInstance
 
-function bindToLastInstance(methodName) {
-  return function() {
-    console.warn(`Cignium.${methodName}() is obsolete. Use the instance method instead.`)
-    return lastInstance[methodName].apply(lastInstance, arguments)
-  }
+function oldNavigate(href) {
+  console.warn('Cignium.navigate(href) is obsolete. Use the instance method instead.')
+  lastInstance.navigate(href)
 }
 
-exports.init = init
-exports.navigate = bindToLastInstance('navigate')
-exports.get = bindToLastInstance('get')
-exports.set = bindToLastInstance('set')
+export {
+  init,
+  oldNavigate as navigate,
+}

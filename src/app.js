@@ -29,8 +29,8 @@ export default class App extends Component {
           type='error' />
         <ErrorMessage requestError={this.state.error} documentErrors={document ? document.errors : null} />
         <ActivityIndicator requests={this.state.requests} />
-        <Sitemap resource={sitemap} config={this.props} />
-        <Document resource={document} config={this.props} />
+        <Sitemap resource={sitemap} instance={this.props} />
+        <Document resource={document} instance={this.props} />
       </div>
     )
   }

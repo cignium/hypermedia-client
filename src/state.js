@@ -1,7 +1,26 @@
 import Freezer from 'freezer-js'
 import { processRequestQueue } from './api'
 
-export default config => {
+function getAllLeafProperties(data) {
+  const properties = []
+  data.properties.forEach(p => {
+    switch (p.type) {
+      case 'html':
+      case 'plain':
+      case 'array':
+        break
+      case 'object':
+        Array.prototype.push.apply(properties, getAllLeafProperties(p))
+        break
+      default:
+        properties.push(p)
+        break
+    }
+  })
+  return properties
+}
+
+export default instance => {
   const state = new Freezer({
     current: null,
     error: null,
@@ -10,7 +29,11 @@ export default config => {
     resources: {},
   })
 
-  state.on('update', ({ requests }) => {
+  state.on('update', ({ requests, resources }) => {
+    if (resources.current) {
+      instance.allProperties = getAllLeafProperties(resources[resources.current])
+    }
+
     if (requests.current) {
       if (requests[requests.current]) {
         return
@@ -20,7 +43,7 @@ export default config => {
       }
     }
 
-    processRequestQueue(config)
+    processRequestQueue(instance)
   })
 
   return state

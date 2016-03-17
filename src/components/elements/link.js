@@ -1,7 +1,7 @@
 import { navigate } from '../../api'
 import cx from 'classnames'
 
-export default ({ config, className, property }) => (
+export default ({ instance, className, property }) => (
   <a
     className={cx(className, 'ct-link', {
       'ct-visited' : property.links.navigate.visited,
@@ -14,7 +14,7 @@ export default ({ config, className, property }) => (
       if (!e.metaKey &&
       !e.ctrlKey &&
       !property.links.navigate.target) {
-        navigate({ config, href: property.links.navigate.href })
+        navigate({ instance, href: property.links.navigate.href })
         e.preventDefault()
       }
     }}>

@@ -1,6 +1,6 @@
 import factory from './elements/factory'
 
-export default ({ config, resource }) => {
+export default ({ instance, resource }) => {
   if (!resource) {
     return <div />
   }
@@ -9,7 +9,7 @@ export default ({ config, resource }) => {
 
   return (
     <div className='ct-sitemap'>
-      <Element property={resource} config={config} />
+      <Element property={resource} instance={instance} />
     </div>
   )
 }

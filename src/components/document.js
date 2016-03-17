@@ -9,24 +9,25 @@ function getHref(resource) {
 
 export default class Document extends Component {
   componentDidUpdate(previousProps, previousState) {
-    if (this.props.config.onUrlChange) {
+    if (this.props.instance.options.onUrlChange) {
       const previous = getHref(previousProps.resource)
       const current = getHref(this.props.resource)
       if (previous !== current) {
-        this.props.config.onUrlChange(current)
+        const formName = this.props.resource.name
+        this.props.instance.options.onUrlChange(current, formName)
       }
     }
   }
 
   render() {
-    const { resource, config } = this.props
+    const { resource, instance } = this.props
     if (!resource) {
       return <div />
     }
 
     const Element = factory(resource)
-    const actions = <ActionList links={resource.links} config={config} />
-    const footer = config.actionListPosition !== 'top' && (
+    const actions = <ActionList links={resource.links} instance={instance} />
+    const footer = instance.options.actionListPosition !== 'top' && (
       <div className='ct-document-footer'>
         {actions}
       </div>
@@ -38,11 +39,11 @@ export default class Document extends Component {
           <div className='ct-document-header-text'>
             {resource.title}
           </div>
-          {config.actionListPosition !== 'bottom' && actions}
+          {instance.options.actionListPosition !== 'bottom' && actions}
         </div>
-        <Element property={resource} config={config} topLevel />
+        <Element property={resource} instance={instance} topLevel />
         {footer}
-        {config.debug && <JsonDebugger resource={resource} />}
+        {instance.options.debug && <JsonDebugger resource={resource} />}
       </div>
     )
   }
