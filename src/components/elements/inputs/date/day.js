@@ -17,7 +17,7 @@ function renderOptions(date) {
 }
 
 function getDay(date) {
-  return date && date.getUTCDate()
+  return date && date.getDate()
 }
 
 function selectDay(day, date) {
@@ -25,7 +25,7 @@ function selectDay(day, date) {
     return null
   }
 
-  date.setUTCDate(day)
+  date.setDate(day)
 
   return date
 }

@@ -1,5 +1,16 @@
+export function getFormattedDate(date) {
+  if (!date)
+    return null
+
+  const utcDate = new Date()
+  utcDate.setFullYear(date.getFullYear())
+  utcDate.setMonth(date.getMonth())
+  utcDate.setDate(date.getDate())
+  return utcDate.toISOString().split('T')[0]
+}
+
 export function lastDayInMonth(year, month) {
-  return new Date(Date.UTC(year, month + 1, 0)).getUTCDate()
+  return new Date(year, month + 1, 0).getDate()
 }
 
 export function allDays(date) {
@@ -8,7 +19,7 @@ export function allDays(date) {
     return days
   }
 
-  const lastDay = lastDayInMonth(date.getUTCFullYear(), date.getUTCMonth())
+  const lastDay = lastDayInMonth(date.getFullYear(), date.getMonth())
   for (let i = 1; i <= lastDay; i++) {
     days.push(i)
   }
@@ -20,11 +31,11 @@ export function allMonths() {
   const months = []
   const language = window.navigator.userLanguage || window.navigator.language
   const formatter = new Intl.DateTimeFormat(language, { month: 'long' })
-  const current = new Date(Date.UTC(2016, 0))
+  const current = new Date(2016, 0)
 
   for (let i = 0; i < 12; i++) {
     months.push({ label: formatter.format(current), value: i })
-    current.setUTCMonth(i + 1)
+    current.setMonth(i + 1)
   }
 
   return months
@@ -32,7 +43,7 @@ export function allMonths() {
 
 export function allYears() {
   const years = []
-  let current = new Date().getUTCFullYear() - 100
+  let current = new Date().getFullYear() - 100
   for (let i = 0; i <= 200; i++) {
     years.push(current++)
   }

@@ -17,14 +17,14 @@ function renderOptions() {
 }
 
 function calculateDay(month, date) {
-  const day = date.getUTCDate()
-  const daysInMonth = lastDayInMonth(date.getUTCFullYear(), month)
+  const day = date.getDate()
+  const daysInMonth = lastDayInMonth(date.getFullYear(), month)
 
   return day > daysInMonth ? daysInMonth : day
 }
 
 function getMonth(date) {
-  return date ? date.getUTCMonth() : ''
+  return date ? date.getMonth() : ''
 }
 
 function selectMonth(value, date) {
@@ -33,7 +33,7 @@ function selectMonth(value, date) {
     return null
   }
 
-  date.setUTCMonth(month, calculateDay(month, date))
+  date.setMonth(month, calculateDay(month, date))
 
   return date
 }

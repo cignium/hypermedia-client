@@ -17,14 +17,14 @@ function renderOptions() {
 }
 
 function calculateDay(year, date) {
-  const day = date.getUTCDate()
-  const daysInMonth = new Date(Date.UTC(year, date.getUTCMonth() + 1, 0)).getUTCDate()
+  const day = date.getDate()
+  const daysInMonth = new Date(year, date.getMonth() + 1, 0).getDate()
 
   return day > daysInMonth ? daysInMonth : day
 }
 
 function getYear(value) {
-  return value ? value.getUTCFullYear() : ''
+  return value ? value.getFullYear() : ''
 }
 
 function selectYear(year, date) {
@@ -33,9 +33,9 @@ function selectYear(year, date) {
   }
 
   if (!date) {
-    return new Date(Date.UTC(year, 0, 1))
+    return new Date(year, 0, 1)
   }
 
-  date.setFullYear(year, date.getUTCMonth(), calculateDay(year, date))
+  date.setFullYear(year, date.getMonth(), calculateDay(year, date))
   return date
 }

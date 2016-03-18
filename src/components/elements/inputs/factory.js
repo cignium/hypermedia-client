@@ -10,6 +10,7 @@ export default function(property) {
   switch (property.type) {
     case 'boolean': return Checkbox
     case 'date': return DatePicker
+    case 'datetime': return DatePicker
     case 'number': return NumberInput
     case 'string':
     case 'string[]':
