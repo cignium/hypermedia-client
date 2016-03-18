@@ -1,15 +1,13 @@
 import cx from 'classnames'
 
-export default ({ className, errors, onCommit, property, value }) => {
-  return (
-    <select
-      className={cx(className, 'ct-input ct-year')}
-      onChange={ e => onCommit(selectYear(e.target.value, value))}
-      value={getYear(value)}>
-        {renderOptions()}
-    </select>
-  )
-}
+export default ({ className, errors, onCommit, property, value }) => (
+  <select
+    className={cx(className, 'ct-input ct-year')}
+    onChange={ e => onCommit(selectYear(e.target.value, value))}
+    value={getYear(value)}>
+      {renderOptions()}
+  </select>
+)
 
 function renderOptions() {
   const options = [<option value='' key='placeholder'>Year...</option>]

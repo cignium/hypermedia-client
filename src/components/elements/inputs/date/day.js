@@ -1,21 +1,18 @@
 import cx from 'classnames'
+import { lastDayInMonth } from './date-util'
 
-export default ({ className, errors, onCommit, property, value }) => {
-  return (
-    <select
-      className={cx(className, 'ct-input ct-day')}
-      disabled={!value}
-      onChange={ e => onCommit(selectDay(e.target.value, value))}
-      value={getDay(value)}>
-        {renderOptions(value)}
-    </select>
-  )
-}
+export default ({ className, errors, onCommit, property, value }) => (
+  <select
+    className={cx(className, 'ct-input ct-day')}
+    disabled={!value}
+    onChange={ e => onCommit(selectDay(e.target.value, value))}
+    value={getDay(value)}>
+      {renderOptions(value)}
+  </select>
+)
 
 function renderOptions(date) {
-  const options = [<option value='' key='placeholder'>Day...</option>]
-
-  return options
+  return [<option value='' key='placeholder'>Day...</option>]
     .concat(getDays(date).map(day => <option key={day} value={day}>{day}</option>))
 }
 
@@ -29,16 +26,12 @@ function getDays(date) {
     return days
   }
 
-  const lastDay = getLastDayOfMonth(date)
+  const lastDay = lastDayInMonth(date.getUTCFullYear(), date.getUTCMonth())
   for (let i = 1; i <= lastDay; i++) {
     days.push(i)
   }
 
   return days
-}
-
-function getLastDayOfMonth(date) {
-  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 0)).getUTCDate()
 }
 
 function selectDay(day, date) {
@@ -47,5 +40,6 @@ function selectDay(day, date) {
   }
 
   date.setUTCDate(day)
+
   return date
 }

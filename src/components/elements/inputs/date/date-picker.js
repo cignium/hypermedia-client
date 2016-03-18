@@ -7,28 +7,25 @@ function getDateString(date) {
   return date && date.toISOString().split('T')[0]
 }
 
-function handleChange(onChange, date) {
-  console.log('handleChange was called with value: ' + date)
-  onChange(getDateString(date))
-}
-
 export default ({ className, errors, onCommit, property, value }) => {
   const date = value ? new Date(value) : null
-  const onChange = handleChange.bind(undefined, onCommit)
+  function handleChange(date) {
+    onCommit(getDateString(date))
+  }
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-date-picker')}>
       <Year
         className={className}
-        onCommit={onChange}
+        onCommit={date => handleChange(date)}
         value={date} />
       <Month
         className={className}
-        onCommit={onChange}
+        onCommit={date => handleChange(date)}
         value={date} />
       <Day
         className={className}
-        onCommit={onChange}
+        onCommit={date => handleChange(date)}
         value={date} />
     </div>
   )

@@ -1,5 +1,6 @@
 // __tests__/day-tests.js
 jest.unmock('../src/components/elements/inputs/date/day')
+jest.unmock('../src/components/elements/inputs/date/date-util')
 
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
