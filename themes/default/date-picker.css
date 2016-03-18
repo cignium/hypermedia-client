@@ -1,5 +1,16 @@
 .ct-year, .ct-month, .ct-day {
   display: inline-block;
-  width: 100px;
   margin-right: 5px;
+}
+
+.ct-year {
+  width: 80px;
+}
+
+.ct-month {
+  width: 120px;
+}
+
+.ct-day {
+  width: 80px;
 }

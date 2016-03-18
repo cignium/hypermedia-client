@@ -1,0 +1,13 @@
+.ct-hour, .ct-minute {
+  display: inline-block;
+  width: 60px;
+}
+
+.ct-hour {
+  margin-left: 10px;
+  margin-right: 3px;
+}
+
+.ct-minute {
+  margin-left: 3px;
+}
