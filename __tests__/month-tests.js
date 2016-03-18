@@ -2,7 +2,6 @@
 jest.unmock('../src/components/elements/inputs/date/month')
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-addons-test-utils'
 import Month from '../src/components/elements/inputs/date/month'
 
@@ -30,7 +29,7 @@ describe('Month', () => {
 
     describe('And changing month to February', () => {
       it('returns the last day in February that year (leap year)', () => {
-        month.props.onChange({ value: 1 })
+        month.props.onChange({ target: { value: 1 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2012-02-29')
@@ -39,7 +38,7 @@ describe('Month', () => {
 
     describe('And changing month to January', () => {
       it('returns the last day in January', () => {
-        month.props.onChange({ value: 0 })
+        month.props.onChange({ target: { value: 0 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2012-01-31')
@@ -58,10 +57,25 @@ describe('Month', () => {
 
     describe('And changing month to February', () => {
       it('returns the last day in February that year', () => {
-        month.props.onChange({ value: 1 })
+        month.props.onChange({ target: { value: 1 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2013-02-28')
+      })
+    })
+  })
+
+  describe('with date 1924-01-01', () => {
+    beforeEach(() => {
+      renderComponent(new Date(Date.UTC(1924, 0, 1)))
+    })
+
+    describe('And changing month to May', () => {
+      it('returns the first of May', () => {
+        month.props.onChange({ target: { value: 4 }})
+        const newDate = commitSpy.calls.mostRecent().args[0]
+
+        expect(newDate.toISOString().split('T')[0]).toEqual('1924-05-01')
       })
     })
   })

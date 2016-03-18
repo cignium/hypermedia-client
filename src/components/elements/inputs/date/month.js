@@ -1,49 +1,57 @@
 import cx from 'classnames'
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 
 export default ({ className, errors, onCommit, property, value }) => {
   return (
-    <Select
-      className={cx(className, 'ct-month')}
+    <select
+      className={cx(className, 'ct-input ct-month')}
       disabled={!value}
-      onChange={selected => onCommit(selectMonth(selected && selected.value, value))}
-      options={getMonths().map(month => ({ label: month.label, value: month.value }))}
-      placeholder='Select month'
-      value={getMonth(value)} />
+      onChange={ e => onCommit(selectMonth(e.target.value, value))}
+      value={getMonth(value)}>
+        {renderOptions()}
+    </select>
   )
 }
 
+function renderOptions() {
+  const options = [<option key='placeholder' value=''>Month...</option>]
+
+  return options
+    .concat(getMonths().map(month => <option key={month.value} value={month.value}>{month.label}</option>))
+}
+
 function calculateDay(month, date) {
-  const day = date.getDate()
-  const daysInMonth = new Date(date.getFullYear(), month + 1, 0).getDate()
+  const day = date.getUTCDate()
+  const testdate = new Date(Date.UTC(date.getUTCFullYear(), month + 1, 0))
+  const daysInMonth = testdate.getUTCDate()
 
   return day > daysInMonth ? daysInMonth : day
 }
 
 function getMonth(date) {
-  return date && date.getMonth()
+  return date ? date.getUTCMonth() : ''
 }
 
 function getMonths() {
   const months = []
   const language = window.navigator.userLanguage || window.navigator.language
   const formatter = new Intl.DateTimeFormat(language, { month: 'long' })
-  const current = new Date(2016, 0)
+  const current = new Date(Date.UTC(2016, 0))
 
-  for (let i = 1; i < 13; i++) {
-    months.push({ label: formatter.format(current), value: i-1 })
-    current.setMonth(i)
+  for (let i = 0; i < 12; i++) {
+    months.push({ label: formatter.format(current), value: i })
+    current.setUTCMonth(i + 1)
   }
 
   return months
 }
 
-function selectMonth(month, date) {
-  if (month == null || month == undefined )   {
+function selectMonth(value, date) {
+  const month = parseInt(value)
+  if (isNaN(month)) {
     return null
   }
 
-  date.setMonth(month, calculateDay(month, date))
+  const day = calculateDay(month, date)
+  date.setUTCMonth(month, day)
   return date
 }

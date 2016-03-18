@@ -1,0 +1,5 @@
+.ct-year, .ct-month, .ct-day {
+  display: inline-block;
+  width: 100px;
+  margin-right: 5px;
+}

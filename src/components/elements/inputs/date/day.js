@@ -1,44 +1,44 @@
 import cx from 'classnames'
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 
 export default ({ className, errors, onCommit, property, value }) => {
   return (
-    <Select
-      className={cx(className, 'ct-day')}
+    <select
+      className={cx(className, 'ct-input ct-day')}
       disabled={!value}
-      onChange={ selected => onCommit(selectDay(selected && selected.value, value))}
-      options={getOptions(value)}
-      placeholder='Select day'
-      value={getDay(value)} />
+      onChange={ e => onCommit(selectDay(e.target.value, value))}
+      value={getDay(value)}>
+        {renderOptions(value)}
+    </select>
   )
 }
 
+function renderOptions(date) {
+  const options = [<option value='' key='placeholder'>Day...</option>]
+
+  return options
+    .concat(getDays(date).map(day => <option key={day} value={day}>{day}</option>))
+}
+
 function getDay(date) {
-  return date && date.getDate()
+  return date && date.getUTCDate()
 }
 
 function getDays(date) {
   const days = []
+  if (!date) {
+    return days
+  }
+
   const lastDay = getLastDayOfMonth(date)
   for (let i = 1; i <= lastDay; i++) {
-    days.push({ label: i, value: i })
+    days.push(i)
   }
 
   return days
 }
 
-function getOptions(date) {
-  if (!date) {
-    return null
-  }
-
-  const days = getDays(date)
-  return days && days.length && days.map(day => ({ label: day.label, value: day.value }))
-}
-
 function getLastDayOfMonth(date) {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 0)).getUTCDate()
 }
 
 function selectDay(day, date) {
@@ -46,6 +46,6 @@ function selectDay(day, date) {
     return null
   }
 
-  date.setDate(day)
+  date.setUTCDate(day)
   return date
 }

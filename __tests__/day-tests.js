@@ -2,7 +2,6 @@
 jest.unmock('../src/components/elements/inputs/date/day')
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-addons-test-utils'
 import Day from '../src/components/elements/inputs/date/day'
 
@@ -18,6 +17,14 @@ describe('Day', () => {
     day = renderer.getRenderOutput()
   }
 
+  function getFirstOption() {
+    return day.props.children[1].props.value
+  }
+
+  function getLastOption() {
+    return day.props.children[day.props.children.length - 1].props.value
+  }
+
   describe('with date 2012-02-01', () => {
     beforeEach(() => {
       renderComponent(new Date(Date.UTC(2012, 1, 1)))
@@ -28,16 +35,16 @@ describe('Day', () => {
     })
 
     it('has 1 as the first option', () => {
-      expect(day.props.options[0].label).toEqual(1)
+      expect(getFirstOption()).toEqual(1)
     })
 
     it('has 29 as the last option (leap year)', () => {
-      expect(day.props.options[day.props.options.length - 1].label).toEqual(29)
+      expect(getLastOption()).toEqual(29)
     })
 
     describe('And changing day to 15', () => {
       it('returns the 15th of February', () => {
-        day.props.onChange({ value: 15 })
+        day.props.onChange({ target: { value: 15 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2012-02-15')
@@ -55,16 +62,16 @@ describe('Day', () => {
     })
 
     it('has 1 as the first option', () => {
-      expect(day.props.options[0].label).toEqual(1)
+      expect(getFirstOption()).toEqual(1)
     })
 
     it('has 28 as the last option', () => {
-      expect(day.props.options[day.props.options.length - 1].label).toEqual(28)
+      expect(getLastOption()).toEqual(28)
     })
 
     describe('And changing day to 28', () => {
       it('returns the 15th of February', () => {
-        day.props.onChange({ value: 28 })
+        day.props.onChange({ target: { value: 28 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2013-02-28')
@@ -78,11 +85,11 @@ describe('Day', () => {
     })
 
     it('has 1 as the first option', () => {
-      expect(day.props.options[0].label).toEqual(1)
+      expect(getFirstOption()).toEqual(1)
     })
 
     it('has 31 as the last option', () => {
-      expect(day.props.options[day.props.options.length - 1].label).toEqual(31)
+      expect(getLastOption()).toEqual(31)
     })
   })
 
@@ -92,11 +99,11 @@ describe('Day', () => {
     })
 
     it('has 1 as the first option', () => {
-      expect(day.props.options[0].label).toEqual(1)
+      expect(getFirstOption()).toEqual(1)
     })
 
     it('has 30 as the last option', () => {
-      expect(day.props.options[day.props.options.length - 1].label).toEqual(30)
+      expect(getLastOption()).toEqual(30)
     })
   })
 })

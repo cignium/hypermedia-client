@@ -22,9 +22,9 @@
   border-color: #CC0302;
 }
 
-.ct-year, .ct-month, .ct-day {
-  display: inline-block;
-  width: 33.3%;
+select:disabled {
+  background-color: #f9f9f9;
+  color: #999;
 }
 
 .Select > .Select-control {

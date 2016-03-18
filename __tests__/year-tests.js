@@ -2,7 +2,6 @@
 jest.unmock('../src/components/elements/inputs/date/year')
 
 import React from 'react'
-import ReactDOM from 'react-dom'
 import TestUtils from 'react-addons-test-utils'
 import Year from '../src/components/elements/inputs/date/year'
 
@@ -21,26 +20,26 @@ describe('Year', () => {
 
   describe('with no date', () => {
     beforeEach(() => {
-      renderComponent()
+      renderComponent(null)
     })
 
     it('sets no value', () => {
-      expect(year.props.value).toBe(undefined)
+      expect(year.props.value).toBe('')
     })
 
-    it('has -100 years as the first option', () => {
+    it('has -100 years as the second option', () => {
       const currentYear = new Date().getFullYear()
-      expect(year.props.options[0].label).toEqual(currentYear -100)
+      expect(year.props.children[1].props.value).toEqual(currentYear -100)
     })
 
     it('has +100 years as the last option', () => {
       const currentYear = new Date().getFullYear()
-      expect(year.props.options[year.props.options.length - 1].label).toEqual(currentYear + 100)
+      expect(year.props.children[year.props.children.length - 1].props.value).toEqual(currentYear + 100)
     })
 
     describe('And setting year to 2013', () => {
       it('returns the first of January 2013', () => {
-        year.props.onChange({ value: 2013 })
+        year.props.onChange({ target: { value: 2013 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2013-01-01')
@@ -59,7 +58,7 @@ describe('Year', () => {
 
     describe('And changing year to 2013', () => {
       it('returns the 28th of February 2013 (not leap year)', () => {
-        year.props.onChange({ value: 2013 })
+        year.props.onChange({ target: { value: 2013 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2013-02-28')
@@ -78,7 +77,7 @@ describe('Year', () => {
 
     describe('And changing year to 2014', () => {
       it('returns the same day in 2014', () => {
-        year.props.onChange({ value: 2014 })
+        year.props.onChange({ target: { value: 2014 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
         expect(newDate.toISOString().split('T')[0]).toEqual('2014-01-31')

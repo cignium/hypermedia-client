@@ -1,34 +1,36 @@
 import cx from 'classnames'
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 
 export default ({ className, errors, onCommit, property, value }) => {
   return (
-    <Select
-      className={cx(className, 'ct-year')}
-      onChange={selected => onCommit(selectYear(selected && selected.value, value))}
-      options={getYears().map(year => {
-        return { label: year, value: year }
-      })}
-      placeholder='Select year'
-      value={getYear(value)} />
+    <select
+      className={cx(className, 'ct-input ct-year')}
+      onChange={ e => onCommit(selectYear(e.target.value, value))}
+      value={getYear(value)}>
+        {renderOptions()}
+    </select>
   )
 }
 
+function renderOptions() {
+  const options = [<option value='' key='placeholder'>Year...</option>]
+
+  return options.concat(getYears().map(year => <option key={year} value={year}>{year}</option>))
+}
+
 function calculateDay(year, date) {
-  const day = date.getDate()
-  const daysInMonth = new Date(year, date.getMonth() + 1, 0).getDate()
+  const day = date.getUTCDate()
+  const daysInMonth = new Date(Date.UTC(year, date.getUTCMonth() + 1, 0)).getUTCDate()
 
   return day > daysInMonth ? daysInMonth : day
 }
 
 function getYear(value) {
-  return value && value.getFullYear()
+  return value ? value.getUTCFullYear() : ''
 }
 
 function getYears() {
   const years = []
-  let current = new Date().getFullYear() - 100
+  let current = new Date().getUTCFullYear() - 100
   for (let i = 0; i <= 200; i++) {
     years.push(current++)
   }
@@ -45,6 +47,6 @@ function selectYear(year, date) {
     return new Date(Date.UTC(year, 0, 1))
   }
 
-  date.setFullYear(year, date.getMonth(), calculateDay(year, date))
+  date.setFullYear(year, date.getUTCMonth(), calculateDay(year, date))
   return date
 }
