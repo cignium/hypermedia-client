@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { lastDayInMonth } from './date-util'
+import { allMonths, lastDayInMonth } from './date-util'
 
 export default ({ className, errors, onCommit, property, value }) => (
   <select
@@ -13,7 +13,7 @@ export default ({ className, errors, onCommit, property, value }) => (
 
 function renderOptions() {
   return [<option key='placeholder' value=''>Month...</option>]
-    .concat(getMonths().map(month => <option key={month.value} value={month.value}>{month.label}</option>))
+    .concat(allMonths().map(month => <option key={month.value} value={month.value}>{month.label}</option>))
 }
 
 function calculateDay(month, date) {
@@ -27,28 +27,13 @@ function getMonth(date) {
   return date ? date.getUTCMonth() : ''
 }
 
-function getMonths() {
-  const months = []
-  const language = window.navigator.userLanguage || window.navigator.language
-  const formatter = new Intl.DateTimeFormat(language, { month: 'long' })
-  const current = new Date(Date.UTC(2016, 0))
-
-  for (let i = 0; i < 12; i++) {
-    months.push({ label: formatter.format(current), value: i })
-    current.setUTCMonth(i + 1)
-  }
-
-  return months
-}
-
 function selectMonth(value, date) {
   const month = parseInt(value)
   if (isNaN(month)) {
     return null
   }
 
-  const day = calculateDay(month, date)
-  date.setUTCMonth(month, day)
+  date.setUTCMonth(month, calculateDay(month, date))
 
   return date
 }

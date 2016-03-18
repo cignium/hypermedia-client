@@ -1,4 +1,5 @@
 import cx from 'classnames'
+import { allYears } from './date-util'
 
 export default ({ className, errors, onCommit, property, value }) => (
   <select
@@ -12,7 +13,7 @@ export default ({ className, errors, onCommit, property, value }) => (
 function renderOptions() {
   const options = [<option value='' key='placeholder'>Year...</option>]
 
-  return options.concat(getYears().map(year => <option key={year} value={year}>{year}</option>))
+  return options.concat(allYears().map(year => <option key={year} value={year}>{year}</option>))
 }
 
 function calculateDay(year, date) {
@@ -24,16 +25,6 @@ function calculateDay(year, date) {
 
 function getYear(value) {
   return value ? value.getUTCFullYear() : ''
-}
-
-function getYears() {
-  const years = []
-  let current = new Date().getUTCFullYear() - 100
-  for (let i = 0; i <= 200; i++) {
-    years.push(current++)
-  }
-
-  return years
 }
 
 function selectYear(year, date) {
