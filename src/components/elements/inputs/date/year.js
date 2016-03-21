@@ -36,6 +36,6 @@ function selectYear(year, date) {
     return new Date(Date.UTC(year, 0, 1))
   }
 
-  date.setFullYear(year, date.getUTCMonth(), calculateDay(year, date))
+  date.setUTCFullYear(year, date.getUTCMonth(), calculateDay(year, date))
   return date
 }

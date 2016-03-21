@@ -20,11 +20,11 @@ export function allMonths() {
   const months = []
   const language = window.navigator.userLanguage || window.navigator.language
   const formatter = new Intl.DateTimeFormat(language, { month: 'long' })
-  const current = new Date(Date.UTC(2016, 0))
+  const current = new Date(2016, 0)
 
   for (let i = 0; i < 12; i++) {
     months.push({ label: formatter.format(current), value: i })
-    current.setUTCMonth(i + 1)
+    current.setMonth(i + 1)
   }
 
   return months
