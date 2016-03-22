@@ -3,20 +3,22 @@ import { processRequestQueue } from './api'
 
 function getAllLeafProperties(data) {
   const properties = []
-  data.properties.forEach(p => {
-    switch (p.type) {
-      case 'html':
-      case 'plain':
-      case 'array':
-        break
-      case 'object':
-        Array.prototype.push.apply(properties, getAllLeafProperties(p))
-        break
-      default:
-        properties.push(p)
-        break
-    }
-  })
+  if (data.properties) {
+    data.properties.forEach(p => {
+      switch (p.type) {
+        case 'html':
+        case 'plain':
+        case 'array':
+          break
+        case 'object':
+          Array.prototype.push.apply(properties, getAllLeafProperties(p))
+          break
+        default:
+          properties.push(p)
+          break
+      }
+    })
+  }
   return properties
 }
 
