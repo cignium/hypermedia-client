@@ -2,20 +2,25 @@ import cx from 'classnames'
 import Year from './year'
 import Month from './month'
 import Day from './day'
-import { getFormattedDate } from './date-util'
 
-function getDate(value) {
-  if (value === null)
+function getDateString(date) {
+  return date && date.toISOString().split('T')[0]
+}
+
+function createDate(value) {
+  if (!value) {
     return null
+  }
 
   const dateParts = value.split('-')
-  return new Date(dateParts[0], dateParts[1]-1, dateParts[2])
+
+  return new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, dateParts[2]))
 }
 
 export default ({ className, errors, onCommit, property, value }) => {
-  const date = getDate(value)
+  const date = createDate(value)
   function handleChange(date) {
-    onCommit(getFormattedDate(date))
+    onCommit(getDateString(date))
   }
 
   return (

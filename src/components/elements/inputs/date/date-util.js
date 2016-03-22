@@ -28,7 +28,7 @@ export function allHours() {
 }
 
 export function lastDayInMonth(year, month) {
-  return new Date(year, month + 1, 0).getDate()
+  return new Date(Date.UTC(year, month + 1, 0)).getUTCDate()
 }
 
 export function allDays(date) {
@@ -37,7 +37,7 @@ export function allDays(date) {
     return days
   }
 
-  const lastDay = lastDayInMonth(date.getFullYear(), date.getMonth())
+  const lastDay = lastDayInMonth(date.getUTCFullYear(), date.getUTCMonth())
   for (let i = 1; i <= lastDay; i++) {
     days.push(i)
   }
@@ -61,7 +61,7 @@ export function allMonths() {
 
 export function allYears() {
   const years = []
-  let current = new Date().getFullYear() - 100
+  let current = new Date().getUTCFullYear() - 100
   for (let i = 0; i <= 200; i++) {
     years.push(current++)
   }
