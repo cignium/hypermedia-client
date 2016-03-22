@@ -22,6 +22,11 @@
   border-color: #CC0302;
 }
 
+select:disabled {
+  background-color: #f9f9f9;
+  color: #999;
+}
+
 .Select > .Select-control {
   border: 1px solid #eee;
   border-radius: 3px;
