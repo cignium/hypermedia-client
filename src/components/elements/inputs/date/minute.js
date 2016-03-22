@@ -17,7 +17,7 @@ function renderOptions(date) {
 }
 
 function getMinute(date) {
-  return date && date.getMinutes()
+  return date && date.getUTCMinutes()
 }
 
 function selectMinute(minute, date) {
@@ -25,7 +25,7 @@ function selectMinute(minute, date) {
     return null
   }
 
-  date.setMinutes(minute)
+  date.setUTCMinutes(minute)
 
   return date
 }

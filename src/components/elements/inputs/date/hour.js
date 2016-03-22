@@ -17,7 +17,7 @@ function renderOptions(date) {
 }
 
 function getHour(date) {
-  return date && date.getHours()
+  return date && date.getUTCHours()
 }
 
 function selectHour(hour, date) {
@@ -25,7 +25,7 @@ function selectHour(hour, date) {
     return null
   }
 
-  date.setHours(hour)
+  date.setUTCHours(hour)
 
   return date
 }

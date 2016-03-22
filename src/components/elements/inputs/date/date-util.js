@@ -1,14 +1,3 @@
-export function getFormattedDate(date) {
-  if (!date)
-    return null
-
-  const utcDate = new Date()
-  utcDate.setFullYear(date.getFullYear())
-  utcDate.setMonth(date.getMonth())
-  utcDate.setDate(date.getDate())
-  return utcDate.toISOString().split('T')[0]
-}
-
 export function allMinutes() {
   const minutes = []
   for (let i = 0; i < 60; i++) {
