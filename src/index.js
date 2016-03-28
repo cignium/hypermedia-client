@@ -36,13 +36,13 @@ function init(element, options) {
   render(<App {...instance} />, element)
 
   if (typeof options.endpoint === 'string') {
-    navigate({ instance, href: options.endpoint })
+    instance::navigate(options.endpoint)
   }
 
   return lastInstance = {
-    navigate: href => navigate({href, instance}),
-    get: path => get(instance, path),
-    set: (path, value) => set(instance, path, value),
+    navigate: href => instance::navigate(href),
+    get: path => instance::get(path),
+    set: (path, value) => instance::set(path, value),
   }
 }
 

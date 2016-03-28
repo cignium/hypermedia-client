@@ -1,35 +1,35 @@
-function find(state, href) {
-  return state.get().drafts[href]
+function find(href) {
+  return this.state.get().drafts[href]
 }
 
-function create(state, href, initial) {
-  state.get().drafts.set(href, initial)
+function create(href, initial) {
+  this.state.get().drafts.set(href, initial)
 }
 
-function remove(state, href) {
-  state.get().drafts.remove(href)
+function remove(href) {
+  this.state.get().drafts.remove(href)
 }
 
-function update(state, href, id, value) {
-  const draft = find(state, href)
+function update(href, id, value) {
+  const draft = this::find(href)
   const property = { [id]: value }
   if (draft) {
     draft.set(property)
   }
   else {
-    create(state, href, property)
+    this::create(href, property)
   }
 }
 
-function reload(state, href, resource) {
-  const draft = find(state, href)
+function reload(href, resource) {
+  const draft = this::find(href)
   if (!draft) {
     return
   }
 
   const navigatedAway = !resource.links.submit || resource.links.submit.href != href
   if (navigatedAway) {
-    remove(state, href)
+    this::remove(href)
     return
   }
 

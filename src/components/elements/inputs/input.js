@@ -1,9 +1,9 @@
-import { Component } from 'react'
+import ChildComponent from '../../child-component'
 import { update } from '../../../api'
 import cx from 'classnames'
 import factory from './factory'
 
-export default class Input extends Component {
+export default class Input extends ChildComponent {
   constructor(props) {
     super()
 
@@ -38,30 +38,25 @@ export default class Input extends Component {
         })}
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
-        onCommit={value => this.update(value)}
+        onCommit={value => this::updateValue(value)}
         onUpdate={value => this.setState({ value })}
         value={this.state.value} />
       </div>
     )
   }
+}
 
-  update(value) {
-    if (value === undefined) {
-      value = this.state.value
-    }
-    else {
-      this.setState({ value })
-    }
+function updateValue(value) {
+  if (value === undefined) {
+    value = this.state.value
+  }
+  else {
+    this.setState({ value })
+  }
 
-    const { property, instance } = this.props
+  const { property } = this.props
 
-    if (property.value !== value) {
-      update({
-        instance,
-        links: property.links,
-        id: property.id,
-        value,
-      })
-    }
+  if (property.value !== value) {
+    this.context::update(property.links, property.id, value)
   }
 }

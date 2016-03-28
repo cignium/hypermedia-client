@@ -1,32 +1,27 @@
 import { update } from './api'
 
-export function get(instance, propertyName) {
-  let data = instance.state.get().resources
+export function get(propertyName) {
+  let data = this.state.get().resources
   data = data[data.current]
 
   if (propertyName) {
-    return instance.allProperties.find(i => i.name === propertyName).value
+    return this.allProperties.find(i => i.name === propertyName).value
   }
 
   const output = {}
-  instance.allProperties.forEach(i => {
+  this.allProperties.forEach(i => {
     output[i.name] = i.value
   })
   return output
 }
 
-export function set(instance, propertyName, value) {
-  let data = instance.state.get().resources
+export function set(propertyName, value) {
+  let data = this.state.get().resources
   data = data[data.current]
 
-  const property = instance.allProperties.find(i => i.name === propertyName)
+  const property = this.allProperties.find(i => i.name === propertyName)
 
   if (property.value !== value) {
-    update({
-      instance,
-      links: property.links,
-      id: property.id,
-      value,
-    })
+    this::update(property.links, property.id, value)
   }
 }

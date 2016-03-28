@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import factory from './factory'
 
-export default ({ property, instance, topLevel }) => (
+export default ({ property, topLevel }) => (
   <div className={cx('ct-element', `ct-${property.type}-element`)}>
       {!topLevel ? <label className='ct-element-label'>
       {property.title}
@@ -13,7 +13,7 @@ export default ({ property, instance, topLevel }) => (
         const Element = factory(property)
 
         return (
-            <Element property={property} instance={instance} key={property.id} />
+          <Element property={property} key={property.id} />
         )
       })}
     </div>

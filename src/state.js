@@ -45,7 +45,7 @@ export default instance => {
       }
     }
 
-    processRequestQueue(instance)
+    instance::processRequestQueue()
   })
 
   return state
