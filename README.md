@@ -42,8 +42,8 @@ Add the following script tag in your HTML page:
 ```html
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    var x = Cignium.init('ELEMENT' [, 'CONFIGURATION'])
-    x.navigate('URL')
+    var client = Cignium.init('ELEMENT' [, 'CONFIGURATION'])
+    client.navigate('URL')
   })
 </script>
 ```
@@ -52,7 +52,7 @@ The global `Cignium` object has a `init` method, which accepts two parameters, `
 * **element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
 Can be either the id of the element as a string or the actual element object.
 * **configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
-* returns an instance of hypermedia client 
+* returns an instance of hypermedia client
 
 An instance of hypermedia client has the following methods:
 
