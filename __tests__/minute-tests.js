@@ -26,7 +26,7 @@ describe('Minute', () => {
     return minute.props.children[minute.props.children.length - 1].props.value
   }
 
-  describe('with date 2012-02-01', () => {
+  describe('with date time 2012-02-01 5:25', () => {
     beforeEach(() => {
       renderComponent(new Date(Date.UTC(2012, 1, 1, 5, 25)))
     })

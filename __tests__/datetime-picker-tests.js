@@ -5,7 +5,7 @@ import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 import DateTimePicker from '../src/components/elements/inputs/date/datetime-picker'
 
-describe('Basic date time picker with value 2012-01-31 12:00:00', () => {
+describe('Basic date time picker with value 2012-01-31 14:35:00', () => {
   let dateTimePicker
 
   beforeEach(() => {
