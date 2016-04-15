@@ -42,29 +42,25 @@ Add the following script tag in your HTML page:
 ```html
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    Cignium.init('ELEMENT' [, 'CONFIGURATION'])
-    Cignium.navigate('URL')
+    var client = Cignium.init('ELEMENT' [, 'CONFIGURATION'])
+    client.navigate('URL')
   })
 </script>
 ```
 
-There are four methods available on the global `Cignium` object: `init`, `navigate`, `get` and `set`.
+The global `Cignium` object has a `init` method, which accepts two parameters, `element` and `configuration`
+* **element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
+Can be either the id of the element as a string or the actual element object.
+* **configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
+* returns an instance of hypermedia client
 
-**Init** accepts two parameters, `element` and `configuration`
- * **Element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
- Can be either the id of the element as a string or the actual element object.
- * **Configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
+An instance of hypermedia client has the following methods:
 
-**Navigate** accepts a single parameter: the URL to the API endpoint that should be rendered.
-
-**Get** (without parameters) returns an object representation of all the fields in the current form.
-
-**Get** (with `path` parameter) returns the value of a property
- * **Path**: string array that describes the path to a property
-
-**Set** sets the value of a property
- * **Path**: string array that describes the path to a property
- + **Value**: new value of the property
+| Method  | Parameters | Description |
+| ------- | ---------- | ----------- |
+| `navigate` | `href` | accepts a single parameter: the URL to the API endpoint that should be rendered.<br>This method also exist in the global `Cignium` object, but is deprecated. When calling it, the last instance created will be used. |
+| `get` | `propertyName` (optional) | Returns the value of a property.<br>If the parameter is omitted, returns an object representation of all the fields in the current form. |
+| `set` | `propertyName, value` | sets the value of a property |
 
 ### Declaratively
 
@@ -89,15 +85,15 @@ depending on which way the client is initialized, programmatically or declarativ
  * Adding attributes to the element with the `data-endpoint` attribute.
  * Providing a configuration object as the second parameter to the `Cignium.init` function.
 
-Attributes should be provided in dash-casing **with** the data-prefix, e.g. `data-disable-default-styling`.
-Properties should be provided in camel-casing **without** the data-prefix, e.g. `disableDefaultStyling`.
+Attributes should be provided in dash-casing **with** the data-prefix, e.g. `data-action-list-position`.
+Properties should be provided in camel-casing **without** the data-prefix, e.g. `actionListPosition`.
 
 | Attribute  | Configuration property | Value type | Description |
 | ---------- | ---------------------- | ---------- | ----------- |
 | `data-endpoint` | `endpoint` | string | Specifies the starting point of the API that should be rendered. |
 | `data-action-list-position` | `actionListPosition` | string | Specifies the position of the action buttons. Accepted values are: `top` (default), `bottom` and `both`. |
-| | `onValueChange` | function | Callback function executed after a value has been updated. The callback receives 2 parameters: `id` (of the updated element) and `value` (after the change). |
-| | `onUrlChange` | function | Callback function executed after the url has changed. Receives 1 parameter: `url` (after the navigation). |
+| | `onValueChange` | function | Callback function executed after a value has been updated. Receives 3 parameters: `formName`, `propertyName`, `value`. |
+| | `onUrlChange` | function | Callback function executed after the url has changed. Receives 2 parameters: `url`, `formName`. |
 | | `onRedirect` | function | Callback function executed when the client will attempt a redirect. Receives 2 parameters: `url` (where the client would normally redirect) and `content` (of that url). If the function exists, the client will NOT automatically redirect. Optional return value: `{ title, content }`. |
 | `data-debug` | `debug` | boolean | When enabled, the debug view will be visible, showing the data recieved from the server. |
 

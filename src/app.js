@@ -1,19 +1,30 @@
-import { Component } from 'react'
+import { Component, PropTypes } from 'react'
 import Tooltip from 'react-tooltip'
 import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
 import Sitemap from './components/sitemap'
-import state from './state'
 
 export default class App extends Component {
-  constructor() {
+  static childContextTypes = {
+    state: PropTypes.object,
+    options: PropTypes.object,
+  };
+
+  getChildContext() {
+    return {
+      state: this.props.state,
+      options: this.props.options,
+    }
+  }
+
+  constructor({ state }) {
     super()
     this.state = state.get()
   }
 
   componentDidMount() {
-    state.on('update', state => this.setState(state))
+    this.props.state.on('update', state => this.setState(state))
   }
 
   render() {
@@ -31,7 +42,7 @@ export default class App extends Component {
         <ErrorMessage requestError={this.state.error} documentErrors={document ? document.errors : null} />
         <ActivityIndicator requests={this.state.requests} />
         <Sitemap resource={sitemap} />
-        <Document resource={document} config={this.props} />
+        <Document resource={document} />
       </div>
     )
   }

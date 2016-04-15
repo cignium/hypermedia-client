@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import ChildComponent from './child-component'
 import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
@@ -7,26 +7,28 @@ function getHref(resource) {
   return resource && resource.links.self && resource.links.self.href
 }
 
-export default class Document extends Component {
+export default class Document extends ChildComponent {
   componentDidUpdate(previousProps, previousState) {
-    if (this.props.config.onUrlChange) {
+    if (this.context.options.onUrlChange) {
       const previous = getHref(previousProps.resource)
       const current = getHref(this.props.resource)
       if (previous !== current) {
-        this.props.config.onUrlChange(current)
+        const formName = this.props.resource.name
+        this.context.options.onUrlChange(current, formName)
       }
     }
   }
 
   render() {
-    const { resource, config } = this.props
+    const { resource } = this.props
+    const { options } = this.context
     if (!resource) {
       return <div />
     }
 
     const Element = factory(resource)
-    const actions = <ActionList links={resource.links} config={config} />
-    const footer = config.actionListPosition !== 'top' && (
+    const actions = <ActionList links={resource.links} />
+    const footer = options.actionListPosition !== 'top' && (
       <div className='ct-document-footer'>
         {actions}
       </div>
@@ -38,11 +40,11 @@ export default class Document extends Component {
           <div className='ct-document-header-text'>
             {resource.title}
           </div>
-          {config.actionListPosition !== 'bottom' && actions}
+          {options.actionListPosition !== 'bottom' && actions}
         </div>
-        <Element property={resource} config={config} topLevel />
+        <Element property={resource} topLevel />
         {footer}
-        {config.debug ? <JsonDebugger resource={resource} /> : null}
+        {options.debug && <JsonDebugger resource={resource} />}
       </div>
     )
   }

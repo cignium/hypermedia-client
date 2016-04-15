@@ -1,42 +1,34 @@
 import { request } from './http'
 import factory from './factory'
-import state from '../state'
 import draft from './draft'
-
-state.on('update', ({ requests }) => {
-  if (requests.current) {
-    if (requests[requests.current]) {
-      return
-    }
-    else {
-      state.get().requests.remove('current')
-    }
-  }
-
-  processRequestQueue()
-})
 
 async function loadSitemap(resource) {
   if (!resource.links.sitemap) {
     return
   }
 
+  const state = this.state
   const { href } = resource.links.sitemap
 
   if (state.get().resources[href]) {
-    requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+    this::requestResource({ href, method: 'get', resourceKey: 'sitemap' })
     return
   }
 
-  await requestResource({ href, method: 'get', resourceKey: 'sitemap' })
+  await this::requestResource({ href, method: 'get', resourceKey: 'sitemap' })
 }
 
-async function processRequest({ data, href, id, method, resourceKey, name, config }) {
+async function processRequest({ data, href, id, method, resourceKey }) {
+  const state = this.state
   try {
-    const response = await request(method, href, data, config)
+    const response = await this::request(method, href, data)
 
-    if (config && config.onValueChange && data) {
-      config.onValueChange(name, data[Object.keys(data)[0]])
+    if (this.options.onValueChange && data) {
+      const propertyId = Object.keys(data)[0]
+      const propertyName = this.allProperties.find(p => p.id === propertyId).name
+      const resources = state.get().resources
+      const formName = resources[resources.current].name
+      this.options.onValueChange(formName, propertyName, data[propertyId])
     }
 
     if (response == null) {
@@ -44,8 +36,9 @@ async function processRequest({ data, href, id, method, resourceKey, name, confi
     }
 
     const resource = factory(response)
-    draft.reload(href, resource)
-    await loadSitemap(resource)
+
+    this::draft.reload(href, resource)
+    await this::loadSitemap(resource)
 
     state.get().resources.set(resource.links.self.href, resource)
 
@@ -63,52 +56,50 @@ async function processRequest({ data, href, id, method, resourceKey, name, confi
 }
 
 function getNextRequestFromQueue() {
-  const { requests } = state.get()
+  const { requests } = this.state.get()
 
   return Object.keys(requests).sort()
     .map(key => { return { ...requests[key], id: key }})[0]
 }
 
-function processRequestQueue() {
-  const request = getNextRequestFromQueue()
+export function processRequestQueue() {
+  const request = this::getNextRequestFromQueue()
 
   if (request) {
-    state.get().requests.set('current', request.id)
-    processRequest(request)
+    this.state.get().requests.set('current', request.id)
+    this::processRequest(request)
   }
 }
 
 function requestResource(request) {
-  state.get().set('error', null)
-  state.get().requests.set(new Date().getTime(), request)
+  this.state.get().set('error', null)
+  this.state.get().requests.set(new Date().getTime(), request)
 }
 
-export function executeAction(href, config) {
-  requestResource({ href, method: 'post', resourceKey: 'current', config })
+export function executeAction(href) {
+  this::requestResource({ href, method: 'post', resourceKey: 'current' })
 }
 
-export function navigate(href, config) {
+export function navigate(href) {
   if (href === null) {
-    state.get().resources.set('current', null)
+    this.state.get().resources.set('current', null)
     return
   }
 
-  requestResource({ href, method: 'get', resourceKey: 'current', config })
+  this::requestResource({ href, method: 'get', resourceKey: 'current' })
 }
 
-export function update(links, id, value, name, config) {
+export function update(links, id, value) {
   if (links.update) {
     const href = links.update.href
-    return requestResource({
+    return this::requestResource({
       data: { [id]: value },
       href,
       method: 'post',
-      name,
-      config,
     })
   }
   else if (links.submit) {
-    draft.update(links.submit.href, id, value)
+    this::draft.update(links.submit.href, id, value)
     return
   }
 
@@ -116,8 +107,8 @@ export function update(links, id, value, name, config) {
 }
 
 export function submit(href) {
-  const data = state.get().drafts[href]
-  requestResource({
+  const data = this.state.get().drafts[href]
+  this::requestResource({
     data,
     href,
     method: 'post',
