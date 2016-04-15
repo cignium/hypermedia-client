@@ -28,7 +28,8 @@ export default ({ className, errors, onCommit, property, value }) => {
       <Year
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <Month
         className={className}
         onCommit={date => handleChange(date)}

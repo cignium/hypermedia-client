@@ -5,7 +5,8 @@ export default ({ className, errors, onCommit, property, value }) => (
   <select
     className={cx(className, 'ct-input ct-year')}
     onChange={ e => onCommit(selectYear(e.target.value, value))}
-    value={getYear(value)}>
+    value={getYear(value)}
+    disabled={property ? property.disabled : false}>
       {renderOptions()}
   </select>
 )
