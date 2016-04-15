@@ -1,3 +1,21 @@
+export function allMinutes() {
+  const minutes = []
+  for (let i = 0; i < 60; i++) {
+    minutes.push(i)
+  }
+
+  return minutes
+}
+
+export function allHours() {
+  const hours = []
+  for (let i = 0; i < 24; i++) {
+    hours.push(i)
+  }
+
+  return hours
+}
+
 export function lastDayInMonth(year, month) {
   return new Date(Date.UTC(year, month + 1, 0)).getUTCDate()
 }
