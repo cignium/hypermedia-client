@@ -4,16 +4,15 @@ import ActivityIndicator from './components/activity-indicator'
 import Document from './components/document'
 import ErrorMessage from './components/error-message'
 import Sitemap from './components/sitemap'
-import state from './state'
 
 export default class App extends Component {
-  constructor() {
+  constructor(props) {
     super()
-    this.state = state.get()
+    this.state = props.state.get()
   }
 
   componentDidMount() {
-    state.on('update', state => this.setState(state))
+    this.props.state.on('update', state => this.setState(state))
   }
 
   render() {
@@ -28,10 +27,15 @@ export default class App extends Component {
           multiline
           place='bottom'
           type='error' />
-        <ErrorMessage requestError={this.state.error} documentErrors={document ? document.errors : null} />
+        <ErrorMessage
+          documentErrors={document ? document.errors : null}
+          requestError={this.state.error} />
         <ActivityIndicator requests={this.state.requests} />
-        <Sitemap resource={sitemap} />
-        <Document resource={document} config={this.props} />
+        <Sitemap api={this.props.api} resource={sitemap} />
+        <Document
+          api={this.props.api}
+          config={this.props.config}
+          resource={document} />
       </div>
     )
   }

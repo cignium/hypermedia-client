@@ -19,13 +19,15 @@ export default class Document extends Component {
   }
 
   render() {
-    const { resource, config } = this.props
+    const { api, config, resource } = this.props
+
     if (!resource) {
       return <div />
     }
 
     const Element = factory(resource)
-    const actions = <ActionList links={resource.links} config={config} />
+    const actions = <ActionList api={api} config={config} links={resource.links} />
+
     const footer = config.actionListPosition !== 'top' && (
       <div className='ct-document-footer'>
         {actions}
@@ -40,7 +42,7 @@ export default class Document extends Component {
           </div>
           {config.actionListPosition !== 'bottom' && actions}
         </div>
-        <Element property={resource} config={config} topLevel />
+        <Element api={api} config={config} property={resource} topLevel />
         {footer}
         {config.debug ? <JsonDebugger resource={resource} /> : null}
       </div>

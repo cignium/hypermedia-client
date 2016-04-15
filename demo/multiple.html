@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hypermedia Client Testing - Multiple Instances</title>
+    <script src="client.js"></script>
+  </head>
+  <body>
+    <table style="width: 100%">
+      <tr style="text-align: center;">
+        <td>
+          <input id="href1" placeholder="url" type="text">
+          <button onclick="client1.navigate(href1.value)" type="button">
+            Navigate
+          </button>
+        </td>
+        <td>
+          <input id="href2" placeholder="other url" type="text">
+          <button onclick="client2.navigate(href2.value)" type="button">
+            Navigate
+          </button>
+        </td>
+      </tr>
+      <tr style="vertical-align: top;">
+        <td id="instance1"></td>
+        <td id="instance2"></td>
+      </tr>
+    </table>
+    <script type="text/javascript">
+      var client1 = new Cignium.Client({
+        onRedirect: (url, content) => ({ title: 'Instance 1 Complete' })
+      })
+
+      var client2 = new Cignium.Client({
+        actionListPosition: 'bottom',
+        onRedirect: (url, content) => ({ title: 'Instance 2 Complete' })
+      })
+
+      client1.init('instance1')
+      client2.init('instance2')
+    </script>
+  </body>
+</html>
