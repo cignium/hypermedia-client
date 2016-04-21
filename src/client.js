@@ -32,4 +32,30 @@ export default class Client {
   navigate(href) {
     this.api.navigate(href)
   }
+
+  get(propertyName) {
+    let data = this.state.get().resources
+    data = data[data.current]
+  
+    if (propertyName) {
+      return this.api.allProperties.find(i => i.name === propertyName).value
+    }
+  
+    const output = {}
+    this.allProperties.forEach(i => {
+      output[i.name] = i.value
+    })
+    return output
+  }
+  
+  set(propertyName, value) {
+    let data = this.state.get().resources
+    data = data[data.current]
+  
+    const property = this.api.allProperties.find(i => i.name === propertyName)
+  
+    if (property.value !== value) {
+      this.api.update(property.links, property.id, value)
+    }
+  }
 }

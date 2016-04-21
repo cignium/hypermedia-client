@@ -49,7 +49,7 @@ Add the following script tag in your HTML page:
 </script>
 ```
 
-There are two methods available on the global `Cignium` object: `init` and `navigate`.
+There are four methods available on the global `Cignium` object: `init`, `navigate`, `get` and `set`.
 
 **init** accepts two parameters:
 
@@ -59,6 +59,13 @@ There are two methods available on the global `Cignium` object: `init` and `navi
 **navigate** accepts one parameter:
 
 * `href`: the url to the endpoint that should be rendered.
+
+**get** accepts one optional parameter
++ `propertyName`: name of the property to retrieve. If the parameter is omitted, the method returns an object representation of all the fields in the current form.
+
+**set** accepts two parameters
++ `propertyName`: name of the property to set.
++ `value`: new value of the property.
 
 ### Multiple Instances
 
@@ -83,15 +90,13 @@ There is one constructor available on the global `Cignium` object: `Client` The 
 
 * `configuration`: optional configuration object. Further explained under [Configuration](#configuration).
 
-Creating an instance will return an object with the two methods: `init` and `navigate`.
+Creating an instance will return an object with the two methods: `init`, `navigate`, `get` and `set`.
 
 **init** accepts one parameters:
 
 * `element`: mandatory parameter pointing out the element that the client will inject the rendered output into. Can be either the `id` of the element as a string or the actual element object.
 
-**navigate** accepts one parameter:
-
-* `href`: the url to the endpoint that should be rendered.
+**navigate**, **get** and **set** behave as the ones on the global `Cignium` object.
 
 ### Declaratively
 

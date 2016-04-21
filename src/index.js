@@ -28,6 +28,22 @@ function navigate(href) {
   globalClient.navigate(href)
 }
 
+function get(propertyName) {
+  if (!globalClient) {
+    throw Error('init must be called before get can be called.')
+  }
+
+  globalClient.get(propertyName)
+}
+
+function set(propertyName, value) {
+  if (!globalClient) {
+    throw Error('init must be called before set can be called.')
+  }
+
+  globalClient.set(propertyName, value)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const element = document.querySelector('[data-endpoint]')
 

@@ -13,7 +13,8 @@ export default class Document extends Component {
       const previous = getHref(previousProps.resource)
       const current = getHref(this.props.resource)
       if (previous !== current) {
-        this.props.config.onUrlChange(current)
+        const formName = this.props.resource.name
+        this.props.config.onUrlChange(current, formName)
       }
     }
   }

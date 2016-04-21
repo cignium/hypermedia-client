@@ -2,13 +2,38 @@ import { request } from './http'
 import Draft from './draft'
 import factory from './factory'
 
+function getAllLeafProperties(data) {
+  const properties = []
+  if (data.properties) {
+    data.properties.forEach(p => {
+      switch (p.type) {
+        case 'html':
+        case 'plain':
+        case 'array':
+          break
+        case 'object':
+          Array.prototype.push.apply(properties, getAllLeafProperties(p))
+          break
+        default:
+          properties.push(p)
+          break
+      }
+    })
+  }
+  return properties
+}
+
 export default class Api {
   constructor(state, config) {
     this.config = config
     this.draft = new Draft(state)
     this.state = state
 
-    state.on('update', ({ requests }) => {
+    state.on('update', ({ requests, resources }) => {
+      if (resources.current) {
+        this.allProperties = getAllLeafProperties(resources[resources.current])
+      }
+
       if (requests.current) {
         if (requests[requests.current]) {
           return
@@ -46,12 +71,16 @@ export default class Api {
     })
   }
 
-  async processRequest({ data, href, id, method, resourceKey, name }) {
+  async processRequest({ data, href, id, method, resourceKey }) {
     try {
       const response = await request(method, href, data, this.config)
 
       if (this.config.onValueChange && data) {
-        this.config.onValueChange(name, data[Object.keys(data)[0]])
+        const propertyId = Object.keys(data)[0]
+        const propertyName = this.allProperties.find(p => p.id === propertyId).name
+        const resources = this.state.get().resources
+        const formName = resources[resources.current].name
+        this.config.onValueChange(formName, propertyName, data[propertyId])
       }
 
       if (response == null) {
@@ -122,7 +151,7 @@ export default class Api {
     })
   }
 
-  update(links, id, value, name) {
+  update(links, id, value) {
     if (links.update) {
       const href = links.update.href
 
@@ -130,7 +159,6 @@ export default class Api {
         data: { [id]: value },
         href,
         method: 'post',
-        name,
       })
     }
     else if (links.submit) {
