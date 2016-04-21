@@ -1,48 +1,50 @@
-import state from '../state'
-
-function find(href) {
-  return state.get().drafts[href]
-}
-
-function create(href, initial) {
-  state.get().drafts.set(href, initial)
-}
-
-function remove(href) {
-  state.get().drafts.remove(href)
-}
-
-function update(href, id, value) {
-  const draft = find(href)
-  const property = { [id]: value }
-  if (draft) {
-    draft.set(property)
-  }
-  else {
-    create(href, property)
-  }
-}
-
-function reload(href, resource) {
-  const draft = find(href)
-  if (!draft) {
-    return
+export default class Draft {
+  constructor(state) {
+    this.state = state
   }
 
-  const navigatedAway = !resource.links.submit || resource.links.submit.href != href
-  if (navigatedAway) {
-    remove(href)
-    return
+  create(href, initial) {
+    this.state.get().drafts.set(href, initial)
   }
 
-  Object.keys(draft).forEach(key => {
-    if (resource[key]) {
-      resource[key].value = draft[key]
+  find(href) {
+    return this.state.get().drafts[href]
+  }
+
+  reload(href, resource) {
+    const draft = this.find(href)
+
+    if (!draft) {
+      return
     }
-  })
-}
 
-export default {
-  update,
-  reload,
+    const navigatedAway = !resource.links.submit || resource.links.submit.href != href
+
+    if (navigatedAway) {
+      this.remove(href)
+      return
+    }
+
+    Object.keys(draft).forEach(key => {
+      if (resource[key]) {
+        resource[key].value = draft[key]
+      }
+    })
+  }
+
+  remove(href) {
+    this.state.get().drafts.remove(href)
+  }
+
+  update(href, id, value) {
+    const draft = this.find(href)
+    const property = { [id]: value }
+
+    if (draft) {
+      draft.set(property)
+    }
+    else {
+      this.create(href, property)
+    }
+  }
 }

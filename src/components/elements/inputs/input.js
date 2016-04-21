@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { update } from '../../../api'
 import cx from 'classnames'
 import factory from './factory'
 
@@ -56,7 +55,7 @@ export default class Input extends Component {
     const { property, config } = this.props
 
     if (property.value !== value) {
-      update(
+      this.props.api.update(
       	property.links,
       	property.id,
       	value,

@@ -32,10 +32,11 @@ For default styling, include this tag:
 
 ## Get Started
 
-Initializing the client can be done in two ways, **programmatically** by calling `Cignium.init()`
-or **declaratively** by adding attributes to an existing HTML-element.
+Initializing the client can be done in two ways, **programmatically** by calling `Cignium.init()` or **declaratively** by adding attributes to an existing HTML-element.
 
 ### Programmatically
+
+#### Single Instance
 
 Add the following script tag in your HTML page:
 
@@ -50,44 +51,73 @@ Add the following script tag in your HTML page:
 
 There are four methods available on the global `Cignium` object: `init`, `navigate`, `get` and `set`.
 
-**Init** accepts two parameters, `element` and `configuration`
- * **Element**: Mandatory parameter pointing out the element that the client will inject the rendered output into.
- Can be either the id of the element as a string or the actual element object.
- * **Configuration**: Optional configuration object. Further explained under [Configuration](#configuration)
+**init** accepts two parameters:
 
-**Navigate** accepts a single parameter: the URL to the API endpoint that should be rendered.
+* `element`: mandatory parameter pointing out the element that the client will inject the rendered output into. Can be either the `id` of the element as a string or the actual element object.
+* `configuration`: optional configuration object. Further explained under [Configuration](#configuration).
 
-**Get** (without parameters) returns an object representation of all the fields in the current form.
+**navigate** accepts one parameter:
 
-**Get** (with `path` parameter) returns the value of a property
- * **Path**: string array that describes the path to a property
+* `href`: the url to the endpoint that should be rendered.
 
-**Set** sets the value of a property
- * **Path**: string array that describes the path to a property
- + **Value**: new value of the property
+**get** accepts one optional parameter
++ `propertyName`: name of the property to retrieve. If the parameter is omitted, the method returns an object representation of all the fields in the current form.
+
+**set** accepts two parameters
++ `propertyName`: name of the property to set.
++ `value`: new value of the property.
+
+### Multiple Instances
+
+To render multiple instances of the client, add the following script tag in your HTML page:
+
+```html
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var client1 = new Cignium.Client(['CONFIGURATION'])
+    var client2 = new Cignium.Client(['CONFIGURATION'])
+
+    client1.init('ELEMENT')
+    client2.init('ELEMENT')
+
+    client1.navigate('URL')
+    client2.navigate('URL')
+  })
+</script>
+```
+
+There is one constructor available on the global `Cignium` object: `Client` The constructor accepts one parameter:
+
+* `configuration`: optional configuration object. Further explained under [Configuration](#configuration).
+
+Creating an instance will return an object with the two methods: `init`, `navigate`, `get` and `set`.
+
+**init** accepts one parameters:
+
+* `element`: mandatory parameter pointing out the element that the client will inject the rendered output into. Can be either the `id` of the element as a string or the actual element object.
+
+**navigate**, **get** and **set** behave as the ones on the global `Cignium` object.
 
 ### Declaratively
 
 Add the following to your HTML page:
 
+*NOTE: You cannot render multiple instances declaratively.*
+
 ```html
 <div data-endpoint="URL"></div>
 ```
 
-By adding the `data-endpoint` attribute to an element on the page, you are telling the client to inject the
-rendered output into that element. The value provided to the attribute should be the URL to the API endpoint
-that the client should render.
+By adding the `data-endpoint` attribute to an element on the page, you are telling the client to inject the rendered output into that element. The value provided to the attribute should be the URL to the API endpoint that the client should render.
 
-Further configuration can be done by adding attributes to the element. See [Configuration](#configuration) for
-available options.
-
+Further configuration can be done by adding attributes to the element. See [Configuration](#configuration) for available options.
 
 ### <a name="configuration"></a>Configuration
 
-There are two ways to configure the renderer,
-depending on which way the client is initialized, programmatically or declaratively.
- * Adding attributes to the element with the `data-endpoint` attribute.
- * Providing a configuration object as the second parameter to the `Cignium.init` function.
+There are two ways to configure the renderer, depending on which way the client is initialized, programmatically or declaratively.
+
+* Adding attributes to the element with the `data-endpoint` attribute.
+* Providing a configuration object as the second parameter to the `Cignium.init` function.
 
 Attributes should be provided in dash-casing **with** the data-prefix, e.g. `data-disable-default-styling`.
 Properties should be provided in camel-casing **without** the data-prefix, e.g. `disableDefaultStyling`.

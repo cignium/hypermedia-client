@@ -2,17 +2,17 @@ import factory from './factory'
 import Link from './link'
 import cx from 'classnames'
 
-export default ({ property }) => {
+export default ({ api, property }) => {
   return (
     <div className='ct-list'>
       {property.links.navigate ?
-      <Link 
-        className={cx('ct-list-header', 
+      <Link
+        className={cx('ct-list-header',
           {'ct-invalid' : property.errors && property.errors.length})}
           errors={property.errors}
           key={property.id}
           property={property} />
-      : property.title ? 
+      : property.title ?
         <label className='ct-list-header ct-element-label'>
           {property.title}
         </label>
@@ -23,6 +23,7 @@ export default ({ property }) => {
 
       return (
         <Element
+          api={api}
           className={cx('ct-list-item', {
             'ct-invalid' : item.errors && item.errors.length})}
           errors={item.errors}
