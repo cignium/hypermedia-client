@@ -28,8 +28,9 @@ export default class Api {
     this.config = config
     this.draft = new Draft(state)
     this.state = state
+    let loading = false
 
-    state.on('update', ({ requests, resources }) => {
+    state.on('update', ({ requests, resources, error }) => {
       if (resources.current) {
         this.allProperties = getAllLeafProperties(resources[resources.current])
       }
@@ -41,6 +42,22 @@ export default class Api {
         else {
           state.get().requests.remove('current')
         }
+      }
+
+      const wasLoading = loading
+      loading = !!Object.keys(requests).length
+
+      if (wasLoading != loading) {
+        if (loading && config.onLoading) {
+          config.onLoading()
+        }
+        if (!loading && config.onLoaded) {
+          config.onLoaded()
+        }
+      }
+
+      if (error && config.onError && !loading) {
+        config.onError(error)
       }
 
       this.processRequestQueue()
