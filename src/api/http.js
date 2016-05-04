@@ -11,7 +11,7 @@ export async function request(method, href, data, config) {
   const response = await fetch(href, request)
   const contentType = response.headers.get('Content-Type')
 
-  if (response.status == 401 && contentType && contentType.startsWith('text/html')) {
+  if (response.status == 401) {
     location.href = method.toLowerCase() == 'get' ? response.url : location.href
     return
   }
