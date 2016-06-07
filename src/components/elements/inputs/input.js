@@ -38,7 +38,8 @@ export default class Input extends Component {
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
-        onUpdate={value => this.setState({ value })}
+        onUpdate={value => this.setState({ value }) }
+        onSave={value => this.persist({ value }) }
         value={this.state.value} />
       </div>
     )
@@ -51,7 +52,10 @@ export default class Input extends Component {
     else {
       this.setState({ value })
     }
+    this.persist(value)
+  }
 
+  persist(value) {
     const { property, config } = this.props
 
     if (property.value !== value) {

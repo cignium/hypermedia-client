@@ -6,12 +6,14 @@ import DropdownList from './dropdown-list'
 import MultilineTextInput from './multiline-text-input'
 import NumberInput from './number-input'
 import TextInput from './text-input'
+import FileUpload from './file-upload'
 
 export default function(property) {
   switch (property.type) {
     case 'boolean': return Checkbox
     case 'date': return DatePicker
     case 'datetime': return DateTimePicker
+    case 'file': return FileUpload
     case 'number': return NumberInput
     case 'string':
     case 'string[]':
