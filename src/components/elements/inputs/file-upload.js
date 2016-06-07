@@ -31,22 +31,22 @@ export default class FileUpload extends Component {
   }
 
   renderFiles(value) {
-    if (!value) {
+    if (!value || value.length === 0) {
       return null
     }
 
     if (value instanceof Array) {
       return (<ul>
-          value.map(fileKey => {
-            renderFileKey(flieKey)
-          })
+        {value.map(fileKey => {
+          return this.renderFileKey(fileKey)
+        }) }
       </ul>)
     }
     return <ul>{ this.renderFileKey(value) }</ul>
   }
 
   renderFileKey(key) {
-    return <li>{this.getFileNameFromKey(key)}</li>
+    return <li key={key}>{this.getFileNameFromKey(key)}</li>
   }
 
   getFileNameFromKey(key) {
@@ -55,6 +55,9 @@ export default class FileUpload extends Component {
   }
 
   handleFiles(e) {
+    if (e.target.files.length === 0) {
+      return
+    }
     const promise = new Promise((resolve, reject) => {
       if (this.props.property.isArray) {
         const allPromises = []
