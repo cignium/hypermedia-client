@@ -42,7 +42,7 @@ export default class Client {
     }
   
     const output = {}
-    this.allProperties.forEach(i => {
+    this.api.allProperties.forEach(i => {
       output[i.name] = i.value
     })
     return output
@@ -55,6 +55,9 @@ export default class Client {
     const property = this.api.allProperties.find(i => i.name === propertyName)
   
     if (property.value !== value) {
+      if (!property.links.update) {
+        property.set('value', value)
+      }
       this.api.update(property.links, property.id, value)
     }
   }
