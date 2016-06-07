@@ -13,7 +13,8 @@ export default function(property) {
     case 'boolean': return Checkbox
     case 'date': return DatePicker
     case 'datetime': return DateTimePicker
-    case 'file': return FileUpload
+    case 'file':
+    case 'file[]': return FileUpload
     case 'number': return NumberInput
     case 'string':
     case 'string[]':

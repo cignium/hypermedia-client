@@ -8,6 +8,6 @@ export default function(data, parent) {
     id: data.id,
     options: data.options,
     value: data.value,
-    isArray: data.type === 'string[]',
+    isArray: data.type === 'string[]' || data.type === 'file[]',
   }
 }
