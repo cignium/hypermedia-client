@@ -46,7 +46,9 @@ export default class FileUpload extends Component {
   }
 
   renderFileKey(key) {
-    return <li key={key}>{this.getFileNameFromKey(key)}</li>
+    return (<li key={key}>{this.getFileNameFromKey(key) }
+      <span className={'delete-zone'} title='Delete'><span className={'delete'}>×</span></span>
+    </li>)
   }
 
   getFileNameFromKey(key) {
