@@ -47,7 +47,7 @@ export default class FileUpload extends Component {
 
   renderFileKey(key) {
     return (<li key={key}>{this.getFileNameFromKey(key) }
-      <span onClick={() => this.props.onDelete()} className={'delete-zone'} title='Delete'>
+      <span onClick={() => this.deleteFile(key)} className={'delete-zone'} title='Delete'>
         <span className={'delete'}>×</span>
       </span>
     </li>)
@@ -56,6 +56,16 @@ export default class FileUpload extends Component {
   getFileNameFromKey(key) {
     const i = key.indexOf('/')
     return key.substr(i + 1)
+  }
+
+  deleteFile(key) {
+    if (this.props.property.isArray) {
+      this.props.onDeleteItem(key)
+    }
+    else {
+      this.props.onDelete()
+    }
+
   }
 
   handleFiles(e) {
