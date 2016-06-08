@@ -40,16 +40,10 @@ export default class Input extends Component {
         onCommit={value => this.update(value)}
         onUpdate={value => this.setState({ value }) }
         onSave={value => this.persist({ value }) }
-        onDelete={() => this.delete() }
         onDeleteItem={item => this.deleteItem(item) }
         value={this.state.value} />
       </div>
     )
-  }
-
-  delete() {
-    const { property } = this.props
-    this.props.api.delete(property.links)
   }
 
   deleteItem(item) {

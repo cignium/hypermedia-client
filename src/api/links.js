@@ -17,7 +17,6 @@ export default function(links, parentLinks) {
     parent: links.filter(link => link.rel == 'parent')[0],
     self: links.filter(link => link.rel == 'self')[0],
     sitemap: links.find(link => link.rel == 'sitemap'),
-    delete: links.find(link => link.rel == 'delete'),
     deleteItems: links.filter(link => link.rel == 'delete-item'),
     submit,
     update,

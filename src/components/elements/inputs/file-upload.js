@@ -63,7 +63,7 @@ export default class FileUpload extends Component {
       this.props.onDeleteItem(key)
     }
     else {
-      this.props.onDelete()
+      this.props.onSave(null)
     }
 
   }
