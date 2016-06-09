@@ -24,14 +24,33 @@ export default class FileUpload extends Component {
           title={this.props.property.title}
           disabled={this.props.property.disabled}
           onClick={() => this.fileInput.click() }>
-          Select file(s)
+          {this.renderTitle()}
         </button>
         <span>{this.renderFiles(this.props.value) }</span>
       </div>)
   }
 
+  renderTitle() {
+    if (this.props.property.isArray) {
+      if (this.isEmpty(this.props.value)) {
+        return 'Select file(s)'
+      }
+      else {
+        return 'Add file(s)'
+      }
+    }
+    else {
+      if (this.isEmpty(this.props.value)) {
+        return 'Select file'
+      }
+      else {
+        return 'Replace file'
+      }
+    }
+  }
+
   renderFiles(value) {
-    if (!value || value.length === 0) {
+    if (this.isEmpty(value)) {
       return null
     }
 
@@ -47,7 +66,7 @@ export default class FileUpload extends Component {
 
   renderFileKey(key) {
     return (<li key={key}>{this.getFileNameFromKey(key) }
-      <span onClick={() => this.deleteFile(key)} className={'delete-zone'} title='Delete'>
+      <span onClick={() => this.deleteFile(key)} className={'delete-zone'} title='Clear'>
         <span className={'delete'}>×</span>
       </span>
     </li>)
@@ -56,6 +75,10 @@ export default class FileUpload extends Component {
   getFileNameFromKey(key) {
     const i = key.indexOf('/')
     return key.substr(i + 1)
+  }
+
+  isEmpty(value) {
+    return !value || value.length === 0
   }
 
   deleteFile(key) {
