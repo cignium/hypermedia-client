@@ -22,50 +22,6 @@
   border-color: #CC0302;
 }
 
-.ct-file-upload-input > button {
-  background: #8285F5;
-  border: solid 1px #6064ED;
-  border-radius: 3px;
-  color: white;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 10px 20px;
-}
-
-.ct-file-upload-input  > button:hover {
-  background: #AAACFA;
-}
-
-.ct-file-upload-input  > button:active {
-  background: #8285F5;
-}
-
-.ct-file-upload-input  > span {
-  display: inline-table;
-}
-
-.ct-file-upload-input > span > ul {
-  list-style-type: none;
-}
-
-.ct-file-upload-input .delete-zone {
-    color: #999;
-    cursor: pointer;
-    display: table-cell;
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    width: 17px;
-    margin-left: 10px;
-    float: right;
-}
-
-.ct-file-upload-input .delete-zone:hover {
-    color: #CC0302;
-}
-
-
 .ct-checkbox {
   margin: 0;
   width: auto;

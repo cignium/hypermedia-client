@@ -6,7 +6,7 @@ import DropdownList from './dropdown-list'
 import MultilineTextInput from './multiline-text-input'
 import NumberInput from './number-input'
 import TextInput from './text-input'
-import FileUpload from './file-upload'
+import FileInput from './file-input'
 
 export default function(property) {
   switch (property.type) {
@@ -14,7 +14,7 @@ export default function(property) {
     case 'date': return DatePicker
     case 'datetime': return DateTimePicker
     case 'file':
-    case 'file[]': return FileUpload
+    case 'file[]': return FileInput
     case 'number': return NumberInput
     case 'string':
     case 'string[]':

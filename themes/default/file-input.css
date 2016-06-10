@@ -1,0 +1,43 @@
+.ct-file-input > button {
+  background: #8285F5;
+  border: solid 1px #6064ED;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.ct-file-input  > button:hover {
+  background: #AAACFA;
+}
+
+.ct-file-input  > button:active {
+  background: #8285F5;
+}
+
+.ct-file-input  .ct-selected-information {
+  display: inline-table;
+  max-width: 75%;
+}
+
+.ct-file-input .ct-selected-information > ul {
+  list-style-type: none;
+}
+
+.ct-file-input .delete-zone {
+    color: #999;
+    cursor: pointer;
+    display: table-cell;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 17px;
+    margin-left: 10px;
+    float: right;
+}
+
+.ct-file-input .delete-zone:hover {
+    color: #CC0302;
+}

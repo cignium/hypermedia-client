@@ -11,6 +11,7 @@
 @import './sitemap.css';
 @import './date-picker.css';
 @import './datetime-picker.css';
+@import './file-input.css';
 
 .ct-error-tooltip {
   background-color: #CC0302 !important;

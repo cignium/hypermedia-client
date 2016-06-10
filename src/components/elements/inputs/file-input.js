@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import cx from 'classnames'
 
-export default class FileUpload extends Component {
+export default class FileInput extends Component {
 
   render() {
     const opts = {}
@@ -10,7 +10,7 @@ export default class FileUpload extends Component {
     }
     return (
 
-      <div className={cx(this.props.className, 'ct-file-upload-input') }>
+      <div className={cx(this.props.className, 'ct-file-input') }>
         <input
           {...opts}
           id={this.props.property.name}
@@ -26,7 +26,7 @@ export default class FileUpload extends Component {
           onClick={() => this.fileInput.click() }>
           {this.renderTitle()}
         </button>
-        <span>{this.renderFiles(this.props.value) }</span>
+        <span className={'ct-selected-information'}>{this.renderFiles(this.props.value) }</span>
       </div>)
   }
 
