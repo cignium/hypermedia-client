@@ -133,6 +133,7 @@ Properties should be provided in camel-casing **without** the data-prefix, e.g. 
 | | `onLoading` | function | Callback function executed when the client start loading. Does not receives parameters. |
 | | `onLoaded` | function | Callback function executed when the client has loaded. Does not receives parameters. |
 | `data-debug` | `debug` | boolean | When enabled, the debug view will be visible, showing the data recieved from the server. |
+| `data-scroll-to-top` | `scrollToTop` | boolean | When enabled, scrolls the top of the form into the visible area of the browser window after the url has changed. |
 
 ### Styling
 

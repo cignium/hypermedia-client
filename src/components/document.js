@@ -9,10 +9,14 @@ function getHref(resource) {
 
 export default class Document extends Component {
   componentDidUpdate(previousProps, previousState) {
-    if (this.props.config.onUrlChange) {
-      const previous = getHref(previousProps.resource)
-      const current = getHref(this.props.resource)
-      if (previous !== current) {
+    const previous = getHref(previousProps.resource)
+    const current = getHref(this.props.resource)
+    if (previous !== current) {
+      if (this.props.config.scrollToTop) {
+        React.findDOMNode(this).scrollIntoView()
+      }
+
+      if (this.props.config.onUrlChange) {
         const formName = this.props.resource.name
         this.props.config.onUrlChange(current, formName)
       }
