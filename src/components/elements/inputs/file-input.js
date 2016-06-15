@@ -17,8 +17,7 @@ export default class FileInput extends Component {
           onChange={e => this.handleFiles(e).then(file => this.props.onSave(file))}
           type={'file'}
           style={{ display: 'none' }}
-          ref={inputElement => this.fileInput = inputElement}
-          />
+          ref={inputElement => this.fileInput = inputElement} />
         <button
           className={'ct-action'}
           title={this.props.property.title}
@@ -103,7 +102,6 @@ export default class FileInput extends Component {
           allPromises.push(this.handleFile(e.target.files[i]))
         }
         Promise.all(allPromises).then(values => {
-          console.log(values)
           resolve(values)
         })
       }
