@@ -27,7 +27,7 @@ export default class Input extends Component {
 
     return (
       <div
-        className={cx('ct-element', `ct-${this.props.property.type}-element`)}>
+        className={cx('ct-element', `ct-${this.props.property.type.replace(/\[\]/,'-list')}-element`)}>
         <label className='ct-element-label' htmlFor={this.props.property.name}>
           {this.props.property.title}
         </label>
@@ -38,10 +38,17 @@ export default class Input extends Component {
         errors={this.props.property.errors.join('<br>')}
         property={this.props.property}
         onCommit={value => this.update(value)}
-        onUpdate={value => this.setState({ value })}
+        onUpdate={value => this.setState({ value }) }
+        onSave={value => this.persist({ value }) }
+        onDeleteItem={item => this.deleteItem(item) }
         value={this.state.value} />
       </div>
     )
+  }
+
+  deleteItem(item) {
+    const { property } = this.props
+    this.props.api.deleteItem(property.links, item)
   }
 
   update(value) {
@@ -51,7 +58,10 @@ export default class Input extends Component {
     else {
       this.setState({ value })
     }
+    this.persist(value)
+  }
 
+  persist(value) {
     const { property, config } = this.props
 
     if (property.value !== value) {

@@ -185,4 +185,21 @@ export default class Api {
 
     throw Error('Invalid operation, no update or submit link present')
   }
+
+  deleteItem(links, item) {
+    if (!links.deleteItems || links.deleteItems.length <= 0) {
+      throw Error('Invalid operation, no delete-item link present')
+    }
+
+    const itemLink = links.deleteItems.find(link => link.item == item)
+    if (!itemLink) {
+      throw Error(`Invalid operation, no delete-item linkfound for item ${item}`)
+    }
+    const href = itemLink.href
+
+    return this.requestResource({
+      href,
+      method: 'post',
+    })
+  }
 }
