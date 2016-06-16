@@ -22,7 +22,7 @@ export default class FileInput extends Component {
           className={'ct-action'}
           title={this.props.property.title}
           disabled={this.props.property.disabled}
-          onClick={() => this.fileInput.click() }>
+          onClick={() => this.fileInput.click()}>
           {this.renderTitle()}
         </button>
         <span className={'ct-selected-information'}>{this.renderFiles(this.props.value) }</span>
