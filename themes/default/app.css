@@ -18,6 +18,7 @@
 }
 
 .ct-error-tooltip:after {
+  border-top-color: #CC0302 !important;
   border-bottom-color: #CC0302 !important;
 }
 

@@ -25,7 +25,7 @@ export default class App extends Component {
           class='ct-error-tooltip'
           effect='solid'
           multiline
-          place='bottom'
+          place='top'
           type='error' />
         <ErrorMessage
           documentErrors={document ? document.errors : null}
