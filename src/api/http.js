@@ -12,6 +12,10 @@ export async function request(method, href, data, config) {
   const contentType = response.headers.get('Content-Type')
 
   if (response.status == 401) {
+    if (config && config.onRedirect) {
+      return getResponse(response, config)
+    }
+
     location.href = method.toLowerCase() == 'get' ? response.url : location.href
     return
   }
@@ -25,18 +29,22 @@ export async function request(method, href, data, config) {
   }
 
   if (config && config.onRedirect) {
-    let content = await response.text()
-    content = config.onRedirect(response.url, content)
-
-    if (content) {
-      content.type = 'html'
-      content.links = [{ rel: 'self', href: response.url }]
-    }
-
-    return content
+    return getResponse(response, config)
   }
 
   location.href = response.url
 
   return null
+}
+
+async function getResponse(response, config) {
+  let content = await response.text()
+  content = config.onRedirect(response.url, content, response.status)
+
+  if (content) {
+    content.type = content.type || 'html'
+    content.links = content.links || [{ rel: 'self', href: response.url }]
+  }
+
+  return content
 }

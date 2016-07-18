@@ -126,9 +126,9 @@ Properties should be provided in camel-casing **without** the data-prefix, e.g. 
 | ---------- | ---------------------- | ---------- | ----------- |
 | `data-endpoint` | `endpoint` | string | Specifies the starting point of the API that should be rendered. |
 | `data-action-list-position` | `actionListPosition` | string | Specifies the position of the action buttons. Accepted values are: `top` (default), `bottom` and `both`. |
-| | `onValueChange` | function | Callback function executed after a value has been updated. The callback receives 2 parameters: `id` (of the updated element) and `value` (after the change). |
-| | `onUrlChange` | function | Callback function executed after the url has changed. Receives 1 parameter: `url` (after the navigation). |
-| | `onRedirect` | function | Callback function executed when the client will attempt a redirect. Receives 2 parameters: `url` (where the client would normally redirect) and `content` (of that url). If the function exists, the client will NOT automatically redirect. Optional return value: `{ title, content }`. |
+| | `onValueChange` | function | Callback function executed after a value has been updated. The callback receives 3 parameters: `form` (name of the current form),  `name` (of the updated element) and `value` (after the change). |
+| | `onUrlChange` | function | Callback function executed after the url has changed. Receives 2 parameters: `url` (after the navigation) and `form` (name of the current form). |
+| | `onRedirect` | function | Callback function executed when the client will attempt a redirect. Receives 3 parameters: `url` (where the client would normally redirect), `content` (of that url), and `statusCode` (of the response). If the function exists, the client will NOT automatically redirect. Optional return value: `{ title, content }`. |
 | | `onError` | function | Callback function executed when an error occurs. Receives 1 parameter: `error`. |
 | | `onLoading` | function | Callback function executed when the client start loading. Does not receives parameters. |
 | | `onLoaded` | function | Callback function executed when the client has loaded. Does not receives parameters. |
