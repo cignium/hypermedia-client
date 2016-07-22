@@ -35,17 +35,20 @@ export function allDays(date) {
 }
 
 export function allMonths() {
-  const months = []
-  const language = window.navigator.userLanguage || window.navigator.language
-  const formatter = new Intl.DateTimeFormat(language, { month: 'long' })
-  const current = new Date(2016, 0)
-
-  for (let i = 0; i < 12; i++) {
-    months.push({ label: formatter.format(current), value: i })
-    current.setMonth(i + 1)
-  }
-
-  return months
+  return [
+    { value: 0, label: 'January' },
+    { value: 1, label: 'February' },
+    { value: 2, label: 'March' },
+    { value: 3, label: 'April' },
+    { value: 4, label: 'May' },
+    { value: 5, label: 'June' },
+    { value: 6, label: 'July' },
+    { value: 7, label: 'August' },
+    { value: 8, label: 'September' },
+    { value: 9, label: 'October' },
+    { value: 10, label: 'November' },
+    { value: 11, label: 'December' },
+  ]
 }
 
 export function allYears() {
