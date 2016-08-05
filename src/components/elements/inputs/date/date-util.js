@@ -41,7 +41,7 @@ export function getAvailableMinutes(minDate, maxDate, year, month, day, hour) {
 export function calculateMinutes(minDate, maxDate, year, month, day, hour, currentMinutes) {
   const availableMinutes = getAvailableMinutes(minDate, maxDate, year, month, day, hour)
   
-  if (availableMinutes.find(d => d == currentMinutes)) {
+  if (availableMinutes.find(minutes => minutes == currentMinutes)) {
     return currentMinutes
   }
 
@@ -87,11 +87,11 @@ export function getAvailableHours(minDate, maxDate, year, month, day) {
   return allHours(lowerLimit, upperLimit)
 }
 
-export function calculateHours(minDate, maxDate, year, month, day, currentHour) {
+export function calculateHours(minDate, maxDate, year, month, day, currentHours) {
   const availableHours = getAvailableHours(minDate, maxDate, year, month, day)
   
-  if (availableHours.find(d => d == currentHour)) {
-    return currentHour
+  if (availableHours.find(hours => hours == currentHours)) {
+    return currentHours
   }
 
   return availableHours.length > 0 ? availableHours[0] : ''
@@ -181,13 +181,13 @@ export function allMonths(lowerLimit, upperLimit) {
   return months
 }
 
-export function getAvailableMonths(minDate, maxDate, selectedYear) {
-  if (!selectedYear || (!minDate && !maxDate)) {
+export function getAvailableMonths(minDate, maxDate, year) {
+  if (!year && !minDate && !maxDate) {
     return allMonths()
   }
 
-  const isMaxYear = maxDate && maxDate.getUTCFullYear() == selectedYear
-  const isMinYear = minDate && minDate.getUTCFullYear() == selectedYear
+  const isMaxYear = maxDate && maxDate.getUTCFullYear() == year
+  const isMinYear = minDate && minDate.getUTCFullYear() == year
 
   const lowerLimit = isMinYear && minDate.getUTCMonth()
   const upperLimit = isMaxYear && maxDate.getUTCMonth()
@@ -198,7 +198,7 @@ export function getAvailableMonths(minDate, maxDate, selectedYear) {
 export function calculateMonth(minDate, maxDate, year, currentMonth) {
   const availableMonths = getAvailableMonths(minDate, maxDate, year)
 
-  if (availableMonths.find(m => m.value == currentMonth)) {
+  if (availableMonths.find(month => month.value == currentMonth)) {
     return currentMonth
   } 
 
