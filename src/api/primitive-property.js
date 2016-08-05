@@ -9,5 +9,7 @@ export default function(data, parent) {
     options: data.options,
     value: data.value,
     isArray: data.type === 'string[]' || data.type === 'file[]',
+    minDate: data.minDate,
+    maxDate: data.maxDate,
   }
 }

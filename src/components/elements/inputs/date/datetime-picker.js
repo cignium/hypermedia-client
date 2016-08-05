@@ -20,24 +20,29 @@ export default ({ className, errors, onCommit, property, value }) => {
       <Year
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <Month
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <Day
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <Hour
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <span className={cx(className, 'ct-time-separator')}>:</span>
       <Minute
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
     </div>
   )
 }
