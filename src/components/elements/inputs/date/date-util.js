@@ -38,11 +38,11 @@ export function getAvailableMinutes(minDate, maxDate, year, month, day, hour) {
   return allMinutes(lowerLimit, upperLimit)
 }
 
-export function calculateMinutes(minDate, maxDate, year, month, day, hour, currentHours) {
+export function calculateMinutes(minDate, maxDate, year, month, day, hour, currentMinutes) {
   const availableMinutes = getAvailableMinutes(minDate, maxDate, year, month, day, hour)
   
-  if (availableMinutes.find(d => d == currentHours)) {
-    return currentHours
+  if (availableMinutes.find(d => d == currentMinutes)) {
+    return currentMinutes
   }
 
   return availableMinutes.length > 0 ? availableMinutes[0] : ''
