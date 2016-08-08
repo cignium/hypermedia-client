@@ -4,11 +4,11 @@ export function allMinutes(lowerLimit, upperLimit) {
     minutes.push(i)
   }
 
-  if (lowerLimit) {
+  if (lowerLimit || lowerLimit === 0) {
     minutes = minutes.filter(minute => minute >= lowerLimit)
   }
 
-  if (upperLimit) {
+  if (upperLimit || upperLimit === 0) {
     minutes = minutes.filter(minute => minute <= upperLimit)
   }
 
@@ -55,11 +55,11 @@ export function allHours(lowerLimit, upperLimit) {
     hours.push(i)
   }
 
-  if (lowerLimit) {
+  if (lowerLimit || lowerLimit === 0) {
     hours = hours.filter(hour => hour >= lowerLimit)
   }
 
-  if (upperLimit) {
+  if (upperLimit || upperLimit === 0) {
     hours = hours.filter(hour => hour <= upperLimit)
   }
 
@@ -114,11 +114,11 @@ export function allDays(year, month, lowerLimit, upperLimit) {
     days.push(i)
   }
   
-  if (lowerLimit) {
+  if (lowerLimit || lowerLimit === 0) {
     days = days.filter(day => day >= lowerLimit)
   }
 
-  if (upperLimit) {
+  if (upperLimit || upperLimit === 0) {
     days = days.filter(day => day <= upperLimit)
   }
   
@@ -170,11 +170,11 @@ export function allMonths(lowerLimit, upperLimit) {
     { value: 11, label: 'December' },
   ]
 
-  if (lowerLimit) {
+  if (lowerLimit || lowerLimit === 0) {
     months = months.filter(month => month.value >= lowerLimit)
   }
 
-  if (upperLimit) {
+  if (upperLimit || upperLimit === 0) {
     months = months.filter(month => month.value <= upperLimit)
   }
 

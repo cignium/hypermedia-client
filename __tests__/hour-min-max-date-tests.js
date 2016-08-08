@@ -59,7 +59,7 @@ describe('Hour with min/max date', () => {
       })
 
       describe('And changing hour to 12', () => {
-        it('resets hour to 00', () => {
+        it('resets minutes to 00', () => {
           hour.props.onChange({ target: { value: 12 }})
           expect(newDate().getUTCMinutes()).toEqual(0)
         })
