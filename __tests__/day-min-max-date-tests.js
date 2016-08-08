@@ -1,4 +1,4 @@
-// __tests__/day-tests.js
+// __tests__/day-min-max-date-tests.js
 jest.unmock('../src/components/elements/inputs/date/day')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
