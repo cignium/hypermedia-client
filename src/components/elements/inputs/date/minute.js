@@ -1,23 +1,32 @@
 import cx from 'classnames'
-import { allMinutes } from './date-util'
+import { getAvailableMinutes, createDateTime } from './date-util'
 
-export default ({ className, errors, onCommit, property, value }) => (
+export default ({ className, errors, onCommit, property, value }) => {
+  const minDate = property && createDateTime(property.minDate)
+  const maxDate = property && createDateTime(property.maxDate)
+
+  return (
   <select
     className={cx(className, 'ct-input ct-minute')}
     disabled={!value}
     onChange={ e => onCommit(selectMinute(e.target.value, value))}
     value={getMinute(value)}>
-      {renderOptions(value)}
+      {renderOptions(getAvailableMinutes(minDate, maxDate,
+                                        value && value.getUTCFullYear(),
+                                        value && value.getUTCMonth(),
+                                        value && value.getUTCDate(),
+                                        value && value.getUTCHours()))}
   </select>
-)
+  )
+}
 
-function renderOptions(date) {
+function renderOptions(minutes) {
   return [<option value='' key='placeholder'>M...</option>]
-    .concat(allMinutes().map(minute => <option key={minute} value={minute}>{padLeft(minute, '00')}</option>))
+    .concat(minutes.map(minute => <option key={minute} value={minute}>{padLeft(minute, '00')}</option>))
 }
 
 function getMinute(date) {
-  return date && date.getUTCMinutes()
+  return date ? date.getUTCMinutes() : ''
 }
 
 function selectMinute(minute, date) {

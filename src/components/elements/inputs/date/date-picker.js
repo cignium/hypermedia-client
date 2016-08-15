@@ -2,19 +2,10 @@ import cx from 'classnames'
 import Year from './year'
 import Month from './month'
 import Day from './day'
+import { createDate } from './date-util'
 
 function getDateString(date) {
   return date && date.toISOString().split('T')[0]
-}
-
-function createDate(value) {
-  if (!value) {
-    return null
-  }
-
-  const dateParts = value.split('-')
-
-  return new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, dateParts[2]))
 }
 
 export default ({ className, errors, onCommit, property, value }) => {
@@ -33,11 +24,13 @@ export default ({ className, errors, onCommit, property, value }) => {
       <Month
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date}
+        property={property} />
       <Day
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} />
+        value={date} 
+        property={property} />
     </div>
   )
 }

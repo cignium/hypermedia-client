@@ -1,5 +1,6 @@
 // __tests__/date-picker-tests.js
 jest.unmock('../src/components/elements/inputs/date/date-picker')
+jest.unmock('../src/components/elements/inputs/date/date-util')
 
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
