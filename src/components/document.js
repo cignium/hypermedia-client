@@ -11,6 +11,7 @@ export default class Document extends Component {
   componentDidUpdate(previousProps, previousState) {
     const previous = getHref(previousProps.resource)
     const current = getHref(this.props.resource)
+
     if (previous !== current) {
       if (this.props.config.scrollToTop) {
         React.findDOMNode(this).scrollIntoView()
