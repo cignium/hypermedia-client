@@ -8,7 +8,7 @@ export default ({ className, errors, onCommit, property, value }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-day')}
-    disabled={!value}
+    disabled={property ? property.disabled || !value : !value}
     onChange={ e => onCommit(selectDay(e.target.value, value, minDate, maxDate))}
     value={getDay(value)}>
       {renderOptions(getAvailableDays(minDate, maxDate,

@@ -8,7 +8,7 @@ export default ({ className, errors, onCommit, property, value }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-hour')}
-    disabled={!value}
+    disabled={property ? property.disabled || !value : !value}
     onChange={ e => onCommit(selectHour(e.target.value, value, minDate, maxDate))}
     value={getHour(value)}>
       {renderOptions(getAvailableHours(minDate, maxDate,
