@@ -21,13 +21,13 @@ npm install cignium-hypermedia-client --save
 Add the following script tag:
 
 ```html
-<script src="//npmcdn.com/cignium-hypermedia-client/dist/client.min.js"></script>
+<script src="//unpkg.com/cignium-hypermedia-client/dist/client.min.js"></script>
 ```
 
 For default styling, include this tag:
 
 ```html
-<link rel="stylesheet" type="text/css" href="//npmcdn.com/cignium-hypermedia-client/dist/default.css">
+<link rel="stylesheet" type="text/css" href="//unpkg.com/cignium-hypermedia-client/dist/default.css">
 ```
 
 ## Get Started
