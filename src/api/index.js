@@ -9,7 +9,9 @@ function getAllLeafProperties(data) {
       switch (p.type) {
         case 'html':
         case 'plain':
+          break
         case 'array':
+          p.items.forEach(i => Array.prototype.push.apply(properties, getAllLeafProperties(i)))
           break
         case 'object':
           Array.prototype.push.apply(properties, getAllLeafProperties(p))
