@@ -12,6 +12,7 @@
 @import './date-picker.css';
 @import './datetime-picker.css';
 @import './file-input.css';
+@import './table.css';
 
 .ct-error-tooltip {
   background-color: #CC0302 !important;
