@@ -17,6 +17,8 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-datetime-picker')}>
+      property.readOnly ?
+      <span key={property && property.id}>{'${date.toLocaleDateString()} ${date.toLocaleTimeString()}'}</span> :
       <Year
         className={className}
         onCommit={date => handleChange(date)}
