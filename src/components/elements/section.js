@@ -1,5 +1,6 @@
 import cx from 'classnames'
 import factory from './factory'
+import ActionList from './action-list'
 
 export default ({ api, config, property, topLevel }) => (
   <div className={cx('ct-element', `ct-${property.type}-element`)}>
@@ -19,6 +20,7 @@ export default ({ api, config, property, topLevel }) => (
             property={property}/>
         )
       })}
+      {!topLevel ? <ActionList api={api} config={config} links={property.links} /> : null}
     </div>
   </div>
 )
