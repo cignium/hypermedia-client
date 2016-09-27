@@ -18,17 +18,17 @@ describe('Basic date picker with value 2012-01-31', () => {
   })
 
   it('sets the year to 2012', () => {
-    const year = datePicker.props.children[3]
+    const year = datePicker.props.children[1]
     expect(year.props.value.getUTCFullYear()).toEqual(2012)
   })
 
   it('sets the month to 0', () => {
-    const month = datePicker.props.children[4]
+    const month = datePicker.props.children[2]
     expect(month.props.value.getUTCMonth()).toEqual(0)
   })
 
   it('sets the day to 31', () => {
-    const day = datePicker.props.children[5]
+    const day = datePicker.props.children[3]
     expect(day.props.value.getUTCDate()).toEqual(31)
   })
 })
