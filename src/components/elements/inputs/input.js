@@ -28,9 +28,11 @@ export default class Input extends Component {
     return (
       <div
         className={cx('ct-element', `ct-${this.props.property.type.replace(/\[\]/,'-list')}-element`)}>
-        <label className='ct-element-label' htmlFor={this.props.property.name}>
+        { this.props.property.readOnly ? null :
+          <label className='ct-element-label' htmlFor={this.props.property.name}>
           {this.props.property.title}
         </label>
+        }
       <Element
         className={cx({
           'ct-input-invalid': this.props.property.errors.length,
