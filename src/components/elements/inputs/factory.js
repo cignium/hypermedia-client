@@ -3,6 +3,7 @@ import Checkbox from './checkbox'
 import DatePicker from './date/date-picker'
 import DateTimePicker from './date/datetime-picker'
 import DropdownList from './dropdown-list'
+import MaskedInput from './masked-input'
 import MultilineTextInput from './multiline-text-input'
 import NumberInput from './number-input'
 import TextInput from './text-input'
@@ -23,9 +24,21 @@ export default function(property) {
         case 'radio': return BooleanList
         case 'select': return DropdownList
         case 'textarea': return MultilineTextInput
-        default: return TextInput
+        default: return useMask(property) ? MaskedInput : TextInput
       }
   }
 
   throw Error(`Unsupported input type '${property.type}'`)
+}
+
+const formats = [
+  'telephone',
+  'currency',
+  'email',
+  'zip',
+  'ssn',
+]
+
+function useMask({ format }) {
+  return format && formats.some(f => f == format.type.toLowerCase())
 }
