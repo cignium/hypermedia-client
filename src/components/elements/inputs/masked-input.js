@@ -28,7 +28,7 @@ function getMask(format) {
       ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
     case 'currency': return createNumberMask({ prefix: '$', suffix: '', allowDecimal: true })
     case 'email': return emailMask
-    case 'zip': return [/[1-9]/, /\d/, /\d/, /\d/, /\d/]
+    case 'zip': return [/\d/, /\d/, /\d/, /\d/, /\d/]
     case 'ssn': return [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
     default: throw new Error(`Format type '${format.type}' is not supported.`)
   }
