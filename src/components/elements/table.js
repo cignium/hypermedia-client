@@ -8,10 +8,10 @@ export default ({ api, property }) => {
         <caption className='ct-table-caption'>{property.title}</caption>
         { property.columns ?
         <thead>
-            <tr>
+            <tr className='ct-table-header-row'>
           { property.columns.map((column, rowIndex) => {
             return (
-              <th key={column.id}>
+              <th key={column.id} className='ct-table-header'>
                 {column.title}
               </th>
               )
@@ -23,15 +23,15 @@ export default ({ api, property }) => {
           <tbody>
           {property.rows.map((row, rowIndex) => {
             return (
-              <tr key={rowIndex}>
+              <tr key={rowIndex} className='ct-table-row'>
                   {row.map(cell => {
                     const Element = factory(cell)
                     return (
-                      <td key={cell.id}>
+                      <td key={cell.id} className='ct-table-cell'>
                         <Element
                           api={api}
                           readOnly={cell.readOnly}
-                          className={cx('ct-table-item', {
+                          className={cx('ct-table-element', {
                             'ct-invalid': cell.errors && cell.errors.length,
                           }) }
                           errors={cell.errors}
