@@ -5,6 +5,7 @@ export default function(data, parent) {
     ...createProperty(data, parent),
     disabled: data.disabled,
     display: data.display,
+    format: data.format,
     id: data.id,
     options: data.options,
     value: data.value,
