@@ -2,7 +2,7 @@ import cx from 'classnames'
 
 export default ({ className, errors, onCommit, property, value }) => (
  property.readOnly ?
-    <span key={property.id}>{value}</span> :
+    <span key={property.id}>{value.toString()}</span> :
     <input
       checked={value}
       className={cx(className, 'ct-input', 'ct-checkbox')}

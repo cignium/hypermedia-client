@@ -5,7 +5,22 @@ export default ({ api, property }) => {
   return (
     <div className='ct-table-container'>
         <table className='ct-table'>
-           <tbody>
+        <caption className='ct-table-caption'>{property.title}</caption>
+        { property.columns ?
+        <thead>
+            <tr>
+          { property.columns.map((column, rowIndex) => {
+            return (
+              <th key={column.id}>
+                {column.title}
+              </th>
+              )
+          })
+          }
+            </tr>
+          </thead>
+          : null }
+          <tbody>
           {property.rows.map((row, rowIndex) => {
             return (
               <tr key={rowIndex}>

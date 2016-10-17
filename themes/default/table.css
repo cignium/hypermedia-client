@@ -5,3 +5,11 @@
 .ct-table {
   width: 100%;
 }
+
+.ct-table-caption {
+  text-align: left;
+  color: #444;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}

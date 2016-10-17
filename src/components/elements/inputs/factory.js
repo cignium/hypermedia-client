@@ -16,6 +16,7 @@ export default function(property) {
     case 'file':
     case 'file[]': return FileInput
     case 'number': return NumberInput
+    case 'guid':
     case 'string':
     case 'string[]':
       switch (property.display) {
