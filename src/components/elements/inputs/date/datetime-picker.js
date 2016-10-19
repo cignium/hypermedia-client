@@ -17,34 +17,32 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-datetime-picker')}>
-        <span>
-          <Year
-            className={className}
-            onCommit={date => handleChange(date) }
-            value={date}
-            property={property} />
-          <Month
-            className={className}
-            onCommit={date => handleChange(date) }
-            value={date}
-            property={property} />
-          <Day
-            className={className}
-            onCommit={date => handleChange(date) }
-            value={date}
-            property={property} />
-          <Hour
-            className={className}
-            onCommit={date => handleChange(date) }
-            value={date}
-            property={property} />
-          <span className={cx(className, 'ct-time-separator') }>: </span>
-          <Minute
-            className={className}
-            onCommit={date => handleChange(date) }
-            value={date}
-            property={property} />
-        </span> }
+        <Year
+          className={className}
+          onCommit={date => handleChange(date) }
+          value={date}
+          property={property} />
+        <Month
+          className={className}
+          onCommit={date => handleChange(date) }
+          value={date}
+          property={property} />
+        <Day
+          className={className}
+          onCommit={date => handleChange(date) }
+          value={date}
+          property={property} />
+        <Hour
+          className={className}
+          onCommit={date => handleChange(date) }
+          value={date}
+          property={property} />
+        <span className={cx(className, 'ct-time-separator') }>: </span>
+        <Minute
+          className={className}
+          onCommit={date => handleChange(date) }
+          value={date}
+          property={property} />
     </div>
   )
 }
