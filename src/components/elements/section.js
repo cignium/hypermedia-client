@@ -4,7 +4,7 @@ import ActionList from './action-list'
 
 export default ({ api, config, property, topLevel }) => (
   <div className={cx('ct-element', `ct-${property.type}-element`)}>
-      {!topLevel ? <label className='ct-element-label'>
+      {!topLevel ? <label className='ct-element-label ct-section-label'>
       {property.title}
     </label>
     : null}
