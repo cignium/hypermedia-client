@@ -5,10 +5,15 @@ import Section from './section'
 import List from './list'
 import Table from './table'
 import Plain from './plain'
+import ReadOnly from './read-only'
 
 export default property => {
   if (property.links.navigate && property.type !== 'array') {
     return Link
+  }
+
+  if (property.readOnly && property.type !== 'html') {
+    return ReadOnly
   }
 
   switch (property.type) {
