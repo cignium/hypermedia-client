@@ -14,22 +14,22 @@ export default ({ className, errors, onCommit, property, value }) => {
     onCommit(getDateString(date))
   }
   return (
-    <div data-tip={errors} className={cx(className, 'ct-date-picker') }>
-        <Year
-          className={className}
-          onCommit={date => handleChange(date)}
-          value={date}
-          property={property} />
-        <Month
-          className={className}
-          onCommit={date => handleChange(date)}
-          value={date}
-          property={property} />
-        <Day
-          className={className}
-          onCommit={date => handleChange(date)}
-          value={date}
-          property={property} />
+    <div data-tip={errors} className={cx(className, 'ct-date-picker')}>
+      <Year
+        className={className}
+        onCommit={date => handleChange(date)}
+        value={date}
+        property={property} />
+      <Month
+        className={className}
+        onCommit={date => handleChange(date)}
+        value={date}
+        property={property} />
+      <Day
+        className={className}
+        onCommit={date => handleChange(date)}
+        value={date}
+        property={property} />
     </div>
   )
 }
