@@ -4,9 +4,9 @@ import cx from 'classnames'
 export default ({ api, property }) => {
   return (
     <div className='ct-table-container'>
+        <label className='ct-element-label ct-table-label'>{property.title}</label>
         <table className='ct-table'>
-        <caption className='ct-table-caption'>{property.title}</caption>
-        { property.columns ?
+        { property.columns &&
         <thead>
             <tr className='ct-table-header-row'>
           { property.columns.map((column, rowIndex) => {
@@ -18,8 +18,7 @@ export default ({ api, property }) => {
           })
           }
             </tr>
-          </thead>
-          : null }
+          </thead> }
           <tbody>
           {property.rows.map((row, rowIndex) => {
             return (
