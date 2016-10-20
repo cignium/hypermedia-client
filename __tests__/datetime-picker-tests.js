@@ -38,7 +38,6 @@ describe('Basic date time picker with value 2012-01-31 14:35:00', () => {
 
   it('sets the minutes to 35', () => {
     const minutes = dateTimePicker.props.children[5]
-    console.log(dateTimePicker.props.children[5].props.value)
     expect(minutes.props.value.getUTCMinutes()).toEqual(35)
   })
 })
