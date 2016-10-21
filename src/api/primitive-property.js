@@ -12,5 +12,6 @@ export default function(data, parent) {
     isArray: data.type === 'string[]' || data.type === 'file[]',
     minDate: data.minDate,
     maxDate: data.maxDate,
+    readOnly: data.readOnly,
   }
 }

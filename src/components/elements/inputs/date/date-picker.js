@@ -13,7 +13,6 @@ export default ({ className, errors, onCommit, property, value }) => {
   function handleChange(date) {
     onCommit(getDateString(date))
   }
-
   return (
     <div data-tip={errors} className={cx(className, 'ct-date-picker')}>
       <Year
@@ -29,7 +28,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       <Day
         className={className}
         onCommit={date => handleChange(date)}
-        value={date} 
+        value={date}
         property={property} />
     </div>
   )
