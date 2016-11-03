@@ -10,12 +10,12 @@ export default ({ className, property }) => {
 
   if (property.display == 'date') {
     const date = createDate(value)
-    value = date.toLocaleDateString()
+    value = date == null ? null : date.toLocaleDateString()
   }
 
   if (property.type == 'datetime') {
     const date = value ? new Date(value) : null
-    value = date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
+    value = date == null ? null : date.toLocaleDateString() + ' ' + date.toLocaleTimeString()
   }
 
   return (
