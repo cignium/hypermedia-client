@@ -16,7 +16,7 @@ export default function(property) {
     case 'datetime': return DateTimePicker
     case 'file':
     case 'file[]': return FileInput
-    case 'number': return NumberInput
+    case 'number': return useMask(property) ? MaskedInput : NumberInput
     case 'string':
     case 'string[]':
       switch (property.display) {
