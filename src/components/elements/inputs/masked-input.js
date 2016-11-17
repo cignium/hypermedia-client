@@ -4,7 +4,7 @@ import MaskedInput from 'react-text-mask'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask.js'
 import emailMask from 'text-mask-addons/dist/emailMask.js'
 
-export default class MaskedInput extends Component {
+export default class MaskedInputInput extends Component {
   constructor(props) {
     super()
     this.state = { displayValue: props.value || ''}
