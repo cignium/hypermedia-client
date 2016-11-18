@@ -4,7 +4,7 @@ import MaskedInput from 'react-text-mask'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask.js'
 import emailMask from 'text-mask-addons/dist/emailMask.js'
 
-export default class MaskedInputInput extends Component {
+export default class MaskedInputField extends Component {
   constructor(props) {
     super()
     this.state = { displayValue: props.value || ''}
@@ -28,8 +28,7 @@ export default class MaskedInputInput extends Component {
   }
 
   adjustAndUpdate(value) {
-    this.state.displayValue = value
-    this.setState(state)
+    this.setState({ displayValue: value })
     if (this.props.property.type !== 'number') {
       this.props.onUpdate(value)
       return
