@@ -5,3 +5,17 @@
 .ct-table {
   width: 100%;
 }
+
+.ct-table-header-sort-ascending::after {
+  content: "▾";
+}
+
+.ct-table-header-sort-descending::after {
+  content: "▴";
+}
+
+.ct-table-header-sort-direction {
+  font-size: 15px;
+  width: 10px;
+  position: absolute;
+}
