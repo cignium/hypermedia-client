@@ -28,8 +28,7 @@ export default class MaskedInputInput extends Component {
   }
 
   adjustAndUpdate(value) {
-    this.state.displayValue = value
-    this.setState(state)
+    this.setState({ displayValue: value })
     if (this.props.property.type !== 'number') {
       this.props.onUpdate(value)
       return
