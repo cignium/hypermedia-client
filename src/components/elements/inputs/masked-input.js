@@ -5,10 +5,6 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask.js'
 import emailMask from 'text-mask-addons/dist/emailMask.js'
 
 export default class MaskedInputInput extends Component {
-  constructor(props) {
-    super()
-    this.state = { displayValue: props.value || ''}
-  }
   render() {
     const mask = this.getMask(this.props.property.format)
 
@@ -19,34 +15,47 @@ export default class MaskedInputInput extends Component {
         readOnly={this.props.property.disabled}
         id={this.props.property.name}
         mask={mask}
-        onBlur={() => this.props.onCommit()}
-        onChange={e => this.adjustAndUpdate(e.target.value)}
+        onBlur={() => this.onCommit()}
+        onKeyPress={e => this.onKeyPress(e)}
+        onChange={e => { this.props.onUpdate(e.target.value) }}
         title={this.props.property.title}
         type={{ telephone: 'tel' }[this.props.property.display] || 'text'}
-        value={this.state.displayValue} />
+        value={this.props.value} />
     )
   }
 
-  adjustAndUpdate(value) {
-    this.state.displayValue = value
-    this.setState(state)
+  onKeyPress(event) {
+    if (this.getReservedChars().some(char => char == event.key)) {
+      event.preventDefault()
+    }
+  }
+
+  onCommit() {
+    const value = this.props.value
+
     if (this.props.property.type !== 'number') {
-      this.props.onUpdate(value)
+      this.props.onCommit(value)
       return
     }
+
     const decimalValue = value === '' ? null : parseFloat(value.substring(1).replace(/,/g, ''))
-    this.props.onUpdate(decimalValue)
+    this.props.onCommit(decimalValue)
+  }
+
+  getReservedChars() {
+    return ['*']
   }
 
   getMask(format) {
+    const digit = new RegExp(`[\\d${this.getReservedChars().join('')}]`)
     switch (format.type.toLowerCase()) {
       case 'telephone': return format.useCountryCode ?
-        ['1', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/] :
-        ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        ['1', ' ', '(', /[1-9]/, digit, digit, ')', ' ', digit, digit, digit, '-', digit, digit, digit, digit] :
+        ['(', /[1-9]/, digit, digit, ')', ' ', digit, digit, digit, '-', digit, digit, digit, digit]
       case 'currency': return createNumberMask({ prefix: '$', suffix: '', allowDecimal: true })
       case 'email': return emailMask
-      case 'zip': return [/\d/, /\d/, /\d/, /\d/, /\d/]
-      case 'ssn': return [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+      case 'zip': return [digit, digit, digit, digit, digit]
+      case 'ssn': return [digit, digit, digit, '-', digit, digit, '-', digit, digit, digit, digit]
       default: throw new Error(`Format type '${format.type}' is not supported.`)
     }
   }
