@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.ct-table-header {
+  padding-right: 15px;
+}
+
 .ct-table-header-sort-ascending::after {
   content: "▾";
 }
