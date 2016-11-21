@@ -51,10 +51,8 @@ export default class Table extends Component {
 
   getRowValue(row, columnIndex) {
     if (row[columnIndex].type == 'html') {
-      const doc = document.implementation.createHTMLDocument('')
-      doc.documentElement.innerHTML = row[columnIndex].content
-
-      return doc.getElementsByTagName('body')[0].innerText
+      const regex = /(<([^>]+)>)/ig
+      return row[columnIndex].content.replace(regex, '')
     }
 
     if (row[columnIndex].type == 'number') {
