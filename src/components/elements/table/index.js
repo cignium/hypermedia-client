@@ -20,7 +20,6 @@ export default class Table extends Component {
         <label className='ct-element-label ct-table-label'>{this.props.property.title}</label>
         <table className='ct-table'>
           <Header
-            api={this.props.api}
             descending={this.state.descending}
             sortedColumn={this.state.currentColumnIndex}
             columns={this.props.property.columns}
