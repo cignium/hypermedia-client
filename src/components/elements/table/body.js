@@ -1,9 +1,9 @@
 import Row from './row'
 
-export default ({ api, property }) => {
+export default ({ rows }) => {
   return (
     <tbody>
-    {property.rows.map((row, rowIndex) => {
+    {rows.map((row, rowIndex) => {
       return (<Row row={row} key={rowIndex} />)
     })}
   </tbody>)
