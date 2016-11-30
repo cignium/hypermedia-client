@@ -8,7 +8,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
   const mask = getMask(property.format)
 
   function onKeyPress(event) {
-    if (this.getReservedChars().some(char => char == event.key)) {
+    if (getReservedChars().some(char => char == event.key)) {
       event.preventDefault()
     }
   }
@@ -49,7 +49,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
       id={property.name}
       mask={mask}
       onBlur={() => commit(value)}
-      onKeyPress={e => this.onKeyPress(e)}
+      onKeyPress={e => onKeyPress(e)}
       onChange={e => { onUpdate(e.target.value) }}
       title={property.title}
       type={{ telephone: 'tel' }[property.display] || 'text'}
