@@ -19,8 +19,16 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
       return
     }
 
-    const decimalValue = value === '' ? null : parseFloat(value.substring(1).replace(/,/g, ''))
+    const decimalValue = !value || value === '' 
+                          ? null 
+                          : isNumeric(value)
+                            ? value 
+                            : parseFloat(value.substring(1).replace(/,/g, ''))
     onCommit(decimalValue)
+  }
+
+  function isNumeric(value) {
+    return parseFloat(value) == value
   }
 
   function getReservedChars() {
