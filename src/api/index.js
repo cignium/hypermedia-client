@@ -27,6 +27,7 @@ function getAllLeafProperties(data) {
 
 export default class Api {
   constructor(state, config) {
+    this.requestCount = 0
     this.config = config
     this.draft = new Draft(state)
     this.state = state
@@ -143,7 +144,8 @@ export default class Api {
 
   requestResource(request) {
     this.state.get().set('error', null)
-    this.state.get().requests.set(new Date().getTime(), request)
+    const id = ('000000000000000' + this.requestCount++).substr(-16)
+    this.state.get().requests.set(id, request)
   }
 
   executeAction(href) {
