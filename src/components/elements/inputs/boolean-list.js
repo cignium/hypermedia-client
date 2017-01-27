@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-export default ({ className, onCommit, property, value }) => {
+export default ({ className, errors, onCommit, property, value }) => {
   function getValue(checked, newValue) {
     if (!property.isArray) {
       return newValue
@@ -31,8 +31,10 @@ export default ({ className, onCommit, property, value }) => {
   }
 
   return (
-    <div id={property.name}
-      className={cx(className, 'ct-input', `ct-${property.display}-list`)}>
+    <div
+      id={property.name}
+      className={cx(className, 'ct-input', `ct-${property.display}-list`)}
+      data-tip={errors}>
       {property.options.map(option => {
         const optionId = `${property.name}-${option.value}`
         return (
