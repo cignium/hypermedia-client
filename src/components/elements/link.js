@@ -13,7 +13,9 @@ export default ({ api, className, property }) => (
       if (!e.metaKey &&
       !e.ctrlKey &&
       !property.links.navigate.target) {
-        api.navigate(property.links.navigate.href)
+        if (!property.links.navigate.current) {
+          api.navigate(property.links.navigate.href)
+        }
         e.preventDefault()
       }
     }}>
