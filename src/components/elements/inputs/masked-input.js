@@ -4,49 +4,63 @@ import MaskedInput from 'react-text-mask'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask.js'
 import emailMask from 'text-mask-addons/dist/emailMask.js'
 
-export default class MaskedInputField extends Component {
-  constructor(props) {
-    super()
-    this.state = { displayValue: props.value || ''}
-  }
-  render() {
-    const mask = this.getMask(this.props.property.format)
+export default ({ className, errors, onCommit, onUpdate, property, value }) => {
+  const mask = getMask(property.format)
 
-    return (
-      <MaskedInput
-        className={cx(this.props.className, 'ct-input', 'ct-text-input')}
-        data-tip={this.props.errors}
-        readOnly={this.props.property.disabled}
-        id={this.props.property.name}
-        mask={mask}
-        onBlur={() => this.props.onCommit()}
-        onChange={e => this.adjustAndUpdate(e.target.value)}
-        title={this.props.property.title}
-        type={{ telephone: 'tel' }[this.props.property.display] || 'text'}
-        value={this.state.displayValue} />
-    )
+  function onKeyPress(event) {
+    if (getReservedChars().some(char => char == event.key)) {
+      event.preventDefault()
+    }
   }
 
-  adjustAndUpdate(value) {
-    this.setState({ displayValue: value })
-    if (this.props.property.type !== 'number') {
-      this.props.onUpdate(value)
+  function commit(value) {
+    if (property.type !== 'number') {
+      onCommit(value)
       return
     }
-    const decimalValue = value === '' ? null : parseFloat(value.substring(1).replace(/,/g, ''))
-    this.props.onUpdate(decimalValue)
+
+    const decimalValue = !value || value === '' 
+                          ? null 
+                          : isNumeric(value)
+                            ? value 
+                            : parseFloat(value.substring(1).replace(/,/g, ''))
+    onCommit(decimalValue)
   }
 
-  getMask(format) {
+  function isNumeric(value) {
+    return parseFloat(value) == value
+  }
+
+  function getReservedChars() {
+    return ['*']
+  }
+
+  function getMask(format) {
+    const digit = new RegExp(`[\\d${getReservedChars().join('')}]`)
     switch (format.type.toLowerCase()) {
       case 'telephone': return format.useCountryCode ?
-        ['1', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/] :
-        ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        ['1', ' ', '(', /[1-9]/, digit, digit, ')', ' ', digit, digit, digit, '-', digit, digit, digit, digit] :
+        ['(', /[1-9]/, digit, digit, ')', ' ', digit, digit, digit, '-', digit, digit, digit, digit]
       case 'currency': return createNumberMask({ prefix: '$', suffix: '', allowDecimal: true })
       case 'email': return emailMask
-      case 'zip': return [/\d/, /\d/, /\d/, /\d/, /\d/]
-      case 'ssn': return [/\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+      case 'zip': return [digit, digit, digit, digit, digit]
+      case 'ssn': return [digit, digit, digit, '-', digit, digit, '-', digit, digit, digit, digit]
       default: throw new Error(`Format type '${format.type}' is not supported.`)
     }
   }
+
+  return (
+    <MaskedInput
+      className={cx(className, 'ct-input', 'ct-text-input')}
+      data-tip={errors}
+      readOnly={property.disabled}
+      id={property.name}
+      mask={mask}
+      onBlur={() => commit(value)}
+      onKeyPress={e => onKeyPress(e)}
+      onChange={e => { onUpdate(e.target.value) }}
+      title={property.title}
+      type={{ telephone: 'tel' }[property.display] || 'text'}
+      value={value} />
+  )
 }
