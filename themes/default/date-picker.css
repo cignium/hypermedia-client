@@ -14,3 +14,7 @@
 .ct-day {
   width: 80px;
 }
+
+.ct-input-invalid .rw-input {
+  border: 1px solid #ED1631
+}
