@@ -32,7 +32,7 @@ describe('Hour', () => {
     })
 
     it('sets the value to 15', () => {
-      expect(hour.props.value).toEqual(15)
+      expect(hour.props.value).toEqual(new Date(Date.UTC(2012, 1, 1, 15, 30)).getHours())
     })
 
     it('has 0 as the first option', () => {
@@ -48,7 +48,7 @@ describe('Hour', () => {
         hour.props.onChange({ target: { value: 18 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
-        expect(newDate.toISOString().split('T')[1]).toEqual('18:30:00.000Z')
+        expect(newDate.getHours()).toEqual(18)
       })
     })
   })

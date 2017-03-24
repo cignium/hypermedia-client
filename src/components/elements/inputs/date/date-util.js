@@ -20,27 +20,27 @@ export function getAvailableMinutes(minDate, maxDate, year, month, day, hour) {
     return allMinutes()
   }
 
-  const isMaxHour = maxDate && 
-                      maxDate.getUTCFullYear() == year && 
-                      maxDate.getUTCMonth() == month &&
-                      maxDate.getUTCDate() == day &&
-                      maxDate.getUTCHours() == hour
-                      
-  const isMinHour = minDate && 
-                      minDate.getUTCFullYear() == year && 
-                      minDate.getUTCMonth() == month &&
-                      minDate.getUTCDate() == day &&
-                      minDate.getUTCHours() == hour
+  const isMaxHour = maxDate &&
+                      maxDate.getFullYear() == year &&
+                      maxDate.getMonth() == month &&
+                      maxDate.getDate() == day &&
+                      maxDate.getHours() == hour
 
-  const lowerLimit = isMinHour && minDate.getUTCMinutes()
-  const upperLimit = isMaxHour && maxDate.getUTCMinutes()
+  const isMinHour = minDate &&
+                      minDate.getFullYear() == year &&
+                      minDate.getMonth() == month &&
+                      minDate.getDate() == day &&
+                      minDate.getHours() == hour
+
+  const lowerLimit = isMinHour && minDate.getMinutes()
+  const upperLimit = isMaxHour && maxDate.getMinutes()
 
   return allMinutes(lowerLimit, upperLimit)
 }
 
 export function calculateMinutes(minDate, maxDate, year, month, day, hour, currentMinutes) {
   const availableMinutes = getAvailableMinutes(minDate, maxDate, year, month, day, hour)
-  
+
   if (availableMinutes.find(minutes => minutes == currentMinutes)) {
     return currentMinutes
   }
@@ -71,25 +71,25 @@ export function getAvailableHours(minDate, maxDate, year, month, day) {
     return allHours()
   }
 
-  const isMaxDay = maxDate && 
-                      maxDate.getUTCFullYear() == year && 
-                      maxDate.getUTCMonth() == month &&
-                      maxDate.getUTCDate() == day
-                      
-  const isMinDay = minDate && 
-                      minDate.getUTCFullYear() == year && 
-                      minDate.getUTCMonth() == month &&
-                      minDate.getUTCDate() == day
+  const isMaxDay = maxDate &&
+                      maxDate.getFullYear() == year &&
+                      maxDate.getMonth() == month &&
+                      maxDate.getDate() == day
 
-  const lowerLimit = isMinDay && minDate.getUTCHours()
-  const upperLimit = isMaxDay && maxDate.getUTCHours()
+  const isMinDay = minDate &&
+                      minDate.getFullYear() == year &&
+                      minDate.getMonth() == month &&
+                      minDate.getDate() == day
+
+  const lowerLimit = isMinDay && minDate.getHours()
+  const upperLimit = isMaxDay && maxDate.getHours()
 
   return allHours(lowerLimit, upperLimit)
 }
 
 export function calculateHours(minDate, maxDate, year, month, day, currentHours) {
   const availableHours = getAvailableHours(minDate, maxDate, year, month, day)
-  
+
   if (availableHours.find(hours => hours == currentHours)) {
     return currentHours
   }
@@ -109,11 +109,11 @@ export function allDays(year, month, lowerLimit, upperLimit) {
   }
 
   const lastDay = lastDayInMonth(year, month)
-  
+
   for (let i = 1; i <= lastDay; i++) {
     days.push(i)
   }
-  
+
   if (lowerLimit || lowerLimit === 0) {
     days = days.filter(day => day >= lowerLimit)
   }
@@ -121,7 +121,7 @@ export function allDays(year, month, lowerLimit, upperLimit) {
   if (upperLimit || upperLimit === 0) {
     days = days.filter(day => day <= upperLimit)
   }
-  
+
   return days
 }
 
@@ -130,15 +130,15 @@ export function getAvailableDays(minDate, maxDate, year, month) {
     return allDays()
   }
 
-  const isMaxMonth = maxDate && 
-                      maxDate.getUTCFullYear() == year && 
-                      maxDate.getUTCMonth() == month
-  const isMinMonth = minDate && 
-                      minDate.getUTCFullYear() == year && 
-                      minDate.getUTCMonth() == month
+  const isMaxMonth = maxDate &&
+                      maxDate.getFullYear() == year &&
+                      maxDate.getMonth() == month
+  const isMinMonth = minDate &&
+                      minDate.getFullYear() == year &&
+                      minDate.getMonth() == month
 
-  const lowerLimit = isMinMonth && minDate.getUTCDate()
-  const upperLimit = isMaxMonth && maxDate.getUTCDate()
+  const lowerLimit = isMinMonth && minDate.getDate()
+  const upperLimit = isMaxMonth && maxDate.getDate()
 
   return allDays(year, month, lowerLimit, upperLimit)
 }
@@ -186,11 +186,11 @@ export function getAvailableMonths(minDate, maxDate, year) {
     return allMonths()
   }
 
-  const isMaxYear = maxDate && maxDate.getUTCFullYear() == year
-  const isMinYear = minDate && minDate.getUTCFullYear() == year
+  const isMaxYear = maxDate && maxDate.getFullYear() == year
+  const isMinYear = minDate && minDate.getFullYear() == year
 
-  const lowerLimit = isMinYear && minDate.getUTCMonth()
-  const upperLimit = isMaxYear && maxDate.getUTCMonth()
+  const lowerLimit = isMinYear && minDate.getMonth()
+  const upperLimit = isMaxYear && maxDate.getMonth()
 
   return allMonths(lowerLimit, upperLimit)
 }
@@ -200,7 +200,7 @@ export function calculateMonth(minDate, maxDate, year, currentMonth) {
 
   if (availableMonths.find(month => month.value == currentMonth)) {
     return currentMonth
-  } 
+  }
 
   return availableMonths.length > 0 ? availableMonths[0].value : ''
 }
@@ -217,17 +217,17 @@ export function allYears(lowerLimit, upperLimit) {
 
 export function getAvailableYears(minDate, maxDate) {
   const defaultSize = 100
-  const currentYear = new Date().getUTCFullYear()
+  const currentYear = new Date().getFullYear()
   const defaultLowerLimit = currentYear - defaultSize
   const defaultUpperLimit = currentYear + defaultSize
 
   if (!minDate && !maxDate) {
     return allYears(defaultLowerLimit, defaultUpperLimit)
   }
-  
-  const lowerLimit = minDate ? minDate.getUTCFullYear() : defaultLowerLimit
-  const upperLimit = maxDate ? maxDate.getUTCFullYear() : defaultUpperLimit
-  
+
+  const lowerLimit = minDate ? minDate.getFullYear() : defaultLowerLimit
+  const upperLimit = maxDate ? maxDate.getFullYear() : defaultUpperLimit
+
   return allYears(lowerLimit, upperLimit)
 }
 
@@ -245,7 +245,7 @@ export function createDate(value) {
   }
 
   const dateParts = value.split('-')
-  
+
   return new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, dateParts[2]))
 }
 

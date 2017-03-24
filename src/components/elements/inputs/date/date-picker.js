@@ -57,7 +57,7 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-date-picker')}>
-      {property.display === 'select' ? renderDropdowms() : renderPicker()}
+      {!property || property.display === 'select' ? renderDropdowms() : renderPicker()}
     </div>
   )
 }

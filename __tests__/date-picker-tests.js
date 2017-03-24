@@ -4,10 +4,8 @@ jest.unmock('Moment')
 jest.unmock('../node_modules/moment/moment.js')
 jest.unmock('../node_modules/react-widgets/lib/localizers/moment.js')
 
-import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 import DatePicker from '../src/components/elements/inputs/date/datetime-picker'
-import Moment from 'moment'
 
 describe('Basic date picker with value 2012-01-31', () => {
   let datePicker
@@ -26,9 +24,7 @@ describe('Basic date picker with value 2012-01-31', () => {
 
   beforeEach(() => {
     const renderer = TestUtils.createRenderer()
-    renderer.render(
-      <DatePicker value='2012-01-31' />
-    )
+    renderer.render(<DatePicker value='2012-01-31' />)
     datePicker = renderer.getRenderOutput()
   })
 

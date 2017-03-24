@@ -22,11 +22,11 @@ describe('Hour with min/max date', () => {
   }
 
   describe('and with date 2012-03-10 11:30', () => {
-    const date = new Date(Date.UTC(2012, 2, 10, 11, 30))
+    const date = new Date(2012, 2, 10, 11, 30)
 
     describe('and with minDate 2012-03-10 10:31', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T10:31:00+00:00' })
+        renderComponent(date, { minDate: new Date(2012,2,10,10,31).toISOString() })
       })
 
       it('have 10 as second option', () => {
@@ -44,10 +44,10 @@ describe('Hour with min/max date', () => {
         })
       })
     })
-    
+
     describe('and with maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
-        renderComponent(date, { maxDate: '2012-03-10T12:29:00+00:00' })
+        renderComponent(date, { maxDate: new Date(2012,2,10,12,29).toISOString() })
       })
 
       it('have 00 as second option', () => {
@@ -68,7 +68,7 @@ describe('Hour with min/max date', () => {
 
     describe('and with minDate 2012-03-10 10:31 and maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T10:31:00+00:00', maxDate: '2012-03-10T12:29:00+00:00' })
+        renderComponent(date, { minDate: new Date(2012,2,10,10,31).toISOString(), maxDate: new Date(2012,2,10,12,29).toISOString() })
       })
 
       it('have 10 as second option', () => {

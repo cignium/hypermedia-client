@@ -61,7 +61,7 @@ describe('Month', () => {
         month.props.onChange({ target: { value: 1 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
-        expect(newDate.toISOString().split('T')[0]).toEqual('2013-02-28')
+        expect(newDate.toISOString().split('T')[0]).toEqual(new Date(Date.UTC(2013, 1, 28)).toISOString().split('T')[0])
       })
     })
   })
@@ -76,7 +76,7 @@ describe('Month', () => {
         month.props.onChange({ target: { value: 4 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
-        expect(newDate.toISOString().split('T')[0]).toEqual('1924-05-01')
+        expect(newDate.toISOString().split('T')[0]).toEqual(new Date(1924, 4, 1).toISOString().split('T')[0])
       })
     })
   })

@@ -13,7 +13,7 @@ function getDateString(date) {
   if (!date || !date.isValid()) {
     return null
   }
-  return date.toISOString()
+  return date.format()
 }
 
 export default ({ className, errors, onCommit, property, value }) => {
@@ -70,7 +70,7 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-datetime-picker')}>
-      {property.display === 'select' ? renderDropdowms() : renderPicker()}
+      {!property || property.display !== 'select' ? renderDropdowms() : renderPicker()}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { getAvailableYears, createDateTime, calculateMonth, 
+import { getAvailableYears, createDateTime, calculateMonth,
         calculateDay, calculateHours, calculateMinutes } from './date-util'
 
 export default ({ className, errors, onCommit, property, value }) => {
@@ -19,12 +19,12 @@ export default ({ className, errors, onCommit, property, value }) => {
 
 function renderOptions(years) {
   const options = [<option value='' key='placeholder'>Year...</option>]
-  
+
   return options.concat(years.map(year => <option key={year} value={year}>{year}</option>))
 }
 
 function getYear(value) {
-  return value ? value.getUTCFullYear() : ''
+  return value ? value.getFullYear() : ''
 }
 
 function selectYear(year, date, minDate, maxDate) {
@@ -32,10 +32,10 @@ function selectYear(year, date, minDate, maxDate) {
     return null
   }
 
-  const selectedMonth = date && date.getUTCMonth()
-  const selectedDay = date && date.getUTCDate()
-  const selectedHours = date && date.getUTCHours()
-  const selectedMinutes = date && date.getUTCMinutes()
+  const selectedMonth = date && date.getMonth()
+  const selectedDay = date && date.getDate()
+  const selectedHours = date && date.getHours()
+  const selectedMinutes = date && date.getMinutes()
 
   const month = calculateMonth(minDate, maxDate, year, selectedMonth)
   const day = calculateDay(minDate, maxDate, year, month, selectedDay)
@@ -43,11 +43,11 @@ function selectYear(year, date, minDate, maxDate) {
   const minutes = calculateMinutes(minDate, maxDate, year, month, day, hours, selectedMinutes)
 
   if (!date) {
-    return new Date(Date.UTC(year, month, day, hours, minutes))
+    return new Date(year, month, day, hours, minutes)
   }
-  
-  date.setUTCFullYear(year, month, day)
-  date.setUTCHours(hours, minutes)
+
+  date.setFullYear(year, month, day)
+  date.setHours(hours, minutes)
 
   return date
 }

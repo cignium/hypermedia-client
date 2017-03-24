@@ -12,9 +12,9 @@ export default ({ className, errors, onCommit, property, value }) => {
     onChange={ e => onCommit(selectHour(e.target.value, value, minDate, maxDate))}
     value={getHour(value)}>
       {renderOptions(getAvailableHours(minDate, maxDate,
-                                      value && value.getUTCFullYear(),
-                                      value && value.getUTCMonth(),
-                                      value && value.getUTCDate()))}
+                                      value && value.getFullYear(),
+                                      value && value.getMonth(),
+                                      value && value.getDate()))}
   </select>
   )
 }
@@ -25,7 +25,7 @@ function renderOptions(hours) {
 }
 
 function getHour(date) {
-  return date ? date.getUTCHours() : ''
+  return date ? date.getHours() : ''
 }
 
 function selectHour(hour, date, minDate, maxDate) {
@@ -33,14 +33,14 @@ function selectHour(hour, date, minDate, maxDate) {
     return null
   }
 
-  const selectedYear = date && date.getUTCFullYear()
-  const selectedMonth = date && date.getUTCMonth()
-  const selectedDay = date && date.getUTCDate()
-  const selectedMinutes = date && date.getUTCMinutes()
+  const selectedYear = date && date.getFullYear()
+  const selectedMonth = date && date.getMonth()
+  const selectedDay = date && date.getDate()
+  const selectedMinutes = date && date.getMinutes()
 
   const minutes = calculateMinutes(minDate, maxDate, selectedYear, selectedMonth, selectedDay, hour, selectedMinutes)
 
-  date.setUTCHours(hour, minutes)
+  date.setHours(hour, minutes)
 
   return date
 }
