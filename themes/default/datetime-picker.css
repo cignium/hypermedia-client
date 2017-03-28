@@ -20,6 +20,13 @@
   line-height: 18px;
 }
 
+button.ct-am-pm:disabled {
+  background: #AAACFA;
+  color: #D8D9FE;
+  border: solid 1px #AAACFA;
+  cursor: not-allowed;
+}
+
 button.ct-am-pm:hover {
   background: #AAACFA;
 }

@@ -18,6 +18,20 @@ describe('AM/PM', () => {
     amPm = renderer.getRenderOutput()
   }
 
+  describe('with null date time', () => {
+    beforeEach(() => {
+      renderComponent(null)
+    })
+
+    it('disables button', () => {
+      expect(amPm.props.disabled).toEqual(true)
+    })
+
+    it('set text to AM', () => {
+      expect(amPm.props.children).toEqual('AM')
+    })
+  })
+
   describe('with date time 2012-02-01 5:25', () => {
     beforeEach(() => {
       renderComponent(new Date(2012, 1, 1, 5, 25))

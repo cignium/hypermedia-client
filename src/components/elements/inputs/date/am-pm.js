@@ -1,7 +1,7 @@
 import cx from 'classnames'
 import Moment from 'moment'
 
-export default ({ className, errors, onCommit, value }) => {
+export default ({ className, errors, onCommit, property, value }) => {
   function toggleAmPm(date) {
     const moment = Moment(date)
     if (moment.format('A') == 'AM') {
@@ -12,9 +12,10 @@ export default ({ className, errors, onCommit, value }) => {
 
   return (
     <button
+      disabled={(property && property.disabled) || !value}
       className={cx(className, 'ct-am-pm ct-action')}
       onClick={ e => onCommit(toggleAmPm(value))}>
-      {Moment(value).format('A')}
+      {value ? Moment(value).format('A') : 'AM'}
     </button>
   )
 }
