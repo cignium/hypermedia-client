@@ -16,7 +16,7 @@ describe('Hour with min/max date', () => {
   function renderComponent(date, property, format) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
-      <Hour value={date} onCommit={commitSpy} property={property} format={format} />
+      <Hour value={date} onCommit={commitSpy} property={property} />
     )
     hour = renderer.getRenderOutput()
   }

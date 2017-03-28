@@ -9,25 +9,24 @@ export default ({ className, errors, onCommit, property, value, format }) => {
   <select
     className={cx(className, 'ct-input ct-hour')}
     disabled={property ? property.disabled || !value : !value}
-    onChange={ e => onCommit(selectHour(e.target.value, value, minDate, maxDate, format))}
-    value={getHour(value, format)}>
+    onChange={ e => onCommit(selectHour(e.target.value, value, minDate, maxDate))}
+    value={getHour(value)}>
       {renderOptions(getAvailableHours(minDate, maxDate,
                                       value && value.getFullYear(),
                                       value && value.getMonth(),
-                                      value && value.getDate(),
-                                      format), format)}
+                                      value && value.getDate()))}
   </select>
   )
 }
 
-function renderOptions(hours, format) {
+function renderOptions(hours) {
   hours = hours.filter(hour => hour <= 12)
 
   return [<option value='' key='placeholder'>H...</option>]
     .concat(hours.map(hour => <option key={hour} value={hour}>{hour}</option>))
 }
 
-function getHour(date, format) {
+function getHour(date) {
   if (!date) {
     return ''
   }
@@ -39,7 +38,7 @@ function getHour(date, format) {
   return hours
 }
 
-function selectHour(hour, date, minDate, maxDate, format) {
+function selectHour(hour, date, minDate, maxDate) {
   if (hour === '') {
     return null
   }

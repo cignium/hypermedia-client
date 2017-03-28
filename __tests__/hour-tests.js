@@ -10,10 +10,10 @@ describe('Hour', () => {
   let hour
   const commitSpy = jasmine.createSpy('OnCommit')
 
-  function renderComponent(date, format) {
+  function renderComponent(date) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
-      <Hour value={date} onCommit={commitSpy} format={format} />
+      <Hour value={date} onCommit={commitSpy} />
     )
     hour = renderer.getRenderOutput()
   }
@@ -28,11 +28,11 @@ describe('Hour', () => {
 
   describe('with date time 2012-02-01 15:30 in 12 hour format', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2012, 1, 1, 15, 30)))
+      renderComponent(new Date(2012, 1, 1, 15, 30))
     })
 
     it('sets the value to 4 (PM)', () => {
-      expect(hour.props.value).toEqual(new Date(Date.UTC(2012, 1, 1, 15, 30)).getHours()-12)
+      expect(hour.props.value).toEqual(new Date(2012, 1, 1, 15, 30).getHours()-12)
     })
 
     it('has 0 as the first option', () => {

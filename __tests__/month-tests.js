@@ -49,7 +49,7 @@ describe('Month', () => {
 
   describe('with date 2013-01-31', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2013, 0, 31)))
+      renderComponent(new Date(2013, 0, 31))
     })
 
     it('sets the value to January', () => {
@@ -61,7 +61,7 @@ describe('Month', () => {
         month.props.onChange({ target: { value: 1 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
-        expect(newDate.toISOString().split('T')[0]).toEqual(new Date(Date.UTC(2013, 1, 28)).toISOString().split('T')[0])
+        expect(newDate.toISOString().split('T')[0]).toEqual(new Date(2013, 1, 28).toISOString().split('T')[0])
       })
     })
   })

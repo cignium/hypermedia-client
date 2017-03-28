@@ -1,8 +1,6 @@
 // __tests__/date-picker-tests.js
 jest.unmock('../src/components/elements/inputs/date/datetime-picker')
-jest.unmock('Moment')
 jest.unmock('../node_modules/moment/moment.js')
-jest.unmock('../node_modules/react-widgets/lib/localizers/moment.js')
 
 import TestUtils from 'react-addons-test-utils'
 import DateTimePicker from '../src/components/elements/inputs/date/datetime-picker'

@@ -13,7 +13,7 @@ describe('Year', () => {
   function renderComponent(date) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
-      <Year value={date} onCommit={commitSpy} format='24hr' />
+      <Year value={date} onCommit={commitSpy} />
     )
 
     year = renderer.getRenderOutput()
