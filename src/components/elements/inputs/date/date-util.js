@@ -48,6 +48,10 @@ export function calculateMinutes(minDate, maxDate, year, month, day, hour, curre
   return availableMinutes.length > 0 ? availableMinutes[0] : ''
 }
 
+export function isAmPmFormat(timeFormat) {
+  return timeFormat != '24hr'
+}
+
 export function allHours(lowerLimit, upperLimit) {
   let hours = []
 
@@ -104,11 +108,7 @@ export function lastDayInMonth(year, month) {
 export function allDays(year, month, lowerLimit, upperLimit) {
   let days = []
 
-  if (!year && !month) {
-    return days
-  }
-
-  const lastDay = lastDayInMonth(year, month)
+  const lastDay = !year && !month ? 31 : lastDayInMonth(year, month)
 
   for (let i = 1; i <= lastDay; i++) {
     days.push(i)

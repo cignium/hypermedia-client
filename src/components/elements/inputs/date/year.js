@@ -11,7 +11,7 @@ export default ({ className, errors, onCommit, property, value }) => {
     className={cx(className, 'ct-input ct-year')}
     onChange={ e => onCommit(selectYear(e.target.value, value, minDate, maxDate))}
     value={getYear(value)}
-    disabled={property ? property.disabled : false}>
+    disabled={property && property.disabled}>
       {renderOptions(getAvailableYears(minDate, maxDate))}
   </select>
   )

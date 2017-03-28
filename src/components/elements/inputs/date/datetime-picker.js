@@ -4,7 +4,9 @@ import Month from './month'
 import Day from './day'
 import Hour from './hour'
 import Minute from './minute'
+import AmPm from './am-pm'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+import { isAmPmFormat } from './date-util'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
 import 'react-widgets/dist/css/react-widgets.css'
@@ -26,13 +28,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     onCommit(getDateString(date))
   }
 
-  function renderDropdowms() {
+  function renderDropdowms(format) {
     return (<span>
-      <Year
-        className={className}
-        onCommit={date => handleChange(Moment(date))}
-        value={date}
-        property={property} />
       <Month
         className={className}
         onCommit={date => handleChange(Moment(date))}
@@ -43,10 +40,16 @@ export default ({ className, errors, onCommit, property, value }) => {
         onCommit={date => handleChange(Moment(date))}
         value={date}
         property={property} />
+      <Year
+        className={className}
+        onCommit={date => handleChange(Moment(date))}
+        value={date}
+        property={property} />
       <Hour
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
+        format={format}
         property={property} />
       <span className={cx(className, 'ct-time-separator')}>: </span>
       <Minute
@@ -54,6 +57,11 @@ export default ({ className, errors, onCommit, property, value }) => {
         onCommit={date => handleChange(Moment(date))}
         value={date}
         property={property} />
+      {isAmPmFormat(format) ? <AmPm
+        className={className}
+        onCommit={date => handleChange(Moment(date))}
+        value={date}
+        property={property} /> : null}
     </span>)
   }
 
@@ -70,7 +78,7 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   return (
     <div data-tip={errors} className={cx(className, 'ct-datetime-picker')}>
-      {!property || property.display !== 'select' ? renderDropdowms() : renderPicker()}
+      {!property || property.display === 'select' ? renderDropdowms(property.format.type) : renderPicker()}
     </div>
   )
 }

@@ -8,7 +8,7 @@ export default ({ className, errors, onCommit, property, value }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-month')}
-    disabled={property ? property.disabled || !value : !value}
+    disabled={property && property.disabled}
     onChange={ e => onCommit(selectMonth(e.target.value, value, minDate, maxDate))}
     value={getMonth(value)}>
       {renderOptions(getAvailableMonths(minDate, maxDate, value && value.getFullYear()))}

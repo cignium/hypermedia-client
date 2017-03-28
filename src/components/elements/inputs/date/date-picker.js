@@ -26,11 +26,6 @@ export default ({ className, errors, onCommit, property, value }) => {
 
   function renderDropdowms() {
     return (<span>
-      <Year
-      className={className}
-      onCommit={date => handleChange(Moment(date))}
-      value={date}
-      property={property} />
       <Month
         className={className}
         onCommit={date => handleChange(Moment(date))}
@@ -41,7 +36,12 @@ export default ({ className, errors, onCommit, property, value }) => {
         onCommit={date => handleChange(Moment(date))}
         value={date}
         property={property} />
-        </span>)
+      <Year
+        className={className}
+        onCommit={date => handleChange(Moment(date))}
+        value={date}
+        property={property} />
+      </span>)
   }
 
   function renderPicker() {
