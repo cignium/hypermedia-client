@@ -48,10 +48,6 @@ export function calculateMinutes(minDate, maxDate, year, month, day, hour, curre
   return availableMinutes.length > 0 ? availableMinutes[0] : ''
 }
 
-export function isAmPmFormat(timeFormat) {
-  return timeFormat != '24hr'
-}
-
 export function allHours(lowerLimit, upperLimit) {
   let hours = []
 

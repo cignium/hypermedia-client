@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { getAvailableHours, createDateTime, calculateMinutes, isAmPmFormat } from './date-util'
+import { getAvailableHours, createDateTime, calculateMinutes} from './date-util'
 
 export default ({ className, errors, onCommit, property, value, format }) => {
   const minDate = property && createDateTime(property.minDate)
@@ -21,9 +21,8 @@ export default ({ className, errors, onCommit, property, value, format }) => {
 }
 
 function renderOptions(hours, format) {
-  if (isAmPmFormat(format)) {
-    hours = hours.filter(hour => hour <= 12)
-  }
+  hours = hours.filter(hour => hour <= 12)
+
   return [<option value='' key='placeholder'>H...</option>]
     .concat(hours.map(hour => <option key={hour} value={hour}>{hour}</option>))
 }
@@ -34,19 +33,19 @@ function getHour(date, format) {
   }
   let hours = date.getHours()
 
-  if (isAmPmFormat(format) && hours > 12) {
+  if (hours > 12) {
     hours -= 12
   }
   return hours
 }
 
 function selectHour(hour, date, minDate, maxDate, format) {
-  if (isAmPmFormat(format) && date.getHours() >= 12) {
-    hour = parseInt(hour) + 12
-  }
-
   if (hour === '') {
     return null
+  }
+
+  if (date.getHours() >= 12) {
+    hour = parseInt(hour) + 12
   }
 
   const selectedYear = date && date.getFullYear()

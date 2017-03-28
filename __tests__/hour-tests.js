@@ -26,33 +26,6 @@ describe('Hour', () => {
     return hour.props.children[hour.props.children.length - 1].props.value
   }
 
-  describe('with date time 2012-02-01 15:30 in 24 hour format', () => {
-    beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2012, 1, 1, 15, 30)), '24hr')
-    })
-
-    it('sets the value to 15', () => {
-      expect(hour.props.value).toEqual(new Date(Date.UTC(2012, 1, 1, 15, 30)).getHours())
-    })
-
-    it('has 23 as the last option', () => {
-      expect(getLastOption()).toEqual(23)
-    })
-
-    it('has 0 as the first option', () => {
-      expect(getFirstOption()).toEqual(0)
-    })
-
-    describe('And changing hour to 18', () => {
-      it('sets the hour to 18', () => {
-        hour.props.onChange({ target: { value: 18 }})
-        const newDate = commitSpy.calls.mostRecent().args[0]
-
-        expect(newDate.getHours()).toEqual(18)
-      })
-    })
-  })
-
   describe('with date time 2012-02-01 15:30 in 12 hour format', () => {
     beforeEach(() => {
       renderComponent(new Date(Date.UTC(2012, 1, 1, 15, 30)))

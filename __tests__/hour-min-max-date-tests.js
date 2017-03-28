@@ -45,16 +45,6 @@ describe('Hour with min/max date', () => {
       })
     })
 
-    describe('and with minDate 2012-03-10 10:31 and 24 hour format', () => {
-      beforeEach(() => {
-        renderComponent(date, { minDate: new Date(2012,2,10,10,31).toISOString() }, '24hr')
-      })
-
-      it('have 23 as last option', () => {
-        expect(lastChildrenValue()).toEqual(23)
-      })
-    })
-
     describe('and with maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
         renderComponent(date, { maxDate: new Date(2012,2,10,12,29).toISOString() })
