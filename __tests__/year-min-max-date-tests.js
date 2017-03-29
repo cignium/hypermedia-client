@@ -64,7 +64,10 @@ describe('Year with min/max date', () => {
 
     describe('and minDate 2012-02-10 and maxDate 2015-02-10', () => {
       beforeEach(() => {
-        renderComponent(null, { minDate: new Date(2012,1,10).toISOString(), maxDate: new Date(2015,1,10).toISOString() })
+        renderComponent(null, {
+          minDate: new Date(2012, 1, 10).toISOString(),
+          maxDate: new Date(2015, 1, 10).toISOString(),
+        })
       })
 
       it('has no value', () => {

@@ -68,7 +68,10 @@ describe('Hour with min/max date', () => {
 
     describe('and with minDate 2012-03-10 10:31 and maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: new Date(2012,2,10,10,31).toISOString(), maxDate: new Date(2012,2,10,12,29).toISOString() })
+        renderComponent(date, {
+          minDate: new Date(2012, 2, 10, 10, 31).toISOString(),
+          maxDate: new Date(2012, 2, 10, 12, 29).toISOString(),
+        })
       })
 
       it('have 10 as second option', () => {
