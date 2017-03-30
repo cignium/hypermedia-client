@@ -28,6 +28,8 @@ export default ({ className, errors, onCommit, property, value }) => {
         return true
       }
     }
+
+    return false
   }
 
   return (
