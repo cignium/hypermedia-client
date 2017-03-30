@@ -1,7 +1,7 @@
 import cx from 'classnames'
-import { getAvailableHours, createDateTime, calculateMinutes } from './date-util'
+import { getAvailableHours, createDateTime, calculateMinutes} from './date-util'
 
-export default ({ className, errors, onCommit, property, value }) => {
+export default ({ className, errors, onCommit, property, value, format }) => {
   const minDate = property && createDateTime(property.minDate)
   const maxDate = property && createDateTime(property.maxDate)
 
@@ -12,20 +12,30 @@ export default ({ className, errors, onCommit, property, value }) => {
     onChange={ e => onCommit(selectHour(e.target.value, value, minDate, maxDate))}
     value={getHour(value)}>
       {renderOptions(getAvailableHours(minDate, maxDate,
-                                      value && value.getUTCFullYear(),
-                                      value && value.getUTCMonth(),
-                                      value && value.getUTCDate()))}
+                                      value && value.getFullYear(),
+                                      value && value.getMonth(),
+                                      value && value.getDate()))}
   </select>
   )
 }
 
 function renderOptions(hours) {
+  hours = hours.filter(hour => hour <= 12)
+
   return [<option value='' key='placeholder'>H...</option>]
     .concat(hours.map(hour => <option key={hour} value={hour}>{hour}</option>))
 }
 
 function getHour(date) {
-  return date ? date.getUTCHours() : ''
+  if (!date) {
+    return ''
+  }
+  let hours = date.getHours()
+
+  if (hours > 12) {
+    hours -= 12
+  }
+  return hours
 }
 
 function selectHour(hour, date, minDate, maxDate) {
@@ -33,14 +43,18 @@ function selectHour(hour, date, minDate, maxDate) {
     return null
   }
 
-  const selectedYear = date && date.getUTCFullYear()
-  const selectedMonth = date && date.getUTCMonth()
-  const selectedDay = date && date.getUTCDate()
-  const selectedMinutes = date && date.getUTCMinutes()
+  if (date.getHours() >= 12) {
+    hour = parseInt(hour) + 12
+  }
+
+  const selectedYear = date && date.getFullYear()
+  const selectedMonth = date && date.getMonth()
+  const selectedDay = date && date.getDate()
+  const selectedMinutes = date && date.getMinutes()
 
   const minutes = calculateMinutes(minDate, maxDate, selectedYear, selectedMonth, selectedDay, hour, selectedMinutes)
 
-  date.setUTCHours(hour, minutes)
+  date.setHours(hour, minutes)
 
   return date
 }

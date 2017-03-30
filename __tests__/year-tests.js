@@ -43,7 +43,7 @@ describe('Year', () => {
         year.props.onChange({ target: { value: 2013 }})
         const newDate = commitSpy.calls.mostRecent().args[0]
 
-        expect(newDate.toISOString().split('T')[0]).toEqual('2013-01-01')
+        expect(newDate.toISOString()).toEqual(new Date(2013,0,1).toISOString())
       })
     })
   })

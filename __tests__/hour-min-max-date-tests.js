@@ -13,7 +13,7 @@ describe('Hour with min/max date', () => {
   const lastChildrenValue = () => hour.props.children[hour.props.children.length - 1].props.value
   const newDate = () => commitSpy.calls.mostRecent().args[0]
 
-  function renderComponent(date, property) {
+  function renderComponent(date, property, format) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
       <Hour value={date} onCommit={commitSpy} property={property} />
@@ -22,19 +22,19 @@ describe('Hour with min/max date', () => {
   }
 
   describe('and with date 2012-03-10 11:30', () => {
-    const date = new Date(Date.UTC(2012, 2, 10, 11, 30))
+    const date = new Date(2012, 2, 10, 11, 30)
 
-    describe('and with minDate 2012-03-10 10:31', () => {
+    describe('and with minDate 2012-03-10 10:31 and 12 hour format', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T10:31:00+00:00' })
+        renderComponent(date, { minDate: new Date(2012,2,10,10,31).toISOString() })
       })
 
       it('have 10 as second option', () => {
         expect(secondChildrenValue()).toEqual(10)
       })
 
-      it('have 23 as last option', () => {
-        expect(lastChildrenValue()).toEqual(23)
+      it('have 12 as last option', () => {
+        expect(lastChildrenValue()).toEqual(12)
       })
 
       describe('And changing hour to 10', () => {
@@ -44,10 +44,10 @@ describe('Hour with min/max date', () => {
         })
       })
     })
-    
+
     describe('and with maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
-        renderComponent(date, { maxDate: '2012-03-10T12:29:00+00:00' })
+        renderComponent(date, { maxDate: new Date(2012,2,10,12,29).toISOString() })
       })
 
       it('have 00 as second option', () => {
@@ -68,7 +68,10 @@ describe('Hour with min/max date', () => {
 
     describe('and with minDate 2012-03-10 10:31 and maxDate 2012-03-10 12:29', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T10:31:00+00:00', maxDate: '2012-03-10T12:29:00+00:00' })
+        renderComponent(date, {
+          minDate: new Date(2012, 2, 10, 10, 31).toISOString(),
+          maxDate: new Date(2012, 2, 10, 12, 29).toISOString(),
+        })
       })
 
       it('have 10 as second option', () => {

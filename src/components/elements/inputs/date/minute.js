@@ -12,10 +12,10 @@ export default ({ className, errors, onCommit, property, value }) => {
     onChange={ e => onCommit(selectMinute(e.target.value, value))}
     value={getMinute(value)}>
       {renderOptions(getAvailableMinutes(minDate, maxDate,
-                                        value && value.getUTCFullYear(),
-                                        value && value.getUTCMonth(),
-                                        value && value.getUTCDate(),
-                                        value && value.getUTCHours()))}
+                                        value && value.getFullYear(),
+                                        value && value.getMonth(),
+                                        value && value.getDate(),
+                                        value && value.getHours()))}
   </select>
   )
 }
@@ -26,7 +26,7 @@ function renderOptions(minutes) {
 }
 
 function getMinute(date) {
-  return date ? date.getUTCMinutes() : ''
+  return date ? date.getMinutes() : ''
 }
 
 function selectMinute(minute, date) {
@@ -34,7 +34,7 @@ function selectMinute(minute, date) {
     return null
   }
 
-  date.setUTCMinutes(minute)
+  date.setMinutes(minute)
 
   return date
 }
