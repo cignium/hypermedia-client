@@ -40,8 +40,12 @@ function selectMonth(value, date, minDate, maxDate) {
   const hour = calculateHours(minDate, maxDate, selectedYear, month, day, selectedHour)
   const minutes = calculateMinutes(minDate, maxDate, selectedYear, month, day, hour, selectedMinutes)
 
+  if (!date) {
+    date = new Date()
+  }
+
   date.setMonth(month, day)
-  date.setHours(hour, minutes)
+  date.setHours(hour, minutes, 0)
 
   return date
 }
