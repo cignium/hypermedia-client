@@ -1,5 +1,5 @@
 {
-  "scriptPreprocessor": "<rootDir>/test-preprocessor",
+  "transform": { ".*": "<rootDir>/test-preprocessor" },
   "unmockedModulePathPatterns": [
     "<rootDir>/node_modules/react",
     "<rootDir>/node_modules/react-dom",

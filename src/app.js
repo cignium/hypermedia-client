@@ -19,6 +19,8 @@ export default class App extends Component {
     const sitemap = this.state.resources[this.state.resources.sitemap]
     const document = this.state.resources[this.state.resources.current]
 
+    Tooltip.rebuild()
+
     return (
       <div className='ct-app'>
         <Tooltip
