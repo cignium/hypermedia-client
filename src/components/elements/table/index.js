@@ -8,13 +8,13 @@ export default class Table extends Component {
     super()
 
     this.state = {
-      sortedRows: props.property.rows.slice(),
       currentColumnIndex: null,
       descending: false,
     }
   }
 
   render() {
+    const sortedRows = this.getSortedRows()
     return (
       <div className='ct-table-container'>
         <label className='ct-element-label ct-table-label'>{this.props.property.title}</label>
@@ -23,29 +23,38 @@ export default class Table extends Component {
             descending={this.state.descending}
             sortedColumn={this.state.currentColumnIndex}
             columns={this.props.property.columns}
-            sortBy={index => this.sortBy(index)} />
-          <Body rows={this.state.sortedRows} />
+            sortBy={index => this.setSortingState(index)} />
+          <Body rows={sortedRows} />
         </table>
       </div>)
   }
 
-  sortBy(columnIndex) {
-    const rowsToSort = this.state.sortedRows
-    let sorted = rowsToSort.sort((row1, row2) => {
+  setSortingState(columnIndex) {
+    this.setState({
+      descending: this.state.currentColumnIndex == columnIndex ? !this.state.descending : false,
+      currentColumnIndex: columnIndex,
+    })
+  }
+
+  getSortedRows() {
+    const columnIndex = this.state.currentColumnIndex
+    const rowsToSort = this.props.property.rows.slice()
+
+    if (columnIndex == null || columnIndex == undefined) {
+      return rowsToSort
+    }
+
+    const sorted = rowsToSort.sort((row1, row2) => {
       if (this.getRowValue(row1, columnIndex) > this.getRowValue(row2, columnIndex)) return 1
       if (this.getRowValue(row1, columnIndex) < this.getRowValue(row2, columnIndex)) return -1
       return 0
     })
 
-    if (this.state.currentColumnIndex == columnIndex && !this.state.descending) {
-      sorted = sorted.reverse()
+    if (this.state.descending) {
+      return sorted
     }
 
-    this.setState({
-      sortedRows: sorted,
-      descending: this.state.currentColumnIndex == columnIndex ? !this.state.descending : false,
-      currentColumnIndex: columnIndex,
-    })
+    return sorted.reverse()
   }
 
   getRowValue(row, columnIndex) {
@@ -66,7 +75,6 @@ export default class Table extends Component {
       return row[columnIndex].value.toLowerCase() === 'true'
     }
 
-    return row[columnIndex].value
+    return row[columnIndex].value && row[columnIndex].value.toLowerCase()
   }
 }
-
