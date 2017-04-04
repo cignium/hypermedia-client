@@ -65,8 +65,8 @@ export default class Table extends Component {
     if (row[columnIndex].type == 'boolean') {
       return row[columnIndex].value.toLowerCase() === 'true'
     }
-
-    return row[columnIndex].value
+    
+    return row[columnIndex].value && row[columnIndex].value.toLowerCase()
   }
 }
 
