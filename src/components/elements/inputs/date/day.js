@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { getAvailableDays, createDateTime, calculateHours, calculateMinutes } from './date-util'
+import { getAvailableDays, createDateTime, calculateMonth, calculateHours, calculateMinutes } from './date-util'
 
 export default ({ className, errors, onCommit, property, value }) => {
   const minDate = property && createDateTime(property.minDate)
@@ -8,12 +8,12 @@ export default ({ className, errors, onCommit, property, value }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-day')}
-    disabled={property ? property.disabled || !value : !value}
+    disabled={property && property.disabled}
     onChange={ e => onCommit(selectDay(e.target.value, value, minDate, maxDate))}
     value={getDay(value)}>
       {renderOptions(getAvailableDays(minDate, maxDate,
-                                      value && value.getUTCFullYear(),
-                                      value && value.getUTCMonth()))}
+                                      value && value.getFullYear(),
+                                      value && value.getMonth()))}
   </select>
   )
 }
@@ -24,7 +24,7 @@ function renderOptions(days) {
 }
 
 function getDay(date) {
-  return date && date.getUTCDate()
+  return date ? date.getDate() : ''
 }
 
 function selectDay(day, date, minDate, maxDate) {
@@ -32,16 +32,21 @@ function selectDay(day, date, minDate, maxDate) {
     return null
   }
 
-  const selectedYear = date && date.getUTCFullYear()
-  const selectedMonth = date && date.getUTCMonth()
-  const selectedHours = date && date.getUTCHours()
-  const selectedMinutes = date && date.getUTCMinutes()
+  const selectedYear = date && date.getFullYear()
+  const selectedMonth = date && date.getMonth()
+  const selectedHours = date && date.getHours()
+  const selectedMinutes = date && date.getMinutes()
 
+  const month = calculateMonth(minDate, maxDate, selectedYear, selectedMonth)
   const hours = calculateHours(minDate, maxDate, selectedYear, selectedMonth, day, selectedHours)
   const minutes = calculateMinutes(minDate, maxDate, selectedYear, selectedMonth, day, hours, selectedMinutes)
 
-  date.setUTCDate(day)
-  date.setUTCHours(hours, minutes)
+  if (!date) {
+    date = new Date()
+  }
+
+  date.setMonth(month, day)
+  date.setHours(hours, minutes, 0)
 
   return date
 }

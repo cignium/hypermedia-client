@@ -8,9 +8,13 @@
 }
 
 .ct-month {
-  width: 120px;
+  width: 100px;
 }
 
 .ct-day {
-  width: 80px;
+  width: 60px;
+}
+
+.ct-input-invalid .rw-input {
+  border: 1px solid #ED1631
 }

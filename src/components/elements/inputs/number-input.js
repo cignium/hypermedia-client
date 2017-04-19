@@ -10,7 +10,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => (
     onChange={e => onUpdate(parseInput(e.target.value))}
     title={property.title}
     type='number'
-    value={value} />
+    value={value || ''} />
 )
 
 function parseInput(input) {

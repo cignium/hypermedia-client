@@ -26,7 +26,7 @@ describe('Day with min/max date', () => {
 
     describe('and with minDate 2012-03-05 10:30', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-05T10:30:00+00:00' })
+        renderComponent(date, { minDate: new Date(2012,2,5,10,30).toISOString() })
       })
 
       it('have 5 as second option', () => {
@@ -39,15 +39,15 @@ describe('Day with min/max date', () => {
 
       describe('And changing day to 5', () => {
         it('sets the hour to 10', () => {
-          day.props.onChange({ target: { value: 5 }})
-          expect(newDate().getUTCHours()).toEqual(10)
+          day.props.onChange({ target: { value: 5 } })
+          expect(newDate().getHours()).toEqual(10)
         })
       })
     })
-    
+
     describe('and with maxDate 2012-03-11 08:30', () => {
       beforeEach(() => {
-        renderComponent(date, { maxDate: '2012-03-11T08:30:00+00:00' })
+        renderComponent(date, { maxDate: new Date(2012,2,11,9,30).toISOString() })
       })
 
       it('have 1 as second option', () => {
@@ -61,7 +61,7 @@ describe('Day with min/max date', () => {
       describe('And changing day to 11', () => {
         it('resets hour to 00', () => {
           day.props.onChange({ target: { value: 11 }})
-          expect(newDate().getUTCHours()).toEqual(0)
+          expect(newDate().getHours()).toEqual(0)
         })
       })
     })

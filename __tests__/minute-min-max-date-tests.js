@@ -37,7 +37,7 @@ describe('Minute with min/max date', () => {
         expect(lastChildrenValue()).toEqual(59)
       })
     })
-    
+
     describe('and with maxDate 2012-03-10 11:30', () => {
       beforeEach(() => {
         renderComponent(date, { maxDate: '2012-03-10T11:30:00+00:00' })
