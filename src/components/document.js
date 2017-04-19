@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import ActionList from './elements/action-list'
 import JsonDebugger from './json-debugger'
 import factory from './elements/factory'
@@ -14,7 +15,7 @@ export default class Document extends Component {
 
     if (previous !== current) {
       if (this.props.config.scrollToTop) {
-        React.findDOMNode(this).scrollIntoView()
+        findDOMNode(this).scrollIntoView()
       }
 
       if (this.props.config.onUrlChange) {
