@@ -26,6 +26,22 @@ export default {
         test: /\.css$/,
       },
       {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader',
+      },
+      {
+        test: /\.gif$/,
+        loader: 'url-loader?mimetype=image/png',
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: 'url-loader?mimetype=application/font-woff',
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: 'file-loader?name=[name].[ext]',
+      },
+      {
         include: /themes/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
         test: /\.css$/,
