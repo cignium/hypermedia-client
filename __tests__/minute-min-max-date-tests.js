@@ -5,6 +5,7 @@ jest.unmock('../src/components/elements/inputs/date/date-util')
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 import Minute from '../src/components/elements/inputs/date/minute'
+import { createDateTime } from '../src/components/elements/inputs/date/date-util'
 
 describe('Minute with min/max date', () => {
   let minute
@@ -22,11 +23,11 @@ describe('Minute with min/max date', () => {
   }
 
   describe('and with date 2012-03-10 11:30', () => {
-    const date = new Date(Date.UTC(2012, 2, 10, 11, 30))
+    const date = createDateTime('2012-03-10T11:30:00+00:00')
 
     describe('and with minDate 2012-03-10 11:30', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T11:30:00+00:00' })
+        renderComponent(date, { minDate: createDateTime('2012-03-10T11:30:00+00:00') })
       })
 
       it('have 30 as second option', () => {
@@ -40,7 +41,7 @@ describe('Minute with min/max date', () => {
 
     describe('and with maxDate 2012-03-10 11:30', () => {
       beforeEach(() => {
-        renderComponent(date, { maxDate: '2012-03-10T11:30:00+00:00' })
+        renderComponent(date, { maxDate: createDateTime('2012-03-10T11:30:00+00:00') })
       })
 
       it('have 00 as second option', () => {
@@ -54,7 +55,7 @@ describe('Minute with min/max date', () => {
 
     describe('and with minDate 2012-03-10 11:30 and maxDate 2012-03-10 11:45', () => {
       beforeEach(() => {
-        renderComponent(date, { minDate: '2012-03-10T11:30:00+00:00', maxDate: '2012-03-10T11:45:00+00:00' })
+        renderComponent(date, { minDate: createDateTime('2012-03-10T11:30:00+00:00'), maxDate: createDateTime('2012-03-10T11:45:00+00:00') })
       })
 
       it('have 30 as second option', () => {

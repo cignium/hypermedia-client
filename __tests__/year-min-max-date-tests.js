@@ -5,6 +5,7 @@ jest.unmock('../src/components/elements/inputs/date/date-util')
 import React from 'react'
 import TestUtils from 'react-addons-test-utils'
 import Year from '../src/components/elements/inputs/date/year'
+import { createDate } from '../src/components/elements/inputs/date/date-util'
 
 describe('Year with min/max date', () => {
   let year
@@ -28,7 +29,7 @@ describe('Year with min/max date', () => {
 
     describe('and minDate 2012-02-10', () => {
       beforeEach(() => {
-        renderComponent(null, { minDate: new Date(2012,1,10).toISOString()})
+        renderComponent(null, { minDate: createDate('2012-02-10') })
       })
 
       it('has no value', () => {
@@ -46,7 +47,7 @@ describe('Year with min/max date', () => {
 
     describe('and maxDate 2015-02-10', () => {
       beforeEach(() => {
-        renderComponent(null, { maxDate: new Date(2015,1,10).toISOString() })
+        renderComponent(null, { maxDate: createDate('2015-02-10') })
       })
 
       it('has no value', () => {
@@ -65,8 +66,8 @@ describe('Year with min/max date', () => {
     describe('and minDate 2012-02-10 and maxDate 2015-02-10', () => {
       beforeEach(() => {
         renderComponent(null, {
-          minDate: new Date(2012, 1, 10).toISOString(),
-          maxDate: new Date(2015, 1, 10).toISOString(),
+          minDate: createDate('2012-02-10'),
+          maxDate: createDate('2015-02-10'),
         })
       })
 

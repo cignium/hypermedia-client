@@ -9,6 +9,7 @@ import DateTimePicker from 'react-widgets/lib/DateTimePicker'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
 import 'react-widgets/dist/css/react-widgets.css'
+import { createDateTime } from './date-util'
 
 function getDateString(date) {
   if (!date || !date.isValid()) {
@@ -22,6 +23,11 @@ export default ({ className, errors, onCommit, property, value }) => {
     'MM-DD-YYYY H:mm A', 'MM/DD/YYYY', 'MM-DD-YYYY','YYYYMMDD HH:mm', 'YYYY-MM-DD HH:mm']
   const date = value ? new Date(value) : null
   momentLocalizer(Moment)
+
+  if (property) {
+    property.minDate = createDateTime(property.minDate)
+    property.maxDate = createDateTime(property.maxDate)
+  }
 
   function handleChange(date) {
     onCommit(getDateString(date))

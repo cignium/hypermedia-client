@@ -50,7 +50,7 @@ describe('Year', () => {
 
   describe('with date 2012-02-29', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2012, 1, 29)))
+      renderComponent(new Date(2012, 1, 29))
     })
 
     it('sets the value to 2012', () => {
@@ -69,7 +69,7 @@ describe('Year', () => {
 
   describe('with date 2013-01-31', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2013, 0, 31)))
+      renderComponent(new Date(2013, 0, 31))
     })
 
     it('sets the value to 2013', () => {

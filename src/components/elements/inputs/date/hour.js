@@ -2,8 +2,8 @@ import cx from 'classnames'
 import { getAvailableHours, createDateTime, calculateMinutes} from './date-util'
 
 export default ({ className, errors, onCommit, property, value, format }) => {
-  const minDate = property && createDateTime(property.minDate)
-  const maxDate = property && createDateTime(property.maxDate)
+  const minDate = property && property.minDate
+  const maxDate = property && property.maxDate
 
   return (
   <select

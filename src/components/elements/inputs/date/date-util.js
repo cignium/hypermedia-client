@@ -98,7 +98,7 @@ export function calculateHours(minDate, maxDate, year, month, day, currentHours)
 }
 
 export function lastDayInMonth(year, month) {
-  return new Date(Date.UTC(year, month + 1, 0)).getUTCDate()
+  return new Date(year, month + 1, 0).getDate()
 }
 
 export function allDays(year, month, lowerLimit, upperLimit) {
@@ -242,7 +242,7 @@ export function createDate(value) {
 
   const dateParts = value.split('-')
 
-  return new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, dateParts[2]))
+  return new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]))
 }
 
 export function validateDay(year, month, day) {

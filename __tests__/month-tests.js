@@ -21,7 +21,7 @@ describe('Month', () => {
 
   describe('with date 2012-01-31', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2012, 0, 31)))
+      renderComponent(new Date(2012, 0, 31))
     })
 
     it('sets the value to January', () => {
@@ -68,7 +68,7 @@ describe('Month', () => {
 
   describe('with date 1924-01-01', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(1924, 0, 1)))
+      renderComponent(new Date(1924, 0, 1))
     })
 
     describe('And changing month to May', () => {

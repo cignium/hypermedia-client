@@ -20,6 +20,11 @@ export default ({ className, errors, onCommit, property, value }) => {
   momentLocalizer(Moment)
   const date = createDate(value)
 
+  if (property) {
+    property.minDate = createDate(property.minDate)
+    property.maxDate = createDate(property.maxDate)
+  }
+
   function handleChange(date) {
     onCommit(getDateString(date))
   }
