@@ -23,11 +23,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     'MM-DD-YYYY H:mm A', 'MM/DD/YYYY', 'MM-DD-YYYY','YYYYMMDD HH:mm', 'YYYY-MM-DD HH:mm']
   const date = value ? new Date(value) : null
   momentLocalizer(Moment)
-
-  if (property) {
-    property.minDate = createDateTime(property.minDate)
-    property.maxDate = createDateTime(property.maxDate)
-  }
+  const minDate = property && createDateTime(property.minValue)
+  const maxDate = property && createDateTime(property.maxDate)
 
   function handleChange(date) {
     onCommit(getDateString(date))
@@ -39,33 +36,45 @@ export default ({ className, errors, onCommit, property, value }) => {
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Day
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Year
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Hour
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <span className={cx(className, 'ct-time-separator')}>: </span>
       <Minute
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <AmPm
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
     </span>)
   }
 

@@ -17,7 +17,7 @@ describe('Hour with min/max date', () => {
   function renderComponent(date, property, format) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
-      <Hour value={date} onCommit={commitSpy} property={property} />
+      <Hour value={date} onCommit={commitSpy} minDate={property.minDate} maxDate={property.maxDate} />
     )
     hour = renderer.getRenderOutput()
   }
@@ -29,10 +29,10 @@ describe('Hour with min/max date', () => {
       const minDate = createDateTime('2012-03-10T10:31:00+00:00')
 
       beforeEach(() => {
-        renderComponent(date, { minDate: minDate })
+        renderComponent(date, { minDate })
       })
 
-      it('have 10 as second option', () => {
+      it('have minDate hours as second option', () => {
         expect(secondChildrenValue()).toEqual(minDate.getHours())
       })
 
@@ -40,32 +40,33 @@ describe('Hour with min/max date', () => {
         expect(lastChildrenValue()).toEqual(12)
       })
 
-      describe('And changing to minDate hour', () => {
-        it('sets the minutes to 31', () => {
+      describe('And changing to minDate hours', () => {
+        it('sets the minutes to minDate minutes', () => {
           hour.props.onChange({ target: { value: minDate.getHours() }})
-          expect(newDate().getUTCMinutes()).toEqual(31)
+          expect(newDate().getUTCMinutes()).toEqual(minDate.getMinutes())
         })
       })
     })
 
     describe('and with maxDate 2012-03-10 11:29', () => {
       const maxDate = createDateTime('2012-03-10T11:29:00+00:00')
+
       beforeEach(() => {
-        renderComponent(date, { maxDate: maxDate })
+        renderComponent(date, { maxDate })
       })
 
       it('have 00 as second option', () => {
         expect(secondChildrenValue()).toEqual(0)
       })
 
-      it('have 11 as last option', () => {
+      it('have maxDate hour as last option', () => {
         expect(lastChildrenValue()).toEqual(maxDate.getHours())
       })
 
-      describe('And changing to maxDate hour', () => {
+      describe('And changing to maxDate hours', () => {
         it('resets minutes to 00', () => {
           hour.props.onChange({ target: { value: maxDate.getHours() }})
-          expect(newDate().getUTCMinutes()).toEqual(0)
+          expect(newDate().getMinutes()).toEqual(0)
         })
       })
     })
@@ -73,18 +74,16 @@ describe('Hour with min/max date', () => {
     describe('and with minDate 2012-03-10 10:31 and maxDate 2012-03-10 11:29', () => {
       const minDate = createDateTime('2012-03-10T10:31:00+00:00')
       const maxDate = createDateTime('2012-03-10T11:29:00+00:00')
+
       beforeEach(() => {
-        renderComponent(date, {
-          minDate: minDate,
-          maxDate: maxDate
-        })
+        renderComponent(date, { minDate, maxDate })
       })
 
-      it('have 10 as second option', () => {
+      it('have minDate hours as second option', () => {
         expect(secondChildrenValue()).toEqual(minDate.getHours())
       })
 
-      it('have 11 as last option', () => {
+      it('have maxDate hours as last option', () => {
         expect(lastChildrenValue()).toEqual(maxDate.getHours())
       })
     })

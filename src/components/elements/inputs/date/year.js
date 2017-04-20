@@ -2,10 +2,7 @@ import cx from 'classnames'
 import { getAvailableYears, createDateTime, calculateMonth,
         calculateDay, calculateHours, calculateMinutes } from './date-util'
 
-export default ({ className, errors, onCommit, property, value }) => {
-  const minDate = property && property.minDate
-  const maxDate = property && property.maxDate
-
+export default ({ className, errors, onCommit, property, minDate, maxDate, value }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-year')}

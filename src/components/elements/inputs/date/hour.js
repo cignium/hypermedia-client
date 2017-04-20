@@ -1,10 +1,7 @@
 import cx from 'classnames'
 import { getAvailableHours, createDateTime, calculateMinutes} from './date-util'
 
-export default ({ className, errors, onCommit, property, value, format }) => {
-  const minDate = property && property.minDate
-  const maxDate = property && property.maxDate
-
+export default ({ className, errors, onCommit, property, minDate, maxDate, value, format }) => {
   return (
   <select
     className={cx(className, 'ct-input ct-hour')}

@@ -17,7 +17,7 @@ describe('Day with min/max date', () => {
   function renderComponent(date, property) {
     const renderer = TestUtils.createRenderer()
     renderer.render(
-      <Day value={date} onCommit={commitSpy} property={property} />
+      <Day value={date} onCommit={commitSpy} minDate={property.minDate} maxDate={property.maxDate} />
     )
     day = renderer.getRenderOutput()
   }
@@ -27,8 +27,9 @@ describe('Day with min/max date', () => {
 
     describe('and with minDate 2012-03-05 10:30', () => {
       const minDate = createDateTime('2012-03-05T10:30:00+00:00')
+
       beforeEach(() => {
-        renderComponent(date, { minDate: minDate })
+        renderComponent(date, { minDate })
       })
 
       it('have minDate day as second option', () => {
@@ -49,8 +50,9 @@ describe('Day with min/max date', () => {
 
     describe('and with maxDate 2012-03-11 08:30', () => {
       const maxDate = createDateTime('2012-03-11T08:30:00+00:00')
+
       beforeEach(() => {
-        renderComponent(date, { maxDate: maxDate })
+        renderComponent(date, { maxDate })
       })
 
       it('have 1 as second option', () => {
@@ -72,11 +74,9 @@ describe('Day with min/max date', () => {
     describe('and with minDate 2012-03-05 10:30 and with maxDate 2012-03-11 08:30', () => {
       const minDate = createDateTime('2012-03-05T10:30:00+00:00')
       const maxDate = createDateTime('2012-03-11T08:30:00+00:00')
+
       beforeEach(() => {
-        renderComponent(date, { 
-          minDate: minDate, 
-          maxDate: maxDate
-        })
+        renderComponent(date, { minDate, maxDate })
       })
 
       it('have minDate day as second option', () => {

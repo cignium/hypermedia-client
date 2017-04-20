@@ -19,11 +19,8 @@ export default ({ className, errors, onCommit, property, value }) => {
   const formats = ['MM/DD/YYYY', 'MM-DD-YYYY', 'YYYYMMDD', 'YYYY-MM-DD']
   momentLocalizer(Moment)
   const date = createDate(value)
-
-  if (property) {
-    property.minDate = createDate(property.minDate)
-    property.maxDate = createDate(property.maxDate)
-  }
+  const minDate = property && createDate(property.minDate)
+  const maxDate = property && createDate(property.maxDate)
 
   function handleChange(date) {
     onCommit(getDateString(date))
@@ -35,17 +32,23 @@ export default ({ className, errors, onCommit, property, value }) => {
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Day
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Year
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       </span>)
   }
 

@@ -98,7 +98,7 @@ export function calculateHours(minDate, maxDate, year, month, day, currentHours)
 }
 
 export function lastDayInMonth(year, month) {
-  return new Date(year, month + 1, 0).getDate()
+  return new Date(Date.UTC(year, month + 1, 0)).getUTCDate()
 }
 
 export function allDays(year, month, lowerLimit, upperLimit) {
