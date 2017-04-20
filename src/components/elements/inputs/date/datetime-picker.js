@@ -9,6 +9,7 @@ import DateTimePicker from 'react-widgets/lib/DateTimePicker'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
 import 'react-widgets/dist/css/react-widgets.css'
+import { createDateTime } from './date-util'
 
 function getDateString(date) {
   if (!date || !date.isValid()) {
@@ -22,6 +23,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     'MM-DD-YYYY H:mm A', 'MM/DD/YYYY', 'MM-DD-YYYY','YYYYMMDD HH:mm', 'YYYY-MM-DD HH:mm']
   const date = value ? new Date(value) : null
   momentLocalizer(Moment)
+  const minDate = property && createDateTime(property.minDate)
+  const maxDate = property && createDateTime(property.maxDate)
 
   function handleChange(date) {
     onCommit(getDateString(date))
@@ -33,33 +36,45 @@ export default ({ className, errors, onCommit, property, value }) => {
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Day
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Year
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Hour
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <span className={cx(className, 'ct-time-separator')}>: </span>
       <Minute
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <AmPm
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
     </span>)
   }
 
@@ -67,6 +82,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     return (<DateTimePicker
       disabled={property.disabled}
       value={date}
+      min={minDate || new Date(1900, 0, 1)}
+      max={maxDate || new Date(2099, 11, 31)}
       parse={str => Moment(str, formats)}
       className={cx(className, 'ct-datetime-picker')}
       format='L LT'

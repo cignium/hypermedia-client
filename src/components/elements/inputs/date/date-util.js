@@ -242,7 +242,7 @@ export function createDate(value) {
 
   const dateParts = value.split('-')
 
-  return new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, dateParts[2]))
+  return new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]))
 }
 
 export function validateDay(year, month, day) {

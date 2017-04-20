@@ -19,6 +19,8 @@ export default ({ className, errors, onCommit, property, value }) => {
   const formats = ['MM/DD/YYYY', 'MM-DD-YYYY', 'YYYYMMDD', 'YYYY-MM-DD']
   momentLocalizer(Moment)
   const date = createDate(value)
+  const minDate = property && createDate(property.minDate)
+  const maxDate = property && createDate(property.maxDate)
 
   function handleChange(date) {
     onCommit(getDateString(date))
@@ -30,17 +32,23 @@ export default ({ className, errors, onCommit, property, value }) => {
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Day
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       <Year
         className={className}
         onCommit={date => handleChange(Moment(date))}
         value={date}
-        property={property} />
+        property={property}
+        minDate={minDate}
+        maxDate={maxDate} />
       </span>)
   }
 
@@ -48,6 +56,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     return (<DateTimePicker
         disabled={property.disabled}
         value={date}
+        min={minDate || new Date(1900, 0, 1)}
+        max={maxDate || new Date(2099, 11, 31)}
         format='L'
         parse={str => Moment(str, formats)}
         className={cx(className, 'ct-datetime-picker')}

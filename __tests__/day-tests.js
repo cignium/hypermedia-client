@@ -28,7 +28,7 @@ describe('Day', () => {
 
   describe('with date 2012-02-01', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2012, 1, 1)))
+      renderComponent(new Date(2012, 1, 1))
     })
 
     it('sets the value to 1', () => {
@@ -55,7 +55,7 @@ describe('Day', () => {
 
   describe('with date 2013-02-01', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2013, 1, 1)))
+      renderComponent(new Date(2013, 1, 1))
     })
 
     it('sets the value to 1', () => {
@@ -82,7 +82,7 @@ describe('Day', () => {
 
   describe('with date 2013-01-01', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2013, 0, 1)))
+      renderComponent(new Date(2013, 0, 1))
     })
 
     it('has 1 as the first option', () => {
@@ -96,7 +96,7 @@ describe('Day', () => {
 
   describe('with date 2013-04-01', () => {
     beforeEach(() => {
-      renderComponent(new Date(Date.UTC(2013, 3, 1)))
+      renderComponent(new Date(2013, 3, 1))
     })
 
     it('has 1 as the first option', () => {
