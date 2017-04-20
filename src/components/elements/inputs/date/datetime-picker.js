@@ -23,7 +23,7 @@ export default ({ className, errors, onCommit, property, value }) => {
     'MM-DD-YYYY H:mm A', 'MM/DD/YYYY', 'MM-DD-YYYY','YYYYMMDD HH:mm', 'YYYY-MM-DD HH:mm']
   const date = value ? new Date(value) : null
   momentLocalizer(Moment)
-  const minDate = property && createDateTime(property.minValue)
+  const minDate = property && createDateTime(property.minDate)
   const maxDate = property && createDateTime(property.maxDate)
 
   function handleChange(date) {
@@ -82,6 +82,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     return (<DateTimePicker
       disabled={property.disabled}
       value={date}
+      min={minDate || new Date(1900, 0, 1)}
+      max={maxDate || new Date(2099, 11, 31)}
       parse={str => Moment(str, formats)}
       className={cx(className, 'ct-datetime-picker')}
       format='L LT'

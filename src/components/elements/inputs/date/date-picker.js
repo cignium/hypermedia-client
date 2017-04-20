@@ -56,6 +56,8 @@ export default ({ className, errors, onCommit, property, value }) => {
     return (<DateTimePicker
         disabled={property.disabled}
         value={date}
+        min={minDate || new Date(1900, 0, 1)}
+        max={maxDate || new Date(2099, 11, 31)}
         format='L'
         parse={str => Moment(str, formats)}
         className={cx(className, 'ct-datetime-picker')}
