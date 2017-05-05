@@ -1,5 +1,8 @@
 sudo: false
 language: node_js
+cache:
+  directories:
+    - node_modules
 notifications:
   email: false
 node_js:
@@ -9,6 +12,7 @@ install:
  - unzip BrowserStackLocal-linux-x64.zip
  - ./BrowserStackLocal -v -onlyAutomate -forcelocal $BROWSERSTACK_ACCESS_KEY &
  - sleep 3
+ - npm install
 before_script:
   - npm prune
   - npm run start-ui-test-server &
