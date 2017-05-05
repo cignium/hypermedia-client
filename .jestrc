@@ -5,5 +5,8 @@
     "<rootDir>/node_modules/react-dom",
     "<rootDir>/node_modules/react-addons-test-utils"
   ],
-  "automock":true
+  "automock":true,
+  "testPathIgnorePatterns": [
+    "<rootDir>/__tests__/ui"
+  ]
 }

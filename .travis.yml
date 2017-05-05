@@ -13,12 +13,12 @@ install:
  - ./BrowserStackLocal -v -onlyAutomate -forcelocal $BROWSERSTACK_ACCESS_KEY &
  - sleep 3
 before_script:
-- npm prune
+  - npm prune
+  - npm run start-ui-test-server
 script:
   - npm run lint
   - npm run test
   - npm run build
-  - npm run start-ui-test-server
   - npm run test-ui
 after_success:
   - npm run semantic-release
