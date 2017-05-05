@@ -64,7 +64,7 @@
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
     "test": "jest --config .jestrc",
-    "test-ui": "wdio wdio.conf.js",
+    "test-ui": "./node_modules/.bin/wdio wdio.conf.js",
     "lint": "eslint .",
     "start": "npm-run-all --parallel start-server start-test",
     "start-server": "babel-node server.js",
