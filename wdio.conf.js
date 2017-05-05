@@ -1,8 +1,8 @@
 const browserstack = require('browserstack-local')
 
 exports.config = {
-  user: 'niklasrans2',
-  key: 'xE59xLWy3ZTekp28atTu',
+  user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
+  key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
 
   updateJob: false,
   specs: [
@@ -23,7 +23,7 @@ exports.config = {
   coloredLogs: true,
   screenshotPath: './errorShots/',
   baseUrl: 'http://localhost:3004',
-  waitforTimeout: 20000,
+  waitforTimeout: 30000,
   connectionRetryTimeout: 90000,
   connectionRetryCount: 3,
 
