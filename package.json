@@ -13,7 +13,7 @@
     "moment": "^2.18.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-input-autosize": "^1.1.0",
+    "react-input-autosize": "1.1.0",
     "react-select": "^1.0.0-rc.3",
     "react-text-mask": "^3.0.0",
     "react-tooltip": "3.2.10",
