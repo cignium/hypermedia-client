@@ -13,6 +13,7 @@
     "moment": "^2.18.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-input-autosize": "^1.1.0",
     "react-select": "^1.0.0-rc.3",
     "react-text-mask": "^3.0.0",
     "react-tooltip": "3.2.10",
@@ -64,7 +65,7 @@
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
     "test": "jest --config .jestrc",
-    "test-ui": "./node_modules/.bin/wdio wdio.conf.js",
+    "test-ui": "wdio wdio.conf.js",
     "lint": "eslint .",
     "start": "npm-run-all --parallel start-server start-test",
     "start-server": "babel-node server.js",
