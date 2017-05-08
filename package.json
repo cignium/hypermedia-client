@@ -45,7 +45,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.10.1",
     "imports-loader": "^0.6.5",
-    "jest-cli": "*",
+    "jest-cli": "^20.0.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.0",
     "npm-run-all": "^1.5.3",
@@ -64,7 +64,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production babel-node node_modules/webpack/bin/webpack --config webpack.production.config.js",
-    "test": "jest --config .jestrc",
+    "test": "jest",
     "test-ui": "wdio wdio.conf.js",
     "lint": "eslint .",
     "start": "npm-run-all --parallel start-server start-test",
