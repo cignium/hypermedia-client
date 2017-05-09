@@ -2,7 +2,7 @@
 
 Hypermedia renderer for Cignium's hypermedia api.
 
-[![Build Status](https://travis-ci.org/cignium/hypermedia-client.svg)](https://travis-ci.org/cignium/hypermedia-client)
+[![Build Status](https://travis-ci.org/cignium/hypermedia-client.svg)](https://travis-ci.org/cignium/hypermedia-client) [![npm](https://img.shields.io/npm/v/cignium-hypermedia-client.svg)](https://www.npmjs.com/package/cignium-hypermedia-client)
 
 ## Install
 
@@ -21,14 +21,15 @@ npm install cignium-hypermedia-client --save
 Add the following script tag:
 
 ```html
-<script src="//unpkg.com/cignium-hypermedia-client/dist/client.min.js"></script>
+<script src="//unpkg.com/cignium-hypermedia-client/dist@1/client.min.js"></script>
 ```
 
 For default styling, include this tag:
 
 ```html
-<link rel="stylesheet" type="text/css" href="//unpkg.com/cignium-hypermedia-client/dist/default.css">
+<link rel="stylesheet" type="text/css" href="//unpkg.com/cignium-hypermedia-client@1/dist/default.css">
 ```
+*NOTE: the @1 in these import statements make sure that you are importing the latest version of the client that is still on major version 1. Meaning every version below 2.0.0. Importing the client like this ensures that your application will not automatically upgrade to version 2.0.0 which will contain breaking changes. The safest way to import the client will always be to specify the entire version e.g. @1.31.3 but that also means that you will not even get small patches automatically.*
 
 ## Get Started
 
