@@ -186,7 +186,7 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
 
 ## UI Testing
 
-<a href='https://www.browserstack.com/'><img src='./browserstack-logo.png' width=400 /></a>
+<a href='https://www.browserstack.com/'><img src='./browserstack-logo.svg' width=400 /></a>
 
 We are using the awesome service <a href='https://www.browserstack.com/'>Browserstack</a> to ensure we keep a high quality and to minimize the risk of breaking existing behavior for our users. Please check them out!
 
