@@ -2,7 +2,7 @@
 
 Hypermedia renderer for Cignium's hypermedia api.
 
-[![Build Status](https://travis-ci.org/cignium/hypermedia-client.svg)](https://travis-ci.org/cignium/hypermedia-client) [![npm](https://img.shields.io/npm/v/cignium-hypermedia-client.svg)](https://www.npmjs.com/package/cignium-hypermedia-client)
+[![Build Status](https://travis-ci.org/cignium/hypermedia-client.svg)](https://travis-ci.org/cignium/hypermedia-client) [![npm](https://img.shields.io/npm/v/cignium-hypermedia-client.svg)](https://www.npmjs.com/package/cignium-hypermedia-client) <img src='https://www.browserstack.com/automate/badge.svg?badge_key=TWQ1cDZwTFFncHRkdnQ5Yzk3MmxPS1hONlZQdDMza0tWdEJJVG9qSm9tMD0tLS8yamd3cTZibE9vazZka3dhZ0VHeUE9PQ==--9c0df343ec64c0f3041d2ff154d576e90348439c'/>
 
 ## Install
 
@@ -183,6 +183,12 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-list
  * ct-list-item
  * ct-sitemap
+
+## UI Testing
+
+<a href='https://www.browserstack.com/'><img src='https://az827402.vo.msecnd.net/assets/browserstack-logo.svg' width=400 /></a>
+
+We are using the awesome service <a href='https://www.browserstack.com/'>Browserstack</a> to ensure we keep a high quality and to minimize the risk of breaking existing behavior for our users. Please check them out!
 
 ## Contributing
 
