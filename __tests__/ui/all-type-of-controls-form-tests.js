@@ -28,4 +28,17 @@ describe('Default values form', () => {
     assert.equal(browser.getValue('.ct-datetime-picker .ct-minute'), 37)
     assert.equal(browser.getText('.ct-datetime-picker .ct-am-pm'), 'PM')
   })
+
+  it('has a multi select element with correct default value', () => {
+    const values = browser.elements('#multi-select .Select-value .Select-value-label').value
+
+    assert.equal(values[0].getText().trim(), 'Två')
+    assert.equal(values[1].getText().trim(), 'Fyra')
+  })
+
+  it('has a single select element with correct default value', () => {
+    const value = browser.element('#single-select .Select-value .Select-value-label')
+
+    assert.equal(value.getText().trim(), 'Dos')
+  })
 })
