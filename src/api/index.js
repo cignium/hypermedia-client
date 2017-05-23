@@ -2,6 +2,11 @@ import { request } from './http'
 import Draft from './draft'
 import factory from './factory'
 
+const keys = {
+  current: 'current',
+  sitemap: 'sitemap',
+}
+
 function getAllLeafProperties(data) {
   const properties = []
   if (data.properties) {
@@ -43,7 +48,7 @@ export default class Api {
           return
         }
         else {
-          state.get().requests.remove('current')
+          state.get().requests.remove(keys.current)
         }
       }
 
@@ -67,8 +72,10 @@ export default class Api {
     })
   }
 
-  async loadSitemap(resource) {
+  async updateResourceSitemap(resource) {
     if (!resource.links.sitemap) {
+      this.state.get().resources.remove(keys.sitemap)
+
       return
     }
 
@@ -78,7 +85,7 @@ export default class Api {
       this.requestResource({
         href,
         method: 'get',
-        resourceKey: 'sitemap',
+        resourceKey: keys.sitemap,
       })
 
       return
@@ -87,7 +94,7 @@ export default class Api {
     await this.requestResource({
       href,
       method: 'get',
-      resourceKey: 'sitemap',
+      resourceKey: keys.sitemap,
     })
   }
 
@@ -109,7 +116,10 @@ export default class Api {
 
       const resource = factory(response)
       this.draft.reload(href, resource)
-      await this.loadSitemap(resource)
+
+      if (resourceKey != keys.sitemap) {
+        await this.updateResourceSitemap(resource)
+      }
 
       this.state.get().resources.set(resource.links.self.href, resource)
 
@@ -137,7 +147,7 @@ export default class Api {
     const request = this.getNextRequestFromQueue()
 
     if (request) {
-      this.state.get().requests.set('current', request.id)
+      this.state.get().requests.set(keys.current, request.id)
       this.processRequest(request)
     }
   }
@@ -149,16 +159,16 @@ export default class Api {
   }
 
   executeAction(href) {
-    this.requestResource({ href, method: 'post', resourceKey: 'current' })
+    this.requestResource({ href, method: 'post', resourceKey: keys.current })
   }
 
   navigate(href) {
     if (href === null) {
-      this.state.get().resources.set('current', null)
+      this.state.get().resources.set(keys.current, null)
       return
     }
 
-    this.requestResource({ href, method: 'get', resourceKey: 'current' })
+    this.requestResource({ href, method: 'get', resourceKey: keys.current })
   }
 
   submit(href) {
@@ -168,7 +178,7 @@ export default class Api {
       data,
       href,
       method: 'post',
-      resourceKey: 'current',
+      resourceKey: keys.current,
     })
   }
 
