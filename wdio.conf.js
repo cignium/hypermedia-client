@@ -1,4 +1,5 @@
 const browserstack = require('browserstack-local')
+const request = require('request')
 
 exports.config = {
   user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
@@ -52,6 +53,15 @@ exports.config = {
         resolve()
       })
     })
+  },
+
+  afterTest: test => {
+    if (!test.passed) {
+      request({
+        uri: `https://niklasrans2:xE59xLWy3ZTekp28atTu@www.browserstack.com/automate/sessions/${browser.sessionId}.json`,
+        method:'PUT',
+        form:{'status':'error','reason':test.err.message}})
+    }
   },
 
   // Code to stop browserstack local after end of test

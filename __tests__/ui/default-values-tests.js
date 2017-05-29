@@ -37,8 +37,18 @@ describe('Default values form', () => {
   })
 
   it('has a single select element with correct default value', () => {
-    const value = browser.element('#single-select .Select-value .Select-value-label')
+    assert.equal(browser.getText('#single-select .Select-value .Select-value-label').trim(), 'Dos')
+  })
 
-    assert.equal(value.getText().trim(), 'Dos')
+  it('has a number element with correct default value', () => {
+    assert.equal(browser.getValue('.ct-number-input'), 42)
+  })
+
+  it('has a text element with the correct default value', () => {
+    assert.equal(browser.getValue('#text'), 'Me gusta le gato blanco')
+  })
+
+  it('has a text element in a section with the correct default value', () => {
+    assert.equal(browser.getValue('.ct-nested.ct-section .ct-text-input'), 'Me gusta le perro')
   })
 })

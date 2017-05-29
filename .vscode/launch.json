@@ -11,7 +11,12 @@
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
             },
             "cwd": "${workspaceRoot}",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "args":[
+                "--spec", "${relativeFile}"
+                // To run a specific file, you can also do:
+                //"--spec", "test/specs/foo.spec.js"
+            ]
         },
         {
             "name": "Tests",
