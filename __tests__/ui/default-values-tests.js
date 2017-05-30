@@ -2,7 +2,7 @@ const assert = require('assert')
 
 describe('Default values form', () => {
   before(() => {
-    browser.url('index.html')
+    browser.url('default.html')
     return browser.waitForExist('.ct-document-header-text', 30000)
   })
 
@@ -31,9 +31,11 @@ describe('Default values form', () => {
 
   it('has a multi select element with correct default value', () => {
     const values = browser.elements('#multi-select .Select-value .Select-value-label').value
+    const strings = values.map(element => element.getText().trim())
 
-    assert.equal(values[0].getText().trim(), 'Två')
-    assert.equal(values[1].getText().trim(), 'Fyra')
+    assert.equal(strings.length, 2)
+    assert.equal(strings.includes('Två'), true)
+    assert.equal(strings.includes('Fyra'), true)
   })
 
   it('has a single select element with correct default value', () => {
