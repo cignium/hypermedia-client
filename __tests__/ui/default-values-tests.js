@@ -47,10 +47,10 @@ describe('Default values form', () => {
   })
 
   it('has a text element with the correct default value', () => {
-    assert.equal(browser.getValue('#text'), 'Me gusta le gato blanco')
+    assert.equal(browser.getValue('#text'), 'Me gusta el gato blanco')
   })
 
   it('has a text element in a section with the correct default value', () => {
-    assert.equal(browser.getValue('.ct-nested.ct-section .ct-text-input'), 'Me gusta le perro')
+    assert.equal(browser.getValue('.ct-nested.ct-section .ct-text-input'), 'Me gusta el perro')
   })
 })
