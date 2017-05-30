@@ -1,6 +1,6 @@
 const assert = require('assert')
 const blur = () => {
-  browser.keys('\uE004')
+  browser.click('.ct-document-header-text')
 }
 
 describe('Validations form', () => {

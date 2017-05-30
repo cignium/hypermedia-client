@@ -1,21 +1,33 @@
 const browserstack = require('browserstack-local')
 const request = require('request')
+const errors = []
+const user = process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME'
+const key = process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY'
 
 exports.config = {
-  user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-  key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+  debug: process.env.CI ? false : true,
+  user,
+  key,
 
   updateJob: false,
   specs: [
     './__tests__/ui/*-tests.js',
   ],
   exclude: [],
+  maxInstances: 2,
 
   capabilities: [{
     browser: 'chrome',
-    name: 'single_test',
+    name: 'chrome_tests',
     build: process.env.CI ?
-      'hypermedia-client #' +  process.env.TRAVIS_BUILD_NUMBER + '.' + process.env.TRAVIS_JOB_NUMBER :
+      'hypermedia-client #' +  process.env.TRAVIS_BUILD_NUMBER :
+      'hypermedia-client-local',
+    'browserstack.local': true,
+  }, {
+    browser: 'firefox',
+    name: 'firefox_tests',
+    build: process.env.CI ?
+      'hypermedia-client #' +  process.env.TRAVIS_BUILD_NUMBER :
       'hypermedia-client-local',
     'browserstack.local': true,
   }],
@@ -37,7 +49,7 @@ exports.config = {
   // Code to start browserstack local before start of test
   onPrepare: (config, capabilities) => {
     if (process.env.CI) {
-      console.log('On CI. Skipping local connection.')
+      console.log('On CI. Skipping local connection because Travis CI will handle this.')
       return
     }
     console.log('Connecting local')
@@ -57,19 +69,30 @@ exports.config = {
 
   afterTest: test => {
     if (!test.passed) {
+      errors.push(`${test.fullTitle} failed with error: '${test.err.message}'`)
+    }
+  },
+
+  after: (result, capabilities, specs) => {
+    if (result != 0) {
+      console.log('Failing session with id: ' + browser.sessionId)
       request({
-        uri: `https://niklasrans2:xE59xLWy3ZTekp28atTu@www.browserstack.com/automate/sessions/${browser.sessionId}.json`,
+        uri: `https://${user}:${key}@www.browserstack.com/automate/sessions/${browser.sessionId}.json`,
         method:'PUT',
-        form:{'status':'error','reason':test.err.message}})
+        form:{ 'status':'error','reason': session.errors.join(' | ') },
+      })
     }
   },
 
   // Code to stop browserstack local after end of test
-  onComplete: (capabilties, specs) => {
+  onComplete: (exitCode, config, capabilities) => {
+    console.log('Exited with code: ' + exitCode)
+
     if (process.env.CI) {
       console.log('On CI. No local connection to close.')
       return
     }
+
     console.log('Closing local connection')
     exports.bs_local.stop(() => {})
   },
