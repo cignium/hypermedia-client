@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/year')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Year from '../src/components/elements/inputs/date/year'
 import { createDate } from '../src/components/elements/inputs/date/date-util'
 
@@ -16,7 +15,7 @@ describe('Year with min/max date', () => {
   const currentYear = new Date().getFullYear()
 
   function renderComponent(date, property) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Year value={date} onCommit={commitSpy} minDate={property.minDate} maxDate={property.maxDate} />
     )

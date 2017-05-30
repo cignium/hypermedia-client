@@ -2,7 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/datetime-picker')
 jest.unmock('../node_modules/moment/moment.js')
 
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import DateTimePicker from '../src/components/elements/inputs/date/datetime-picker'
 
 describe('Basic date time picker with value 2012-01-31 14:35:00', () => {
@@ -27,7 +27,7 @@ describe('Basic date time picker with value 2012-01-31 14:35:00', () => {
   }
 
   beforeEach(() => {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <DateTimePicker value='2012-01-31T14:35:00+00:00' />
     )

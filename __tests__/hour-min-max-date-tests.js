@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/hour')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Hour from '../src/components/elements/inputs/date/hour'
 import { createDateTime } from '../src/components/elements/inputs/date/date-util'
 
@@ -15,7 +14,7 @@ describe('Hour with min/max date', () => {
   const newDate = () => commitSpy.calls.mostRecent().args[0]
 
   function renderComponent(date, property, format) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Hour value={date} onCommit={commitSpy} minDate={property.minDate} maxDate={property.maxDate} />
     )
