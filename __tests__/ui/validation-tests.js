@@ -39,7 +39,7 @@ describe('Validations form', () => {
 
     browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-text-input')
-    }, 3000)
+    }, 10000)
   })
 
   it('accepts a valid number value', () => {
@@ -50,7 +50,7 @@ describe('Validations form', () => {
 
     browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-number-input')
-    }, 3000)
+    }, 10000)
   })
 
   it('accepts a valid date value', () => {
@@ -58,7 +58,7 @@ describe('Validations form', () => {
 
     browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-date-picker')
-    }, 3000)
+    }, 10000)
   })
 
   it('accepts a valid date time value', () => {
@@ -66,7 +66,7 @@ describe('Validations form', () => {
 
     browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-datetime-picker')
-    }, 3000)
+    }, 10000)
   })
 
   it('can be submitted when valid', () => {

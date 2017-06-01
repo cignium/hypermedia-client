@@ -24,7 +24,7 @@ describe('Disabled and Hidden form', () => {
 
     return browser.waitUntil(() => {
       return browser.getAttribute('#disabled', 'readonly') !== null
-    }, 3000)
+    }, 10000)
   })
 
   it('hides the textfield when the hidden expression is truthy', () => {
@@ -32,6 +32,6 @@ describe('Disabled and Hidden form', () => {
 
     return browser.waitUntil(() => {
       return !browser.isExisting('#hidden')
-    }, 3000)
+    }, 10000)
   })
 })
