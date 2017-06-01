@@ -79,7 +79,7 @@ exports.config = {
       request({
         uri: `https://${user}:${key}@www.browserstack.com/automate/sessions/${browser.sessionId}.json`,
         method:'PUT',
-        form:{ 'status':'error','reason': session.errors.join(' | ') },
+        form:{ 'status':'error','reason': errors.join(' | ') },
       })
     }
   },
