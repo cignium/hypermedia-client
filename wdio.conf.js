@@ -32,7 +32,7 @@ exports.config = {
     'browserstack.local': true,
   }],
 
-  logLevel: 'verbose',
+  logLevel: 'silent',
   coloredLogs: true,
   screenshotPath: './errorShots/',
   baseUrl: 'http://localhost:3004',
