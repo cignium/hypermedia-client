@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/month')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Month from '../src/components/elements/inputs/date/month'
 
 describe('Month', () => {
@@ -11,7 +10,7 @@ describe('Month', () => {
   const commitSpy = jasmine.createSpy('OnCommit')
 
   function renderComponent(date) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Month value={date} onCommit={commitSpy} />
     )

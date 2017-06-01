@@ -2,6 +2,23 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "UI Tests",
+            "type": "node",
+            "request": "launch",
+            "port": 5859,
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
+            },
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal",
+            "args":[
+                "--spec", "${relativeFile}"
+                // To run a specific file, you can also do:
+                //"--spec", "test/specs/foo.spec.js"
+            ]
+        },
+        {
             "name": "Tests",
             "type": "node",
             "request": "launch",

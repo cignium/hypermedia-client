@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/month')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Month from '../src/components/elements/inputs/date/month'
 import { createDate } from '../src/components/elements/inputs/date/date-util'
 
@@ -13,9 +12,9 @@ describe('Month with min/max date', () => {
   const secondChildrenValue = () => month.props.children[1].props.value
   const lastChildrenValue = () => month.props.children[month.props.children.length - 1].props.value
   const newDate = () => commitSpy.calls.mostRecent().args[0]
-  
+
   function renderComponent(date, property) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Month value={date} onCommit={commitSpy} minDate={property.minDate} maxDate={property.maxDate} />
     )

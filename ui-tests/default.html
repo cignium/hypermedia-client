@@ -4,9 +4,14 @@
     <meta charset="utf-8">
     <title>Hypermedia Client Testing</title>
     <link rel="stylesheet" type="text/css" href="default.css" />
+    <script src="baseUrl.js"></script>
     <script src="client.min.js"></script>
   </head>
   <body>
-    <div id="demo-app" data-endpoint="https://cignium-lm-staging.azurewebsites.net/run/staging/regression/prod/forms-test"></div>
+    <div id="demo-app"></div>
   </body>
+  <script type="text/javascript">
+    Cignium.init('demo-app')
+    Cignium.navigate(baseUrl + '/ui-default-values')
+  </script>
 </html>

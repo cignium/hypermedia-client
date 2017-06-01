@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/year')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Year from '../src/components/elements/inputs/date/year'
 
 describe('Year', () => {
@@ -11,7 +10,7 @@ describe('Year', () => {
   const commitSpy = jasmine.createSpy('OnCommit')
 
   function renderComponent(date) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Year value={date} onCommit={commitSpy} />
     )

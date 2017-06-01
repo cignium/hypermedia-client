@@ -2,8 +2,7 @@
 jest.unmock('../src/components/elements/inputs/date/hour')
 jest.unmock('../src/components/elements/inputs/date/date-util')
 
-import React from 'react'
-import TestUtils from 'react-addons-test-utils'
+import { createRenderer } from 'react-test-renderer/shallow'
 import Hour from '../src/components/elements/inputs/date/hour'
 
 describe('Hour', () => {
@@ -11,7 +10,7 @@ describe('Hour', () => {
   const commitSpy = jasmine.createSpy('OnCommit')
 
   function renderComponent(date) {
-    const renderer = TestUtils.createRenderer()
+    const renderer = createRenderer()
     renderer.render(
       <Hour value={date} onCommit={commitSpy} />
     )
