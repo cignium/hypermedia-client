@@ -70,7 +70,7 @@
     "lint": "eslint .",
     "start": "npm-run-all --parallel start-server start-test",
     "start-server": "babel-node server.js",
-    "start-ui-test-server": "node ui-test-server.js",
+    "start-ui-test-server": "node ui-tests/generate-baseUrl && node ui-test-server.js",
     "start-test": "jest --config .jestrc --watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
