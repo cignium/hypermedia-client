@@ -84,4 +84,38 @@ describe('Validations form', () => {
 
     assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp')
   })
+
+  it.only('does not accept numeric input for alpabetic text format', () => {
+    const alphaInput = browser.element('#alphabetic')
+    alphaInput.clearElement()
+    alphaInput.setValue('A')
+    alphaInput.addValue('4')
+    alphaInput.addValue('2')
+    alphaInput.addValue('b')
+
+    assert.equal(browser.getValue('#alphabetic'), 'Ab')
+  })
+
+  it.only('does not accept alphabetic input for numeric text format', () => {
+    const alphaInput = browser.element('#numeric')
+    alphaInput.clearElement()
+    alphaInput.setValue('1')
+    alphaInput.addValue('A')
+    alphaInput.addValue('2')
+    alphaInput.addValue('b')
+
+    assert.equal(browser.getValue('#numeric'), '12')
+  })
+
+  it.only('does only accept Acord format', () => {
+    const alphaInput = browser.element('#acord')
+    alphaInput.clearElement()
+    alphaInput.setValue('.,-\'')
+    alphaInput.addValue('a')
+    alphaInput.addValue('2')
+    alphaInput.addValue('B')
+    alphaInput.addValue('.,-\'')
+
+    assert.equal(browser.getValue('#acord'), 'aB.,-\'')
+  })
 })
