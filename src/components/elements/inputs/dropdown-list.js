@@ -19,7 +19,7 @@ export default ({ className, errors, onCommit, property, value }) => {
           return { label: title, value }
         })}
         title={property.title}
-        value={value || ''} />
+        value={value ||  ''} />
     </div>
   )
 }
