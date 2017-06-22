@@ -47,7 +47,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
         prefix: '', suffix: '', allowDecimal: true, includeThousandsSeparator: false,
       })
       case 'acord': return createAcordMask
-      case 'alphabetic': return createAlphabeticdMask
+      case 'alphabetic': return createAlphabeticalMask
       case 'zip': return [digit, digit, digit, digit, digit]
       case 'ssn': return [digit, digit, digit, '-', digit, digit, '-', digit, digit, digit, digit]
       default: throw new Error(`Format type '${format.type}' is not supported.`)
@@ -69,7 +69,7 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
       value={value} />
   )
 }
-function createAlphabeticdMask(rawValue) {
+function createAlphabeticalMask(rawValue) {
   const possibleMask = Array.from(rawValue)
   const regEx = /[a-zA-Z]/
   const mask = possibleMask.reduce((accumulator, currentChar) => {
