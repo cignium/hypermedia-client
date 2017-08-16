@@ -37,6 +37,9 @@ const formats = [
   'email',
   'zip',
   'ssn',
+  'numeric',
+  'acord',
+  'alphabetic',
 ]
 
 function useMask({ format }) {
