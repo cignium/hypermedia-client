@@ -19,10 +19,10 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
       return
     }
 
-    const decimalValue = !value || value === '' 
-                          ? null 
+    const decimalValue = !value || value === ''
+                          ? null
                           : isNumeric(value)
-                            ? value 
+                            ? value
                             : parseFloat(value.substring(1).replace(/,/g, ''))
     onCommit(decimalValue)
   }
@@ -43,6 +43,11 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
         ['(', /[1-9]/, digit, digit, ')', ' ', digit, digit, digit, '-', digit, digit, digit, digit]
       case 'currency': return createNumberMask({ prefix: '$', suffix: '', allowDecimal: true })
       case 'email': return emailMask
+      case 'numeric': return createNumberMask({
+        prefix: '', suffix: '', allowDecimal: true, includeThousandsSeparator: false,
+      })
+      case 'acord': return createAcordMask
+      case 'alphabetic': return createAlphabeticalMask
       case 'zip': return [digit, digit, digit, digit, digit]
       case 'ssn': return [digit, digit, digit, '-', digit, digit, '-', digit, digit, digit, digit]
       default: throw new Error(`Format type '${format.type}' is not supported.`)
@@ -63,4 +68,34 @@ export default ({ className, errors, onCommit, onUpdate, property, value }) => {
       type={{ telephone: 'tel' }[property.display] || 'text'}
       value={value} />
   )
+}
+function createAlphabeticalMask(rawValue) {
+  const possibleMask = Array.from(rawValue)
+  const regEx = /[a-zA-Z]/
+  const mask = possibleMask.reduce((accumulator, currentChar) => {
+    if (regEx.test(currentChar)) {
+      accumulator.push(regEx)
+    }
+    return accumulator
+  }, [])
+
+  return mask
+}
+
+function createAcordMask(rawValue) {
+  const possibleMask = Array.from(rawValue)
+  const firstCharRegEx = /^[a-zA-Z]/
+  const restRegEx = /^[a-zA-Z .,\'-]/
+  const anyCharRegEx = /./
+  const mask = possibleMask.reduce((accumulator, currentChar) => {
+    if (accumulator.length > 0 && restRegEx.test(currentChar)) {
+      accumulator.push(anyCharRegEx)
+    }
+    if (accumulator.length <= 0 && firstCharRegEx.test(currentChar)) {
+      accumulator.push(anyCharRegEx)
+    }
+    return accumulator
+  }, [])
+
+  return mask
 }
