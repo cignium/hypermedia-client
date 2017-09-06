@@ -70,11 +70,11 @@ describe('Validations form', () => {
   })
 
   it('can be submitted when valid', () => {
-    browser.isExisting('.ct-action=Submit')
+    return browser.isExisting('.ct-action=Submit')
   })
 
   it('submits the form', () => {
-    browser.click('.ct-action=Submit')
+    return browser.click('.ct-action=Submit')
   })
 
   it('can display interpolated value', () => {
@@ -85,41 +85,49 @@ describe('Validations form', () => {
   })
 
   it('submits the form', () => {
-    browser.click('.ct-action=Submit')
-    return browser.waitForExist('#alphabetic', 10000)
+    return browser.click('.ct-action=Submit')
   })
 
   it.only('does not accept numeric input for alpabetic text format', () => {
-    const alphaInput = browser.element('#alphabetic')
-    alphaInput.clearElement()
-    alphaInput.setValue('A')
-    alphaInput.addValue('4')
-    alphaInput.addValue('2')
-    alphaInput.addValue('b')
+    return browser.waitForExist('#alphabetic')
+      .then(() => {
+        const alphaInput = browser.element('#alphabetic')
+        alphaInput.clearElement()
+        alphaInput.setValue('A')
+        alphaInput.addValue('4')
+        alphaInput.addValue('2')
+        alphaInput.addValue('b')
 
-    assert.equal(browser.getValue('#alphabetic'), 'Ab')
+        assert.equal(browser.getValue('#alphabetic'), 'Ab')
+      })
   })
 
   it.only('does not accept alphabetic input for numeric text format', () => {
-    const alphaInput = browser.element('#numeric')
-    alphaInput.clearElement()
-    alphaInput.setValue('1')
-    alphaInput.addValue('A')
-    alphaInput.addValue('2')
-    alphaInput.addValue('b')
+    return browser.waitForExist('#numeric')
+      .then(() => {
+        const alphaInput = browser.element('#numeric')
+        alphaInput.clearElement()
+        alphaInput.setValue('1')
+        alphaInput.addValue('A')
+        alphaInput.addValue('2')
+        alphaInput.addValue('b')
 
-    assert.equal(browser.getValue('#numeric'), '12')
+        assert.equal(browser.getValue('#numeric'), '12')
+      })
   })
 
   it.only('does only accept Acord format', () => {
-    const alphaInput = browser.element('#acord')
-    alphaInput.clearElement()
-    alphaInput.setValue('.,-\'')
-    alphaInput.addValue('a')
-    alphaInput.addValue('2')
-    alphaInput.addValue('B')
-    alphaInput.addValue('.,-\'')
+    return browser.waitForExist('#acord')
+      .then(() => {
+        const alphaInput = browser.element('#acord')
+        alphaInput.clearElement()
+        alphaInput.setValue('.,-\'')
+        alphaInput.addValue('a')
+        alphaInput.addValue('2')
+        alphaInput.addValue('B')
+        alphaInput.addValue('.,-\'')
 
-    assert.equal(browser.getValue('#acord'), 'aB.,-\'')
+        assert.equal(browser.getValue('#acord'), 'aB.,-\'')
+      })
   })
 })
