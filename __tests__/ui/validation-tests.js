@@ -37,7 +37,7 @@ describe('Validations form', () => {
     browser.setValue('.ct-text-input', 'Tjipp')
     blur()
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-text-input')
     }, 10000)
   })
@@ -48,7 +48,7 @@ describe('Validations form', () => {
     numberInput.setValue('42')
     blur()
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-number-input')
     }, 10000)
   })
@@ -56,7 +56,7 @@ describe('Validations form', () => {
   it('accepts a valid date value', () => {
     browser.selectByValue('.ct-date-picker .ct-year', 2017)
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-date-picker')
     }, 10000)
   })
@@ -64,7 +64,7 @@ describe('Validations form', () => {
   it('accepts a valid date time value', () => {
     browser.selectByValue('.ct-datetime-picker .ct-year', 1999)
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-datetime-picker')
     }, 10000)
   })
@@ -81,8 +81,7 @@ describe('Validations form', () => {
     return browser.waitUntil(() => {
       return browser.getText('.ct-document-header-text') == 'Paragraph'
     }, 10000)
-
-    assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp')
+      .then(() => assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp'))
   })
 
   it('submits the form', () => {
