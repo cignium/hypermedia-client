@@ -85,6 +85,10 @@ describe('Validations form', () => {
     assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp')
   })
 
+  it('submits the form', () => {
+    browser.click('.ct-action=Submit')
+  })
+
   it.only('does not accept numeric input for alpabetic text format', () => {
     const alphaInput = browser.element('#alphabetic')
     alphaInput.clearElement()
