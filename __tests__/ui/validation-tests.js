@@ -87,9 +87,7 @@ describe('Validations form', () => {
 
   it('submits the form', () => {
     browser.click('.ct-action=Submit')
-    return browser.waitUntil(() => {
-      return browser.getText('.ct-document-header-text') == 'Input Formats Form'
-    }, 10000)
+    return browser.waitForExist('#alphabetic', 10000)
   })
 
   it.only('does not accept numeric input for alpabetic text format', () => {
