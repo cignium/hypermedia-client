@@ -1,6 +1,10 @@
 import cx from 'classnames'
 
 export default ({ className, errors, onCommit, property, value }) => {
+  if (value == null) {
+    value = []
+  }
+
   function getValue(checked, newValue) {
     if (!property.isArray) {
       return newValue
