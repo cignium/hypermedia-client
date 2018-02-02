@@ -37,7 +37,8 @@ export default class App extends Component {
         <Document
           api={this.props.api}
           config={this.props.config}
-          resource={document} />
+          resource={document}
+          requests={this.state.requests} />
       </div>
     )
   }

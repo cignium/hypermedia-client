@@ -1,6 +1,6 @@
 import ToggleButton from './toggle-button'
 
-export default ({ api, config, links }) => (
+export default ({ api, config, links, requests }) => (
   <div className='ct-action-list'>
     {links.actions.map(action => {
       return !config.actionListToggle ? (
@@ -16,6 +16,7 @@ export default ({ api, config, links }) => (
           api={api}
           action={action}
           config={config}
+          requests={requests}
         />
       )
     })}

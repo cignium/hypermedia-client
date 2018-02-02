@@ -26,14 +26,14 @@ export default class Document extends Component {
   }
 
   render() {
-    const { api, config, resource } = this.props
+    const { api, config, resource, requests } = this.props
 
     if (!resource) {
       return <div />
     }
 
     const Element = factory(resource)
-    const actions = <ActionList api={api} config={config} links={resource.links} />
+    const actions = <ActionList api={api} config={config} links={resource.links} requests={requests} />
 
     const footer = config.actionListPosition !== 'top' && (
       <div className='ct-document-footer'>
