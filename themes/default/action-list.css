@@ -20,3 +20,9 @@ ct-action-list {
 .ct-action:active {
   background: #5DB0EA;
 }
+
+
+.ct-action[disabled] {
+  background: #EEE;
+  border: solid 1px #EEE;
+}
