@@ -18,9 +18,9 @@ before_script:
   - npm run start-ui-test-server &
 script:
   - npm run lint
-  - npm run test
+#  - npm run test
   - npm run build
-  - npm run test-ui
+#  - npm run test-ui
 after_success:
   - npm run semantic-release
 branches:
