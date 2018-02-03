@@ -7,7 +7,7 @@ import Sitemap from './components/sitemap'
 
 export default class App extends Component {
   constructor(props) {
-    super( )
+    super()
     this.state = props.state.get()
   }
 
