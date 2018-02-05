@@ -5,7 +5,7 @@ export default ({ api, config, links, requests }) => (
         <button
           className='ct-action'
           key={action.href}
-          disabled={config.actionListToggle && Object.keys(requests).length}
+          disabled={Object.keys(requests).length}
           onClick={() => api.executeAction(action.href, config)}>
           {action.title}
         </button>
