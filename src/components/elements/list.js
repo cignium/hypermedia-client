@@ -20,7 +20,6 @@ export default ({ api, property }) => {
       <div className='ct-list-body'>
     {property.items.map(item => {
       const Element = factory(item)
-
       return (
         <Element
           api={api}
