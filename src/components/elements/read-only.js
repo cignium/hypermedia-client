@@ -1,5 +1,5 @@
-import cx from 'classnames'
 import { createDate } from './inputs/date/date-util'
+import cx from 'classnames'
 
 export default ({ className, property }) => {
   let value = property.value
