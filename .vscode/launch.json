@@ -6,14 +6,16 @@
             "type": "node",
             "request": "launch",
             "port": 5859,
+            "protocol": "legacy",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio",
             "windows": {
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/wdio.cmd"
             },
             "cwd": "${workspaceRoot}",
             "console": "integratedTerminal",
-            "args":[
-                "--spec", "${relativeFile}"
+            "args": [
+                "--spec",
+                "${relativeFile}"
                 // To run a specific file, you can also do:
                 //"--spec", "test/specs/foo.spec.js"
             ]
@@ -24,7 +26,9 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/jest-cli/bin/jest.js",
             "stopOnEntry": false,
-            "args": ["--runInBand"],
+            "args": [
+                "--runInBand"
+            ],
             "cwd": "${workspaceRoot}",
             "preLaunchTask": null,
             "runtimeExecutable": null,
