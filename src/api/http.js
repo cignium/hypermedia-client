@@ -13,7 +13,7 @@ export async function request(method, href, data, config) {
 
   if (response.status == 401) {
     if (config && config.onRedirect) {
-      return getResponse(response, config)
+      return getResponse(response, config, contentType)
     }
 
     location.href = method.toLowerCase() == 'get' ? response.url : location.href
@@ -29,7 +29,7 @@ export async function request(method, href, data, config) {
   }
 
   if (config && config.onRedirect) {
-    return getResponse(response, config)
+    return getResponse(response, config, contentType)
   }
 
   location.href = response.url
@@ -37,9 +37,9 @@ export async function request(method, href, data, config) {
   return null
 }
 
-async function getResponse(response, config) {
+async function getResponse(response, config, contentType) {
   let content = await response.text()
-  content = config.onRedirect(response.url, content, response.status)
+  content = config.onRedirect(response.url, content, response.status, contentType)
 
   if (content) {
     content.type = content.type || 'html'
