@@ -37,7 +37,7 @@ describe('Validations form', () => {
     browser.setValue('.ct-text-input', 'Tjipp')
     blur()
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-text-input')
     }, 10000)
   })
@@ -48,7 +48,7 @@ describe('Validations form', () => {
     numberInput.setValue('42')
     blur()
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-number-input')
     }, 10000)
   })
@@ -56,7 +56,7 @@ describe('Validations form', () => {
   it('accepts a valid date value', () => {
     browser.selectByValue('.ct-date-picker .ct-year', 2017)
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-date-picker')
     }, 10000)
   })
@@ -64,24 +64,70 @@ describe('Validations form', () => {
   it('accepts a valid date time value', () => {
     browser.selectByValue('.ct-datetime-picker .ct-year', 1999)
 
-    browser.waitUntil(() => {
+    return browser.waitUntil(() => {
       return !browser.isExisting('.ct-input-invalid.ct-datetime-picker')
     }, 10000)
   })
 
   it('can be submitted when valid', () => {
-    browser.isExisting('.ct-action=Submit')
+    return browser.isExisting('.ct-action=Submit')
   })
 
   it('submits the form', () => {
-    browser.click('.ct-action=Submit')
+    return browser.click('.ct-action=Submit')
   })
 
   it('can display interpolated value', () => {
     return browser.waitUntil(() => {
       return browser.getText('.ct-document-header-text') == 'Paragraph'
     }, 10000)
-
-    assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp')
+      .then(() => assert.equal(browser.getText('.ct-content div#embedded-div'), 'Tjipp'))
   })
+
+  it('submits the form', () => {
+    return browser.click('.ct-action=Submit')
+  })
+
+  // it.only('does not accept numeric input for alpabetic text format', () => {
+  //   return browser.waitForExist('#alphabetic')
+  //     .then(() => {
+  //       const alphaInput = browser.element('#alphabetic')
+  //       alphaInput.clearElement()
+  //       alphaInput.setValue('A')
+  //       alphaInput.addValue('4')
+  //       alphaInput.addValue('2')
+  //       alphaInput.addValue('b')
+
+  //       assert.equal(browser.getValue('#alphabetic'), 'Ab')
+  //     })
+  // })
+
+  // it.only('does not accept alphabetic input for numeric text format', () => {
+  //   return browser.waitForExist('#numeric')
+  //     .then(() => {
+  //       const alphaInput = browser.element('#numeric')
+  //       alphaInput.clearElement()
+  //       alphaInput.setValue('1')
+  //       alphaInput.addValue('A')
+  //       alphaInput.addValue('2')
+  //       alphaInput.addValue('b')
+
+  //       assert.equal(browser.getValue('#numeric'), '12')
+  //     })
+  // })
+
+  // it.only('does only accept Acord format', () => {
+  //   return browser.waitForExist('#acord')
+  //     .then(() => {
+  //       const alphaInput = browser.element('#acord')
+  //       alphaInput.clearElement()
+  //       alphaInput.setValue('.,-\'')
+  //       alphaInput.addValue('a')
+  //       alphaInput.addValue('2')
+  //       alphaInput.addValue('B')
+  //       alphaInput.addValue('.,-\'')
+
+  //       assert.equal(browser.getValue('#acord'), 'aB.,-\'')
+  //     })
+  // })
 })
