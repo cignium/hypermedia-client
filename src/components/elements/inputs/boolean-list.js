@@ -44,7 +44,7 @@ export default ({ className, errors, onCommit, property, value }) => {
       {property.options.map(option => {
         const optionId = `${property.name}-${option.value}`
         return (
-          <div className={cx(className, `ct-${property.display}-option`, 
+          <div className={cx(`ct-${property.display}-option`,
           isChecked(option.value) && `ct-${property.display}-option-checked`)} key={option.value}>
             <input
               className={`ct-${property.display}`}
@@ -52,7 +52,6 @@ export default ({ className, errors, onCommit, property, value }) => {
               disabled={property.disabled}
               onChange={e => onCommit(getValue(e.target.checked, option.value))}
               id={optionId}
-              name={property.name}
               title={property.title}
               type={property.isArray ? 'checkbox' : 'radio'}
               value={option.value} />
