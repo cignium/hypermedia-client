@@ -27,7 +27,8 @@ export default class Input extends Component {
 
     return (
       <div
-        className={cx('ct-element', `ct-${this.props.property.type.replace(/\[\]/,'-list')}-element`)}>
+        className={cx('ct-element', `ct-${this.props.property.type.replace(/\[\]/,'-list')}-element`, 
+        this.props.property.active && `ct-element-active`)}>
         <label className='ct-element-label' htmlFor={this.props.property.name}
           dangerouslySetInnerHTML={{ __html: this.props.property.title }} />
       <Element
