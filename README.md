@@ -160,6 +160,7 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-activity-indicator
  * ct-section
  * ct-element
+ * ct-element-active
  * ct-element-label
  * ct-link
  * ct-content
@@ -177,7 +178,9 @@ For now, you can use the Developer Tools in your browser to see which CSS-classe
  * ct-checkbox-list
  * ct-radio-list
  * ct-checkbox-option
+ * ct-checkbox-option-checked
  * ct-radio-option
+ * ct-radio-option-checked
  * ct-checkbox-label
  * ct-radio-label
  * ct-list
